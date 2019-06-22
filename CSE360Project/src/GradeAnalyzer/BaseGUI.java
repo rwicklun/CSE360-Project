@@ -8,6 +8,18 @@ public class BaseGUI extends JFrame {
 	
 	
 	public BaseGUI() {
+		try {
+			   // Set to cross-platform Windows Classic look and feel.
+			UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsClassicLookAndFeel");
+			} catch (UnsupportedLookAndFeelException e) {
+			   e.printStackTrace();
+			} catch (ClassNotFoundException e) {
+			   e.printStackTrace();
+			} catch (InstantiationException e) {
+			   e.printStackTrace();
+			} catch (IllegalAccessException e) {
+			   e.printStackTrace();
+			}
 		setBackground(Color.BLACK);
 		UIManager.put("TabbedPane.selected", Color.blue);
 		GUIComponents();
