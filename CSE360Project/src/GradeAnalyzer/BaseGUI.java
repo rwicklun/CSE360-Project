@@ -165,11 +165,17 @@ public class BaseGUI extends JFrame {
 	    }
 	}
 	private JTabbedPane basePanel;
+	
 	private JPanel mainPanel;
 	private JTextArea mainDescription;
 	private JButton loadButton;
 	private JButton percentilesButton;
+	
 	private JPanel userPanel;
+	private JButton deleteGrade;
+	private JButton addGrade;
+	private JButton replaceGrade;
+	
 	private JPanel bottomPanel;
 	private JButton closeButton;
 	private JButton saveButton;
