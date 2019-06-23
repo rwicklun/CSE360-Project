@@ -1,7 +1,9 @@
 package GradeAnalyzer;
 import java.awt.*;
 import javax.swing.*;
+import javax.swing.filechooser.*;
 import java.awt.event.*;
+import java.io.File;
 
 @SuppressWarnings("serial")
 public class BaseGUI extends JFrame { 
@@ -42,7 +44,7 @@ public class BaseGUI extends JFrame {
 		//base tabs and such
 		basePanel = new JTabbedPane();
 		basePanel.setFont(new Font("Tahoma", Font.PLAIN, 18));//tab font and size
-        basePanel.setTabPlacement(JTabbedPane.LEFT);
+        basePanel.setTabPlacement(JTabbedPane.LEFT);//set tab location left side
         basePanel.setBackground(Color.BLACK);//tab background color
         basePanel.setForeground(Color.WHITE);//tab text color
         getContentPane().add(basePanel, BorderLayout.CENTER);
@@ -68,11 +70,11 @@ public class BaseGUI extends JFrame {
         basePanel.setForegroundAt(0, Color.WHITE);
 		//home page tab end
 		
-		//load tab start
+		/*load tab start
         loadButton = new JButton("Load Tab");
         loadButton.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		basePanel.addTab("Load a File", loadButton);
-		//load tab end
+		*///load tab end
 		
 		//stats tab start
         statsButton = new JButton("Stats Tab");
@@ -101,6 +103,16 @@ public class BaseGUI extends JFrame {
         recordButton.setBackground(Color.BLUE);
         recordButton.addActionListener(new RecordListener());
         bottomPanel.add(recordButton);
+        
+        loadButton = new JButton("Load");
+        fileChooser = new JFileChooser();
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("TEXT FILES", "txt", "text");
+        fileChooser.setFileFilter(filter);
+        loadButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
+        loadButton.setForeground(new Color(255, 255, 255));
+        loadButton.setBackground(Color.BLUE);
+        loadButton.addActionListener(new LoadListener());
+        bottomPanel.add(loadButton);
         
         saveButton = new JButton("Save");
         saveButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -134,6 +146,17 @@ public class BaseGUI extends JFrame {
 	        //DOES NOTHING
 	    }
 	}
+	private class LoadListener implements ActionListener {
+	    @Override
+	    public void actionPerformed(ActionEvent e) {
+	    	int returnVal = fileChooser.showOpenDialog(BaseGUI.this);
+	    	if (returnVal == JFileChooser.APPROVE_OPTION) {
+                //File file = fileChooser.getSelectedFile();
+	    	} else {
+	    		
+	    	}
+	    }
+	}
 	private class CloseListener implements ActionListener {
 	    @Override
 	    public void actionPerformed(ActionEvent e) {
@@ -152,6 +175,7 @@ public class BaseGUI extends JFrame {
 	private JButton closeButton;
 	private JButton saveButton;
 	private JButton recordButton;
+	private JFileChooser fileChooser;
 	static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	private JScrollPane scrollPane;
 
