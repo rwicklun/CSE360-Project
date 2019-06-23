@@ -51,6 +51,9 @@ public class TestTabs {
 		frame.setBounds(100, 100, 800, 500);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
+		frame.setBackground(Color.BLACK);
+		UIManager.put("TabbedPane.selected", Color.blue);
+		
 		frame.getContentPane().setLayout(new BorderLayout());
 		frame.getContentPane().setBackground(new Color( 200, 200, 200));//left side bar color
         frame.setTitle("Grade Analyzer");
@@ -58,7 +61,7 @@ public class TestTabs {
 		basePanel = new JTabbedPane();
 		basePanel.setFont(new Font("Tahoma", Font.PLAIN, 18));//tab font and size
         basePanel.setTabPlacement(JTabbedPane.LEFT);
-        frame.add(basePanel);
+        frame.getContentPane().add(basePanel);
 		
         basePanel.setBackground(Color.BLACK);//tab background color
         basePanel.setForeground(Color.WHITE);//tab text color
