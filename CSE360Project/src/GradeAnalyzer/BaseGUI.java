@@ -3,7 +3,6 @@ import java.awt.*;
 import javax.swing.*;
 import javax.swing.filechooser.*;
 import java.awt.event.*;
-import java.io.File;
 
 @SuppressWarnings("serial")
 public class BaseGUI extends JFrame { 
@@ -87,7 +86,7 @@ public class BaseGUI extends JFrame {
 		//percentiles tab end
 		
 		//user tab start
-        userButton = new JButton("User Tab");
+        userButton = new JPanel();
 		basePanel.addTab("Change Grades", userButton);
 		//user tab end
 		
@@ -169,7 +168,7 @@ public class BaseGUI extends JFrame {
 	private JTextArea mainDescription;
 	private JButton loadButton;
 	private JButton percentilesButton;
-	private JButton userButton;
+	private JPanel userButton;
 	private JButton statsButton;
 	private JPanel bottomPanel;
 	private JButton closeButton;
