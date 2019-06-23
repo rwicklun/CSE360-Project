@@ -88,6 +88,7 @@ public class BaseGUI extends JFrame {
 		
 		//user tab start
         userPanel= new JPanel();
+        deleteGrade = new JButton("Delete a Grade");
 		basePanel.addTab("Change Grades", userPanel);
 		//user tab end
 		
