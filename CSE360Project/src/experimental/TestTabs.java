@@ -1,6 +1,9 @@
 package experimental;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.*;
 
 public class TestTabs {
@@ -111,6 +114,26 @@ public class TestTabs {
 		
         // end of base tabs and such 
         
+    	final class RecordListener implements ActionListener {
+    	    @Override
+    	    public void actionPerformed(ActionEvent e) {
+    	        //DOES NOTHING
+    	    }
+    	}
+    	final class SaveListener implements ActionListener {
+    	    @Override
+    	    public void actionPerformed(ActionEvent e) {
+    	        //DOES NOTHING
+    	    }
+    	}
+    	final class CloseListener implements ActionListener {
+    	    @Override
+    	    public void actionPerformed(ActionEvent e) {
+    	        //exits the program, closing the GUI.
+    	        System.exit(0);
+    	    }
+    	}
+		
         //bottom buttons and such
         bottomPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT, 16, 5));
         bottomPanel.setBackground(new Color( 200, 200, 200));
@@ -119,24 +142,26 @@ public class TestTabs {
         recordButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
         recordButton.setForeground(new Color(255, 255, 255));
         recordButton.setBackground(Color.BLUE);
-        //recordButton.addActionListener(new RecordListener());
+        recordButton.addActionListener(new RecordListener());
         bottomPanel.add(recordButton);
         
         saveButton = new JButton("Save");
         saveButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
         saveButton.setForeground(new Color(255, 255, 255));
         saveButton.setBackground(Color.BLUE);
-        //saveButton.addActionListener(new SaveListener());
+        saveButton.addActionListener(new SaveListener());
         bottomPanel.add(saveButton);
         
         closeButton = new JButton("Close");
         closeButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
         closeButton.setForeground(new Color(255, 255, 255));
         closeButton.setBackground(Color.BLUE);
-        //closeButton.addActionListener(new CloseListener());
+        closeButton.addActionListener(new CloseListener());
         bottomPanel.add(closeButton);
         frame.getContentPane().add(bottomPanel, BorderLayout.SOUTH);
         //end of bottom buttons and such
+        
+
         
 
 	}
