@@ -92,6 +92,7 @@ public class BaseGUI extends JFrame {
 		basePanel.addTab("Change Grades", userButton);
 		//user tab end
 		
+		
         // end of base tabs and such 
         
         //bottom buttons and such
