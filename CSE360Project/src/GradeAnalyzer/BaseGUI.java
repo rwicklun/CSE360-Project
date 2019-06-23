@@ -26,7 +26,7 @@ public class BaseGUI extends JFrame {
 		GUIComponents();
         int screenWidth = (int) screenSize.getWidth();
         int screenHeight = (int) screenSize.getHeight();
-        this.setSize(screenWidth/2, screenHeight/2);
+        this.setSize(800, 449);
         this.setResizable(false);
         this.setLocation((screenWidth - this.getSize().width) / 2,(screenHeight - this.getSize().height) / 2); 
         
@@ -76,8 +76,9 @@ public class BaseGUI extends JFrame {
 		*///load tab end
 		
 		//stats tab start
-        statsButton = new JButton("Stats Tab");
-		basePanel.addTab("Grade Statistics", statsButton);
+        statsPanel = new JPanel();
+        statsPanel.setBackground(new Color(240, 240, 240));
+        basePanel.addTab("Grade Statistics", null, statsPanel, null);
 		//stats tab end
 		
 		//percentiles tab start
@@ -177,5 +178,6 @@ public class BaseGUI extends JFrame {
 	private JFileChooser fileChooser;
 	static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	private JScrollPane scrollPane;
+	private JPanel statsPanel;
 
 }
