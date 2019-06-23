@@ -87,8 +87,8 @@ public class BaseGUI extends JFrame {
 		//percentiles tab end
 		
 		//user tab start
-        userButton = new JPanel();
-		basePanel.addTab("Change Grades", userButton);
+        userPanel= new JPanel();
+		basePanel.addTab("Change Grades", userPanel);
 		//user tab end
 		
         // end of base tabs and such 
@@ -169,8 +169,7 @@ public class BaseGUI extends JFrame {
 	private JTextArea mainDescription;
 	private JButton loadButton;
 	private JButton percentilesButton;
-	private JPanel userButton;
-	private JButton statsButton;
+	private JPanel userPanel;
 	private JPanel bottomPanel;
 	private JButton closeButton;
 	private JButton saveButton;
