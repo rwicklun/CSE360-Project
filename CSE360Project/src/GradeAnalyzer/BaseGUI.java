@@ -113,14 +113,14 @@ public class BaseGUI extends JFrame {
         loadButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
         loadButton.setForeground(new Color(255, 255, 255));
         loadButton.setBackground(Color.BLUE);
-        loadButton.addActionListener(new LoadListener());
+        loadButton.addActionListener(new LoadSaveListener());
         bottomPanel.add(loadButton);
         
         saveButton = new JButton("Save");
         saveButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
         saveButton.setForeground(new Color(255, 255, 255));
         saveButton.setBackground(Color.BLUE);
-        saveButton.addActionListener(new SaveListener());
+        saveButton.addActionListener(new LoadSaveListener());
         bottomPanel.add(saveButton);
         
         closeButton = new JButton("Close");
@@ -142,19 +142,17 @@ public class BaseGUI extends JFrame {
 	        //DOES NOTHING
 	    }
 	}
-	private class SaveListener implements ActionListener {
+	private class LoadSaveListener implements ActionListener {
 	    @Override
-	    public void actionPerformed(ActionEvent e) {
-	        //DOES NOTHING
-	    }
-	}
-	private class LoadListener implements ActionListener {
-	    @Override
-	    public void actionPerformed(ActionEvent e) {
-	    	int returnVal = fileChooser.showOpenDialog(BaseGUI.this);
-	    	if (returnVal == JFileChooser.APPROVE_OPTION) {
-                //File file = fileChooser.getSelectedFile();
-	    	} else {
+	    public void actionPerformed(ActionEvent event) {
+	    	if (event.getSource() == loadButton) {
+		    	int returnVal = fileChooser.showOpenDialog(BaseGUI.this);
+		    	if (returnVal == JFileChooser.APPROVE_OPTION) {
+	                //File file = fileChooser.getSelectedFile();
+		    	} else {
+		    		
+		    	}
+	    	} else if (event.getSource() == saveButton) {
 	    		
 	    	}
 	    }
