@@ -28,7 +28,7 @@ public class BaseGUI extends JFrame {
 		GUIComponents();
         int screenWidth = (int) screenSize.getWidth();
         int screenHeight = (int) screenSize.getHeight();
-        this.setSize(screenWidth, screenHeight);
+        this.setSize(screenWidth, screenHeight);// makes full screen, should be adjusted later.
         this.setResizable(false);
         this.setLocation((screenWidth - this.getSize().width) / 2,(screenHeight - this.getSize().height) / 2); 
         
@@ -92,11 +92,6 @@ public class BaseGUI extends JFrame {
         basePanel.setForegroundAt(0, Color.WHITE);
 		//home page tab end
 		
-		/*load tab start
-        loadButton = new JButton("Load Tab");
-        loadButton.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		basePanel.addTab("Load a File", loadButton);
-		*///load tab end
 		
 		//stats tab start
         statsPanel = new JPanel();
