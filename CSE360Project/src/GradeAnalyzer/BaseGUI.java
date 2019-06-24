@@ -94,8 +94,8 @@ public class BaseGUI extends JFrame {
 		//stats tab end
 		
 		//percentiles tab start
-        percentilesButton = new JButton("Percentiles Tab");
-		basePanel.addTab("Grade Percentiles", percentilesButton);
+        percentilePanel= new JPanel();
+		basePanel.addTab("Grade Percentiles", percentilePanel);
 		//percentiles tab end
 		
 		//user tab start
@@ -141,6 +141,10 @@ public class BaseGUI extends JFrame {
         //bottom buttons and such
         bottomPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT, 16, 5));
         bottomPanel.setBackground(new Color( 200, 200, 200));
+
+        fileChooser = new JFileChooser();
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("TEXT FILES", "txt", "text");
+        fileChooser.setFileFilter(filter);
         
         recordButton = new JButton("Create Record");
         recordButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -150,9 +154,6 @@ public class BaseGUI extends JFrame {
         bottomPanel.add(recordButton);
         
         loadButton = new JButton("Load");
-        fileChooser = new JFileChooser();
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("TEXT FILES", "txt", "text");
-        fileChooser.setFileFilter(filter);
         loadButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
         loadButton.setForeground(new Color(255, 255, 255));
         loadButton.setBackground(Color.BLUE);
@@ -182,7 +183,12 @@ public class BaseGUI extends JFrame {
 	private class RecordListener implements ActionListener {
 	    @Override
 	    public void actionPerformed(ActionEvent event) {
-	        //DOES NOTHING
+	    	int returnVal = fileChooser.showSaveDialog(BaseGUI.this);
+	    	if (returnVal == JFileChooser.APPROVE_OPTION) {
+                //File file = fileChooser.getSelectedFile();
+	    	} else {
+	    		
+	    	}
 	    }
 	}
 	private class LoadSaveListener implements ActionListener {
@@ -196,6 +202,12 @@ public class BaseGUI extends JFrame {
 		    		
 		    	}
 	    	} else if (event.getSource() == saveButton) {
+		    	int returnVal = fileChooser.showSaveDialog(BaseGUI.this);
+		    	if (returnVal == JFileChooser.APPROVE_OPTION) {
+	                //File file = fileChooser.getSelectedFile();
+		    	} else {
+		    		
+		    	}
 	    		
 	    	}
 	    }
@@ -211,8 +223,7 @@ public class BaseGUI extends JFrame {
 	
 	private JPanel mainPanel;
 	private JTextArea mainDescription;
-	private JButton loadButton;
-	private JButton percentilesButton;
+	private JPanel percentilePanel;
 	
 	private JPanel userPanel;
 	private JButton deleteGrade;
@@ -223,6 +234,7 @@ public class BaseGUI extends JFrame {
 	
 	private JPanel bottomPanel;
 	private JButton closeButton;
+	private JButton loadButton;
 	private JButton saveButton;
 	private JButton recordButton;
 	private JFileChooser fileChooser;
