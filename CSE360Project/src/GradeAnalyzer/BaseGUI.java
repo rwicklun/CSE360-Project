@@ -10,25 +10,13 @@ public class BaseGUI extends JFrame {
 	
 	
 	public BaseGUI() {
-		try {
-			   // Set to cross-platform Windows Classic look and feel.
-			UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
-			} catch (UnsupportedLookAndFeelException e) {
-			   e.printStackTrace();
-			} catch (ClassNotFoundException e) {
-			   e.printStackTrace();
-			} catch (InstantiationException e) {
-			   e.printStackTrace();
-			} catch (IllegalAccessException e) {
-			   e.printStackTrace();
-			}
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBackground(Color.BLACK);
 		UIManager.put("TabbedPane.selected", Color.blue);
 		GUIComponents();
         int screenWidth = (int) screenSize.getWidth();
         int screenHeight = (int) screenSize.getHeight();
-        this.setSize(screenWidth, screenHeight);// makes full screen, should be adjusted later.
+        this.setSize(screenWidth/3, screenHeight/3);// makes full screen, should be adjusted later.
         this.setResizable(false);
         this.setLocation((screenWidth - this.getSize().width) / 2,(screenHeight - this.getSize().height) / 2); 
         
@@ -106,6 +94,7 @@ public class BaseGUI extends JFrame {
 		
 		//user tab start
         userPanel= new JPanel();
+        userPanel.setBackground(Color.WHITE);
         
         setMaxGrade = new JButton("Change maximum possible score.");
         setMaxGrade.setFont(new Font("Tahoma", Font.PLAIN, 18));
