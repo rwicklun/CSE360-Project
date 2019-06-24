@@ -1,9 +1,8 @@
 package GradeAnalyzer;
+
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.filechooser.*;
-
-
 import java.awt.event.*;
 
 @SuppressWarnings("serial")
@@ -13,7 +12,7 @@ public class BaseGUI extends JFrame {
 	public BaseGUI() {
 		try {
 			   // Set to cross-platform Windows Classic look and feel.
-			UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsClassicLookAndFeel");
+			UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
 			} catch (UnsupportedLookAndFeelException e) {
 			   e.printStackTrace();
 			} catch (ClassNotFoundException e) {
@@ -29,13 +28,25 @@ public class BaseGUI extends JFrame {
 		GUIComponents();
         int screenWidth = (int) screenSize.getWidth();
         int screenHeight = (int) screenSize.getHeight();
-        this.setSize(800, 449);
+        this.setSize(screenWidth, screenHeight);
         this.setResizable(false);
         this.setLocation((screenWidth - this.getSize().width) / 2,(screenHeight - this.getSize().height) / 2); 
         
 	}
 
 	public static void main(String[] args) {
+		try {
+			   // Set to cross-platform Windows Classic look and feel.
+			UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
+			} catch (UnsupportedLookAndFeelException e) {
+			   e.printStackTrace();
+			} catch (ClassNotFoundException e) {
+			   e.printStackTrace();
+			} catch (InstantiationException e) {
+			   e.printStackTrace();
+			} catch (IllegalAccessException e) {
+			   e.printStackTrace();
+			}
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -219,6 +230,7 @@ public class BaseGUI extends JFrame {
 	        System.exit(0);
 	    }
 	}
+	
 	private JTabbedPane basePanel;
 	
 	private JPanel mainPanel;
