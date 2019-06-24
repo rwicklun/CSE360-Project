@@ -1,4 +1,4 @@
-package GradeAnalyzer;
+package gradeAnalyzer;
 
 import java.awt.*;
 import javax.swing.*;
@@ -16,7 +16,7 @@ public class BaseGUI extends JFrame {
 		GUIComponents();
         int screenWidth = (int) screenSize.getWidth();
         int screenHeight = (int) screenSize.getHeight();
-        this.setSize(screenWidth/2, screenHeight/2);// makes full screen, should be adjusted later.
+        this.setSize(913, 497);// makes full screen, should be adjusted later.
         this.setResizable(false);
         this.setLocation((screenWidth - this.getSize().width) / 2,(screenHeight - this.getSize().height) / 2); 
         
@@ -89,7 +89,7 @@ public class BaseGUI extends JFrame {
 		//stats tab end
 		
 		//percentiles tab start
-        percentilePanel= new JPanel();
+        percentilePanel= new PercentilePanel();
 		basePanel.addTab("Grade Percentiles", percentilePanel);
 		//percentiles tab end
 		
