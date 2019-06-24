@@ -22,6 +22,7 @@ public class BaseGUI extends JFrame {
         
 	}
 
+	
 	public static void main(String[] args) {
 		try {
 			   // Set to cross-platform Windows Classic look and feel.
