@@ -2,6 +2,8 @@ package GradeAnalyzer;
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.filechooser.*;
+
+
 import java.awt.event.*;
 
 @SuppressWarnings("serial")
@@ -21,6 +23,7 @@ public class BaseGUI extends JFrame {
 			} catch (IllegalAccessException e) {
 			   e.printStackTrace();
 			}
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBackground(Color.BLACK);
 		UIManager.put("TabbedPane.selected", Color.blue);
 		GUIComponents();
@@ -33,7 +36,16 @@ public class BaseGUI extends JFrame {
 	}
 
 	public static void main(String[] args) {
-		new BaseGUI().setVisible(true);
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					new BaseGUI().setVisible(true);
+				} catch (Exception exception) {
+					exception.printStackTrace();
+				}
+			}
+		});
+		
 		
 	}
 	private void GUIComponents() {
@@ -88,7 +100,38 @@ public class BaseGUI extends JFrame {
 		
 		//user tab start
         userPanel= new JPanel();
-        deleteGrade = new JButton("Delete a Grade");
+        
+        setMaxGrade = new JButton("Change maximum possible score.");
+        setMaxGrade.setFont(new Font("Tahoma", Font.PLAIN, 18));
+        setMaxGrade.setForeground(new Color(255, 255, 255));
+        setMaxGrade.setBackground(Color.BLUE);
+
+        setMinGrade = new JButton("Change minimum possible score.");
+        setMinGrade.setFont(new Font("Tahoma", Font.PLAIN, 18));
+        setMinGrade.setForeground(new Color(255, 255, 255));
+        setMinGrade.setBackground(Color.BLUE);
+
+    	deleteGrade = new JButton("Delete a Grade.");
+    	deleteGrade.setFont(new Font("Tahoma", Font.PLAIN, 18));
+        deleteGrade.setForeground(new Color(255, 255, 255));
+        deleteGrade.setBackground(Color.BLUE);
+        
+    	addGrade = new JButton("Add a Grade.");
+    	addGrade.setFont(new Font("Tahoma", Font.PLAIN, 18));
+    	addGrade.setForeground(new Color(255, 255, 255));
+    	addGrade.setBackground(Color.BLUE);
+    	
+    	replaceGrade = new JButton("Change a Grade.");
+    	replaceGrade.setFont(new Font("Tahoma", Font.PLAIN, 18));
+    	replaceGrade.setForeground(new Color(255, 255, 255));
+    	replaceGrade.setBackground(Color.BLUE);
+    	
+    	userPanel.add(setMaxGrade);
+    	userPanel.add(setMinGrade);
+    	userPanel.add(addGrade);
+    	userPanel.add(deleteGrade);
+    	userPanel.add(replaceGrade);
+    	
 		basePanel.addTab("Change Grades", userPanel);
 		//user tab end
 		
@@ -138,7 +181,7 @@ public class BaseGUI extends JFrame {
 	}
 	private class RecordListener implements ActionListener {
 	    @Override
-	    public void actionPerformed(ActionEvent e) {
+	    public void actionPerformed(ActionEvent event) {
 	        //DOES NOTHING
 	    }
 	}
@@ -159,7 +202,7 @@ public class BaseGUI extends JFrame {
 	}
 	private class CloseListener implements ActionListener {
 	    @Override
-	    public void actionPerformed(ActionEvent e) {
+	    public void actionPerformed(ActionEvent event) {
 	        //exits the program, closing the GUI.
 	        System.exit(0);
 	    }
@@ -175,14 +218,17 @@ public class BaseGUI extends JFrame {
 	private JButton deleteGrade;
 	private JButton addGrade;
 	private JButton replaceGrade;
+	private JButton setMaxGrade;
+	private JButton setMinGrade;
 	
 	private JPanel bottomPanel;
 	private JButton closeButton;
 	private JButton saveButton;
 	private JButton recordButton;
 	private JFileChooser fileChooser;
-	static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	private JScrollPane scrollPane;
 	private JPanel statsPanel;
+	static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+	
 
 }
