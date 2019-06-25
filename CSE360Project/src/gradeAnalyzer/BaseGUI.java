@@ -72,7 +72,16 @@ public class BaseGUI extends JFrame {
         mainDescription.setEditable(false);
         mainDescription.setBackground(Color.white);// the text background is white
         // start of text for home description
-        	mainDescription.setText("Change to description of the project.");
+        	mainDescription.setText("The Home Tab: \nThis tab contains a description of the components of the Grade Analyzer program."
+        			+ "\n\nThe Grade Statistics Tab:"
+        			+ "\nThis tab contains the means of setting the highest and lowest possible scores, "
+        			+ "the average, the mean, the median, and the highest and lowest score of the grades."
+        			+ "\n\nThe Grade Percentiles Tab:"
+        			+ "\nThis tab contains the distrubtion of A's, B's, C's etc. the count of students in a user set percentile, "
+        			+ "and the count of students in each percentage range."
+        			+ "\n\nThe Manipulate Grades Tab:"
+        			+ "\nThis tab contains the ability to add, delete, and replace a grade, as well as to change the maximum and "
+        			+ "minimum possible scores.");
         // end of text for home description
         scrollPane = new JScrollPane(mainDescription);
         mainPanel.add(scrollPane);
@@ -98,29 +107,29 @@ public class BaseGUI extends JFrame {
         userPanel.setBackground(Color.WHITE);
         
         setMaxGrade = new JButton("Change maximum possible score.");
-        setMaxGrade.setFont(new Font("Tahoma", Font.PLAIN, 18));
+        /*setMaxGrade.setFont(new Font("Tahoma", Font.PLAIN, 18));
         setMaxGrade.setForeground(new Color(255, 255, 255));
-        setMaxGrade.setBackground(Color.BLUE);
+        setMaxGrade.setBackground(Color.BLUE);*/
 
         setMinGrade = new JButton("Change minimum possible score.");
-        setMinGrade.setFont(new Font("Tahoma", Font.PLAIN, 18));
+        /*setMinGrade.setFont(new Font("Tahoma", Font.PLAIN, 18));
         setMinGrade.setForeground(new Color(255, 255, 255));
-        setMinGrade.setBackground(Color.BLUE);
+        setMinGrade.setBackground(Color.BLUE);*/
 
     	deleteGrade = new JButton("Delete a Grade.");
-    	deleteGrade.setFont(new Font("Tahoma", Font.PLAIN, 18));
+    	/*deleteGrade.setFont(new Font("Tahoma", Font.PLAIN, 18));
         deleteGrade.setForeground(new Color(255, 255, 255));
-        deleteGrade.setBackground(Color.BLUE);
+        deleteGrade.setBackground(Color.BLUE);*/
         
     	addGrade = new JButton("Add a Grade.");
-    	addGrade.setFont(new Font("Tahoma", Font.PLAIN, 18));
+    	/*addGrade.setFont(new Font("Tahoma", Font.PLAIN, 18));
     	addGrade.setForeground(new Color(255, 255, 255));
-    	addGrade.setBackground(Color.BLUE);
+    	addGrade.setBackground(Color.BLUE);*/
     	
     	replaceGrade = new JButton("Change a Grade.");
-    	replaceGrade.setFont(new Font("Tahoma", Font.PLAIN, 18));
+    	/*replaceGrade.setFont(new Font("Tahoma", Font.PLAIN, 18));
     	replaceGrade.setForeground(new Color(255, 255, 255));
-    	replaceGrade.setBackground(Color.BLUE);
+    	replaceGrade.setBackground(Color.BLUE);*/
     	
     	userPanel.add(setMaxGrade);
     	userPanel.add(setMinGrade);
@@ -128,7 +137,7 @@ public class BaseGUI extends JFrame {
     	userPanel.add(deleteGrade);
     	userPanel.add(replaceGrade);
     	
-		basePanel.addTab("Change Grades", userPanel);
+		basePanel.addTab("Manipulate Grades", userPanel);
 		//user tab end
 		
 		
