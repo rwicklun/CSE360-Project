@@ -120,7 +120,25 @@ public class PercentilePanel extends JPanel {
 		panel_1.add(btnUpdate);
 		
 		JPanel panel_2 = new JPanel();
+		FlowLayout flowLayout_1 = (FlowLayout) panel_2.getLayout();
+		flowLayout_1.setHgap(35);
+		flowLayout_1.setAlignment(FlowLayout.LEFT);
 		add(panel_2);
+		
+		JLabel lblA_2 = new JLabel("A: 20");
+		panel_2.add(lblA_2);
+		
+		JLabel lblB_2 = new JLabel("B: 20");
+		panel_2.add(lblB_2);
+		
+		JLabel lblC_2 = new JLabel("C: 20");
+		panel_2.add(lblC_2);
+		
+		JLabel lblD_2 = new JLabel("D: 20");
+		panel_2.add(lblD_2);
+		
+		JLabel lblF_2 = new JLabel("F: 20");
+		panel_2.add(lblF_2);
 		
 		JLabel lblStudentsInEach_1 = new JLabel("Students in Each Percentile");
 		lblStudentsInEach_1.setVerticalAlignment(SwingConstants.BOTTOM);
