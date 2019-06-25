@@ -121,24 +121,12 @@ public class BaseGUI extends JFrame {
         setMaxGrade.setBackground(Color.BLUE);*/
 
         setMinGrade = new JButton("Change minimum possible score.");
-        /*setMinGrade.setFont(new Font("Tahoma", Font.PLAIN, 18));
-        setMinGrade.setForeground(new Color(255, 255, 255));
-        setMinGrade.setBackground(Color.BLUE);*/
 
     	deleteGrade = new JButton("Delete a Grade.");
-    	/*deleteGrade.setFont(new Font("Tahoma", Font.PLAIN, 18));
-        deleteGrade.setForeground(new Color(255, 255, 255));
-        deleteGrade.setBackground(Color.BLUE);*/
         
     	addGrade = new JButton("Add a Grade.");
-    	/*addGrade.setFont(new Font("Tahoma", Font.PLAIN, 18));
-    	addGrade.setForeground(new Color(255, 255, 255));
-    	addGrade.setBackground(Color.BLUE);*/
     	
     	replaceGrade = new JButton("Change a Grade.");
-    	/*replaceGrade.setFont(new Font("Tahoma", Font.PLAIN, 18));
-    	replaceGrade.setForeground(new Color(255, 255, 255));
-    	replaceGrade.setBackground(Color.BLUE);*/
     	
     	userPanel.add(setMaxGrade);
     	userPanel.add(setMinGrade);

@@ -3,6 +3,7 @@ package gradeAnalyzer;
 import javax.swing.*;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
@@ -32,6 +33,7 @@ public class ErrorPanel extends JFrame {
 		panel_1.setLayout(gbl_panel_1);
 		
 		JLabel lblError = new JLabel("Error : ");
+		lblError.setFont(new Font("Times New Roman", Font.BOLD, 18));// description text style
 		GridBagConstraints gbc_lblError = new GridBagConstraints();
 		gbc_lblError.insets = new Insets(0, 0, 0, 5);
 		gbc_lblError.anchor = GridBagConstraints.NORTHWEST;
@@ -47,6 +49,7 @@ public class ErrorPanel extends JFrame {
 		JTextArea textArea = new JTextArea();
         textArea.setLineWrap(true);
         textArea.setWrapStyleWord(true);
+        textArea.setFont(new Font("Times New Roman", Font.PLAIN, 18));// description text style
 		scrollPane.setViewportView(textArea);
 		panel_2.add(scrollPane);
 		
