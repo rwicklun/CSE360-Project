@@ -8,6 +8,7 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.Toolkit;
 
+@SuppressWarnings("serial")
 public class ErrorPanel extends JFrame {
 	static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	public ErrorPanel() {

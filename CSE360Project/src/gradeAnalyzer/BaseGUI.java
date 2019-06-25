@@ -213,7 +213,9 @@ public class BaseGUI extends JFrame {
 		    	if (returnVal == JFileChooser.APPROVE_OPTION) {
 	                //File file = fileChooser.getSelectedFile();
 		    	} else {
-		    		
+		    		/*
+		    		new ErrorPanel().setVisible(true);
+		    		*/
 		    	}
 	    	} else if (event.getSource() == saveButton) {
 		    	int returnVal = fileChooser.showSaveDialog(BaseGUI.this);

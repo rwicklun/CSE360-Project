@@ -12,6 +12,7 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 
+@SuppressWarnings("serial")
 public class PercentilePanel extends JPanel {
 	private JTextField textField_3;
 	private JTextField textField_4;
