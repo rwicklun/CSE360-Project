@@ -18,6 +18,9 @@ public class PercentilePanel extends JPanel {
 		
 		JPanel panel = new JPanel();
 		add(panel);
+		JLabel label1 = new JLabel();
+		LetterPercentLabel(label1, "AA", 33);
+		panel.add(label1);
 		
 		JLabel lblStudentsInEach = new JLabel("Students in Each Grade Range");
 		add(lblStudentsInEach);
@@ -36,4 +39,7 @@ public class PercentilePanel extends JPanel {
 
 	}
 
+	public void LetterPercentLabel(JLabel label, String letter, int percent) {
+		label.setText(letter + ":  " + percent + "%");
+	}
 }
