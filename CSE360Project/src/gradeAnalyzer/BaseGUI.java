@@ -16,7 +16,7 @@ public class BaseGUI extends JFrame {
 		GUIComponents();
         int screenWidth = (int) screenSize.getWidth();
         int screenHeight = (int) screenSize.getHeight();
-        this.setSize(913, 497);// makes full screen, should be adjusted later.
+        this.setSize(screenWidth/2, screenHeight/2);// DO NOT MAKE A STAGNANT NUMBER IT SCREWS EVERYTHING UP
         this.setResizable(false);
         this.setLocation((screenWidth - this.getSize().width) / 2,(screenHeight - this.getSize().height) / 2); 
         
@@ -40,6 +40,7 @@ public class BaseGUI extends JFrame {
 			public void run() {
 				try {
 					new BaseGUI().setVisible(true);
+					new ErrorPanel().setVisible(true);
 				} catch (Exception exception) {
 					exception.printStackTrace();
 				}
@@ -81,7 +82,15 @@ public class BaseGUI extends JFrame {
         			+ "and the count of students in each percentage range."
         			+ "\n\nThe Manipulate Grades Tab:"
         			+ "\nThis tab contains the ability to add, delete, and replace a grade, as well as to change the maximum and "
-        			+ "minimum possible scores.");
+        			+ "minimum possible scores."
+        			+ "\n\nThe Create Record Button:"
+        			+ "\nThis button will generate a document that lists out all the data given by Grade Analyzer, with nothing loaded it will only "
+        			+ "write out the categories."
+        			+ "\n\n The Load Button:"
+        			+ "\nThis button will load a .txt file composed of individual floating point numbers on each line, anything else will error."
+        			+ "\n\nThe Save Button:"
+        			+ "\nThis button will save all changes made to the grades, including the set maximum and minimum and statistics.");
+        	mainDescription.setCaretPosition(0);
         // end of text for home description
         scrollPane = new JScrollPane(mainDescription);
         mainPanel.add(scrollPane);
