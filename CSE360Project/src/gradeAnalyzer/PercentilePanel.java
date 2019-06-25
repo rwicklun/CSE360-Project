@@ -4,6 +4,8 @@ import javax.swing.JPanel;
 import java.awt.GridLayout;
 import java.awt.ComponentOrientation;
 import javax.swing.JLabel;
+import java.awt.FlowLayout;
+import javax.swing.SwingConstants;
 
 public class PercentilePanel extends JPanel {
 
@@ -14,13 +16,21 @@ public class PercentilePanel extends JPanel {
 		setLayout(new GridLayout(0, 1, 0, 0));
 		
 		JLabel lblGradeDistribution = new JLabel("Grade Distribution");
+		lblGradeDistribution.setHorizontalAlignment(SwingConstants.LEFT);
 		add(lblGradeDistribution);
 		
 		JPanel panel = new JPanel();
+		FlowLayout flowLayout = (FlowLayout) panel.getLayout();
+		flowLayout.setVgap(10);
+		flowLayout.setHgap(25);
+		flowLayout.setAlignment(FlowLayout.LEFT);
 		add(panel);
 		JLabel label1 = new JLabel();
-		LetterPercentLabel(label1, "AA", 33);
+		LetterPercentLabel(label1, "A", 33);
 		panel.add(label1);
+		
+		JLabel lblB = new JLabel("B:  20%");
+		panel.add(lblB);
 		
 		JLabel lblStudentsInEach = new JLabel("Students in Each Grade Range");
 		add(lblStudentsInEach);
@@ -39,7 +49,7 @@ public class PercentilePanel extends JPanel {
 
 	}
 
-	public void LetterPercentLabel(JLabel label, String letter, int percent) {
+	public void LetterPercentLabel(JLabel label, String letter, float percent) {
 		label.setText(letter + ":  " + percent + "%");
 	}
 }
