@@ -18,6 +18,8 @@ public class PercentilePanel extends JPanel {
 	private JTextField textField_1;
 	private JTextField textField_2;
 	private JTextField textField_5;
+	private JTextField textField;
+	private JTextField textField_6;
 
 	/**
 	 * Create the panel.
@@ -279,6 +281,63 @@ public class PercentilePanel extends JPanel {
 		
 		JPanel pnlSetPercentile = new JPanel();
 		add(pnlSetPercentile);
+		GridBagLayout gbl_pnlSetPercentile = new GridBagLayout();
+		gbl_pnlSetPercentile.columnWidths = new int[] {65, 10, 65, 65, 65, 10, 65, 0};
+		gbl_pnlSetPercentile.rowHeights = new int[] {42, 0};
+		gbl_pnlSetPercentile.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_pnlSetPercentile.rowWeights = new double[]{0.0, Double.MIN_VALUE};
+		pnlSetPercentile.setLayout(gbl_pnlSetPercentile);
+		
+		JLabel lblTop = new JLabel("Top");
+		GridBagConstraints gbc_lblTop = new GridBagConstraints();
+		gbc_lblTop.anchor = GridBagConstraints.EAST;
+		gbc_lblTop.insets = new Insets(0, 0, 0, 5);
+		gbc_lblTop.gridx = 0;
+		gbc_lblTop.gridy = 0;
+		pnlSetPercentile.add(lblTop, gbc_lblTop);
+		
+		textField = new JTextField();
+		textField.setHorizontalAlignment(SwingConstants.CENTER);
+		textField.setText("90");
+		GridBagConstraints gbc_textField = new GridBagConstraints();
+		gbc_textField.insets = new Insets(0, 0, 0, 5);
+		gbc_textField.gridx = 1;
+		gbc_textField.gridy = 0;
+		pnlSetPercentile.add(textField, gbc_textField);
+		textField.setColumns(2);
+		
+		JLabel lblPercentile_1 = new JLabel("percentile");
+		GridBagConstraints gbc_lblPercentile_1 = new GridBagConstraints();
+		gbc_lblPercentile_1.anchor = GridBagConstraints.WEST;
+		gbc_lblPercentile_1.insets = new Insets(0, 0, 0, 5);
+		gbc_lblPercentile_1.gridx = 2;
+		gbc_lblPercentile_1.gridy = 0;
+		pnlSetPercentile.add(lblPercentile_1, gbc_lblPercentile_1);
+		
+		JLabel lblBottom = new JLabel("Bottom");
+		GridBagConstraints gbc_lblBottom = new GridBagConstraints();
+		gbc_lblBottom.anchor = GridBagConstraints.EAST;
+		gbc_lblBottom.insets = new Insets(0, 0, 0, 5);
+		gbc_lblBottom.gridx = 4;
+		gbc_lblBottom.gridy = 0;
+		pnlSetPercentile.add(lblBottom, gbc_lblBottom);
+		
+		textField_6 = new JTextField();
+		textField_6.setHorizontalAlignment(SwingConstants.CENTER);
+		textField_6.setText("10");
+		GridBagConstraints gbc_textField_6 = new GridBagConstraints();
+		gbc_textField_6.insets = new Insets(0, 0, 0, 5);
+		gbc_textField_6.gridx = 5;
+		gbc_textField_6.gridy = 0;
+		pnlSetPercentile.add(textField_6, gbc_textField_6);
+		textField_6.setColumns(2);
+		
+		JLabel lblPercentile_2 = new JLabel("percentile");
+		GridBagConstraints gbc_lblPercentile_2 = new GridBagConstraints();
+		gbc_lblPercentile_2.anchor = GridBagConstraints.WEST;
+		gbc_lblPercentile_2.gridx = 6;
+		gbc_lblPercentile_2.gridy = 0;
+		pnlSetPercentile.add(lblPercentile_2, gbc_lblPercentile_2);
 		
 		JPanel pnlGivePercentile = new JPanel();
 		add(pnlGivePercentile);
