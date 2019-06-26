@@ -13,6 +13,10 @@ public class StatisticsPanel extends JPanel{
 	private JTextField textField_3;
 	private JTextField textField_4;
 	private JTextField textField_5;
+	private JTextField textField_9;
+	private JTextField textField_6;
+	private JTextField textField_7;
+	private JTextField textField_8;
 	public StatisticsPanel() {
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 61, 106, 50, 0};
@@ -142,6 +146,75 @@ public class StatisticsPanel extends JPanel{
 		gbc_textField_5.gridy = 3;
 		add(textField_5, gbc_textField_5);
 		textField_5.setColumns(10);
+		
+		JButton btnAddGrade = new JButton("Add Grade:");
+		GridBagConstraints gbc_btnAddGrade = new GridBagConstraints();
+		gbc_btnAddGrade.insets = new Insets(0, 0, 5, 5);
+		gbc_btnAddGrade.gridx = 0;
+		gbc_btnAddGrade.gridy = 4;
+		add(btnAddGrade, gbc_btnAddGrade);
+		
+		textField_6 = new JTextField();
+		textField_6.setText("50");
+		GridBagConstraints gbc_textField_6 = new GridBagConstraints();
+		gbc_textField_6.insets = new Insets(0, 0, 5, 5);
+		gbc_textField_6.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textField_6.gridx = 1;
+		gbc_textField_6.gridy = 4;
+		add(textField_6, gbc_textField_6);
+		textField_6.setColumns(10);
+		
+		JButton btnDeleteGrade = new JButton("Delete Grade:");
+		GridBagConstraints gbc_btnDeleteGrade = new GridBagConstraints();
+		gbc_btnDeleteGrade.insets = new Insets(0, 0, 5, 5);
+		gbc_btnDeleteGrade.gridx = 2;
+		gbc_btnDeleteGrade.gridy = 4;
+		add(btnDeleteGrade, gbc_btnDeleteGrade);
+		
+		textField_7 = new JTextField();
+		textField_7.setText("50");
+		GridBagConstraints gbc_textField_7 = new GridBagConstraints();
+		gbc_textField_7.insets = new Insets(0, 0, 5, 0);
+		gbc_textField_7.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textField_7.gridx = 3;
+		gbc_textField_7.gridy = 4;
+		add(textField_7, gbc_textField_7);
+		textField_7.setColumns(10);
+		
+		JButton btnReplaceGrade = new JButton("Replace Grade:");
+		GridBagConstraints gbc_btnReplaceGrade = new GridBagConstraints();
+		gbc_btnReplaceGrade.insets = new Insets(0, 0, 5, 5);
+		gbc_btnReplaceGrade.gridx = 0;
+		gbc_btnReplaceGrade.gridy = 5;
+		add(btnReplaceGrade, gbc_btnReplaceGrade);
+		
+		textField_9 = new JTextField();
+		textField_9.setText("14");
+		GridBagConstraints gbc_textField_9 = new GridBagConstraints();
+		gbc_textField_9.insets = new Insets(0, 0, 5, 5);
+		gbc_textField_9.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textField_9.gridx = 1;
+		gbc_textField_9.gridy = 5;
+		add(textField_9, gbc_textField_9);
+		textField_9.setColumns(10);
+		
+		JLabel lblWith = new JLabel("With:");
+		GridBagConstraints gbc_lblWith = new GridBagConstraints();
+		gbc_lblWith.anchor = GridBagConstraints.EAST;
+		gbc_lblWith.insets = new Insets(0, 0, 5, 5);
+		gbc_lblWith.gridx = 2;
+		gbc_lblWith.gridy = 5;
+		add(lblWith, gbc_lblWith);
+		
+		textField_8 = new JTextField();
+		textField_8.setText("92");
+		GridBagConstraints gbc_textField_8 = new GridBagConstraints();
+		gbc_textField_8.insets = new Insets(0, 0, 5, 0);
+		gbc_textField_8.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textField_8.gridx = 3;
+		gbc_textField_8.gridy = 5;
+		add(textField_8, gbc_textField_8);
+		textField_8.setColumns(10);
 		
 		JButton btnReset = new JButton("Reset");
 		GridBagConstraints gbc_btnReset = new GridBagConstraints();

@@ -75,14 +75,11 @@ public class BaseGUI extends JFrame {
         // start of text for home description
         	mainDescription.setText("The Home Tab: \nThis tab contains a description of the components of the Grade Analyzer program."
         			+ "\n\nThe Grade Statistics Tab:"
-        			+ "\nThis tab contains the means of setting the highest and lowest possible scores, the average, the median,"
-        			+ " and the highest and lowest score of the grades."
+        			+ "\nThis tab contains the means of setting the highest and lowest possible scores, adding, deleting and "
+        			+ "replacing a grade, displaying the average, the median, and the highest and lowest score of the grades."
         			+ "\n\nThe Grade Percentiles Tab:"
         			+ "\nThis tab contains the distrubtion of A's, B's, C's etc. the count of students in a user set percentile, "
         			+ "and the count of students in each percentage range."
-        			+ "\n\nThe Manipulate Grades Tab:"
-        			+ "\nThis tab contains the ability to add, delete, and replace a grade, as well as to change the maximum and "
-        			+ "minimum possible scores."
         			+ "\n\nThe Create Record Button:"
         			+ "\nThis button will generate a document that lists out all the data given by Grade Analyzer, with nothing loaded it will only "
         			+ "write out the categories."
@@ -111,31 +108,6 @@ public class BaseGUI extends JFrame {
 		basePanel.addTab("Grade Percentiles", percentilePanel);
 		//percentiles tab end
 		
-		//user tab start
-        userPanel= new JPanel();
-        userPanel.setBackground(Color.WHITE);
-        
-        setMaxGrade = new JButton("Change maximum possible score.");
-        /*setMaxGrade.setFont(new Font("Tahoma", Font.PLAIN, 18));
-        setMaxGrade.setForeground(new Color(255, 255, 255));
-        setMaxGrade.setBackground(Color.BLUE);*/
-
-        setMinGrade = new JButton("Change minimum possible score.");
-
-    	deleteGrade = new JButton("Delete a Grade.");
-        
-    	addGrade = new JButton("Add a Grade.");
-    	
-    	replaceGrade = new JButton("Change a Grade.");
-    	
-    	userPanel.add(setMaxGrade);
-    	userPanel.add(setMinGrade);
-    	userPanel.add(addGrade);
-    	userPanel.add(deleteGrade);
-    	userPanel.add(replaceGrade);
-    	
-		basePanel.addTab("Manipulate Grades", userPanel);
-		//user tab end
 		
 		
         // end of base tabs and such 
