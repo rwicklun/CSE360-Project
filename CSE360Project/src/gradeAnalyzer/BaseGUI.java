@@ -75,8 +75,8 @@ public class BaseGUI extends JFrame {
         // start of text for home description
         	mainDescription.setText("The Home Tab: \nThis tab contains a description of the components of the Grade Analyzer program."
         			+ "\n\nThe Grade Statistics Tab:"
-        			+ "\nThis tab contains the means of setting the highest and lowest possible scores, "
-        			+ "the average, the mean, the median, and the highest and lowest score of the grades."
+        			+ "\nThis tab contains the means of setting the highest and lowest possible scores, the average, the median,"
+        			+ " and the highest and lowest score of the grades."
         			+ "\n\nThe Grade Percentiles Tab:"
         			+ "\nThis tab contains the distrubtion of A's, B's, C's etc. the count of students in a user set percentile, "
         			+ "and the count of students in each percentage range."
@@ -101,7 +101,7 @@ public class BaseGUI extends JFrame {
 		
 		
 		//stats tab start
-        statsPanel = new JPanel();
+        statsPanel = new StatisticsPanel();
         statsPanel.setBackground(new Color(240, 240, 240));
         basePanel.addTab("Grade Statistics", null, statsPanel, null);
 		//stats tab end
