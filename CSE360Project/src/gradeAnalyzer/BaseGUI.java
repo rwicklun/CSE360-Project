@@ -4,6 +4,8 @@ import java.awt.*;
 import javax.swing.*;
 import javax.swing.filechooser.*;
 import java.awt.event.*;
+import java.io.*;
+import java.util.*;
 
 @SuppressWarnings("serial")
 public class BaseGUI extends JFrame { 
@@ -40,7 +42,6 @@ public class BaseGUI extends JFrame {
 			public void run() {
 				try {
 					new BaseGUI().setVisible(true);
-					new ErrorPanel().setVisible(true);
 				} catch (Exception exception) {
 					exception.printStackTrace();
 				}
@@ -165,17 +166,48 @@ public class BaseGUI extends JFrame {
 	    	}
 	    }
 	}
+	private float inputNumbers;
+	private int roundedNumbers;
+	private String extension;
+	private Scanner scan;
+	private static String getFileExtension(File file) {
+        String fileName = file.getName();
+        if(fileName.lastIndexOf(".") != -1 && fileName.lastIndexOf(".") != 0)
+        return fileName.substring(fileName.lastIndexOf(".")+1);
+        else return "";
+    }
 	private class LoadSaveListener implements ActionListener {
 	    @Override
 	    public void actionPerformed(ActionEvent event) {
 	    	if (event.getSource() == loadButton) {
 		    	int returnVal = fileChooser.showOpenDialog(BaseGUI.this);
 		    	if (returnVal == JFileChooser.APPROVE_OPTION) {
-	                //File file = fileChooser.getSelectedFile();
+	                File file = fileChooser.getSelectedFile();
+	                extension = getFileExtension(file);
+	                if (extension.compareTo("txt") == 0) {
+		                try {
+							scan = new Scanner(file);
+							while(scan.hasNextFloat()) {
+								inputNumbers = scan.nextFloat();
+								roundedNumbers = Math.round(inputNumbers);
+							}
+						} catch (FileNotFoundException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}catch (InputMismatchException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						} finally {
+							if (scan != null) {
+								scan.close();
+							}
+						}
+	                } else {
+	                	// Wrong file type exception
+	                	new ErrorPanel().setVisible(true);
+	                }
 		    	} else {
-		    		/*
-		    		new ErrorPanel().setVisible(true);
-		    		*/
+		    		
 		    	}
 	    	} else if (event.getSource() == saveButton) {
 		    	int returnVal = fileChooser.showSaveDialog(BaseGUI.this);
