@@ -10,7 +10,20 @@ import java.util.*;
 @SuppressWarnings("serial")
 public class BaseGUI extends JFrame { 
 	
-	// test hgfhjg
+	// test 
+	/*
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 */
 	public BaseGUI() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBackground(Color.BLACK);
