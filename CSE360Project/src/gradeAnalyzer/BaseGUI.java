@@ -204,12 +204,11 @@ public class BaseGUI extends JFrame {
 						}
 	                } else {
 	                	// Wrong file type exception
-	                	ErrorPanel error = new ErrorPanel();
 	                	error.setString("File Type Error: \nplease load a \".txt\" file");
 	                	error.setVisible(true);
 	                }
 		    	} else {
-		    		
+		    		//this is when the load box is closed or cancelled nothing needs to be done here.
 		    	}
 	    	} else if (event.getSource() == saveButton) {
 		    	int returnVal = fileChooser.showSaveDialog(BaseGUI.this);
@@ -244,6 +243,7 @@ public class BaseGUI extends JFrame {
 	private JFileChooser fileChooser;
 	private JScrollPane scrollPane;
 	private JPanel statsPanel;
+	private ErrorPanel error = new ErrorPanel();
 	static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	
 
