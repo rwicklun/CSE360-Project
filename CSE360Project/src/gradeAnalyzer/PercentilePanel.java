@@ -11,6 +11,9 @@ import javax.swing.JButton;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.Font;
 
 @SuppressWarnings("serial")
 public class PercentilePanel extends JPanel {
@@ -26,94 +29,66 @@ public class PercentilePanel extends JPanel {
 	 * Create the panel.
 	 */
 	public PercentilePanel() {
+		// Main panel
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[]{458, 0};
-		gridBagLayout.rowHeights = new int[] {35, 45, 35, 45, 45, 35, 45, 45, 0};
-		gridBagLayout.columnWeights = new double[]{0.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gridBagLayout.columnWidths = new int[] {450, 0};
+		gridBagLayout.rowHeights = new int[] {20, 20, 30, 20, 20, 20, 20, 20, 30, 40, 0};
+		gridBagLayout.columnWeights = new double[]{1.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
 		setLayout(gridBagLayout);
 		
-		JLabel lblGradeDistribution = new JLabel("Grade Distribution");
-		lblGradeDistribution.setVerticalAlignment(SwingConstants.BOTTOM);
-		lblGradeDistribution.setHorizontalAlignment(SwingConstants.LEFT);
-		GridBagConstraints gbc_lblGradeDistribution = new GridBagConstraints();
-		gbc_lblGradeDistribution.anchor = GridBagConstraints.SOUTH;
-		gbc_lblGradeDistribution.fill = GridBagConstraints.HORIZONTAL;
-		gbc_lblGradeDistribution.insets = new Insets(0, 5, 5, 0);
-		gbc_lblGradeDistribution.gridx = 0;
-		gbc_lblGradeDistribution.gridy = 0;
-		add(lblGradeDistribution, gbc_lblGradeDistribution);
+		// Set Grade Score Ranges functional area. Edit text boxes and update button
+		JLabel lblSetGradeScore = new JLabel("Set Grade Score Ranges");
+		lblSetGradeScore.setFont(new Font("Tahoma", Font.BOLD, 14));
+		GridBagConstraints gbc_lblSetGradeScore = new GridBagConstraints();
+		gbc_lblSetGradeScore.anchor = GridBagConstraints.SOUTH;
+		gbc_lblSetGradeScore.insets = new Insets(0, 5, 5, 0);
+		gbc_lblSetGradeScore.gridx = 0;
+		gbc_lblSetGradeScore.gridy = 0;
+		add(lblSetGradeScore, gbc_lblSetGradeScore);
+		lblSetGradeScore.setHorizontalAlignment(SwingConstants.LEFT);
 		
-		JPanel pnlGradeDistribution = new JPanel();
-		GridBagConstraints gbc_pnlGradeDistribution = new GridBagConstraints();
-		gbc_pnlGradeDistribution.fill = GridBagConstraints.BOTH;
-		gbc_pnlGradeDistribution.insets = new Insets(0, 0, 5, 0);
-		gbc_pnlGradeDistribution.gridx = 0;
-		gbc_pnlGradeDistribution.gridy = 1;
-		add(pnlGradeDistribution, gbc_pnlGradeDistribution);
-		GridBagLayout gbl_pnlGradeDistribution = new GridBagLayout();
-		gbl_pnlGradeDistribution.columnWidths = new int[] {75, 75, 75, 75, 75, 75, 0};
-		gbl_pnlGradeDistribution.rowHeights = new int[] {40, 0};
-		gbl_pnlGradeDistribution.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		gbl_pnlGradeDistribution.rowWeights = new double[]{0.0, Double.MIN_VALUE};
-		pnlGradeDistribution.setLayout(gbl_pnlGradeDistribution);
-		JLabel lblA = new JLabel();
-		LetterPercentLabel(lblA, "A", 33);
-		GridBagConstraints gbc_lblA = new GridBagConstraints();
-		gbc_lblA.fill = GridBagConstraints.VERTICAL;
-		gbc_lblA.insets = new Insets(0, 0, 0, 5);
-		gbc_lblA.gridx = 0;
-		gbc_lblA.gridy = 0;
-		pnlGradeDistribution.add(lblA, gbc_lblA);
+		JPanel pnlSetGradeRangeLabel = new JPanel();
+		GridBagConstraints gbc_pnlSetGradeRangeLabel = new GridBagConstraints();
+		gbc_pnlSetGradeRangeLabel.insets = new Insets(0, 0, 5, 0);
+		gbc_pnlSetGradeRangeLabel.fill = GridBagConstraints.VERTICAL;
+		gbc_pnlSetGradeRangeLabel.gridx = 0;
+		gbc_pnlSetGradeRangeLabel.gridy = 1;
+		add(pnlSetGradeRangeLabel, gbc_pnlSetGradeRangeLabel);
+		GridBagLayout gbl_pnlSetGradeRangeLabel = new GridBagLayout();
+		gbl_pnlSetGradeRangeLabel.columnWidths = new int[]{0, 0, 0, 0};
+		gbl_pnlSetGradeRangeLabel.rowHeights = new int[]{14, 0};
+		gbl_pnlSetGradeRangeLabel.columnWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_pnlSetGradeRangeLabel.rowWeights = new double[]{0.0, Double.MIN_VALUE};
+		pnlSetGradeRangeLabel.setLayout(gbl_pnlSetGradeRangeLabel);
 		
-		JLabel lblB = new JLabel("B: 20%");
-		GridBagConstraints gbc_lblB = new GridBagConstraints();
-		gbc_lblB.fill = GridBagConstraints.VERTICAL;
-		gbc_lblB.insets = new Insets(0, 0, 0, 5);
-		gbc_lblB.gridx = 1;
-		gbc_lblB.gridy = 0;
-		pnlGradeDistribution.add(lblB, gbc_lblB);
+		JLabel lblSetMaxBased = new JLabel("Set Max based on:");
+		GridBagConstraints gbc_lblSetMaxBased = new GridBagConstraints();
+		gbc_lblSetMaxBased.anchor = GridBagConstraints.WEST;
+		gbc_lblSetMaxBased.insets = new Insets(0, 5, 0, 5);
+		gbc_lblSetMaxBased.gridx = 0;
+		gbc_lblSetMaxBased.gridy = 0;
+		pnlSetGradeRangeLabel.add(lblSetMaxBased, gbc_lblSetMaxBased);
 		
-		JLabel lblC = new JLabel("C: 20%");
-		GridBagConstraints gbc_lblC = new GridBagConstraints();
-		gbc_lblC.fill = GridBagConstraints.VERTICAL;
-		gbc_lblC.insets = new Insets(0, 0, 0, 5);
-		gbc_lblC.gridx = 2;
-		gbc_lblC.gridy = 0;
-		pnlGradeDistribution.add(lblC, gbc_lblC);
+		JButton btnPossible = new JButton("Possible");
+		GridBagConstraints gbc_btnPossible = new GridBagConstraints();
+		gbc_btnPossible.insets = new Insets(0, 0, 0, 5);
+		gbc_btnPossible.gridx = 1;
+		gbc_btnPossible.gridy = 0;
+		pnlSetGradeRangeLabel.add(btnPossible, gbc_btnPossible);
 		
-		JLabel lblD = new JLabel("D: 20%");
-		GridBagConstraints gbc_lblD = new GridBagConstraints();
-		gbc_lblD.fill = GridBagConstraints.VERTICAL;
-		gbc_lblD.insets = new Insets(0, 0, 0, 5);
-		gbc_lblD.gridx = 3;
-		gbc_lblD.gridy = 0;
-		pnlGradeDistribution.add(lblD, gbc_lblD);
-		
-		JLabel lblF = new JLabel("F: 20%");
-		GridBagConstraints gbc_lblF = new GridBagConstraints();
-		gbc_lblF.insets = new Insets(0, 0, 0, 5);
-		gbc_lblF.fill = GridBagConstraints.VERTICAL;
-		gbc_lblF.gridx = 4;
-		gbc_lblF.gridy = 0;
-		pnlGradeDistribution.add(lblF, gbc_lblF);
-		
-		JLabel lblGradeRange = new JLabel("Students in Each Grade Range");
-		lblGradeRange.setVerticalAlignment(SwingConstants.BOTTOM);
-		GridBagConstraints gbc_lblGradeRange = new GridBagConstraints();
-		gbc_lblGradeRange.anchor = GridBagConstraints.SOUTH;
-		gbc_lblGradeRange.fill = GridBagConstraints.HORIZONTAL;
-		gbc_lblGradeRange.insets = new Insets(0, 5, 5, 0);
-		gbc_lblGradeRange.gridx = 0;
-		gbc_lblGradeRange.gridy = 2;
-		add(lblGradeRange, gbc_lblGradeRange);
+		JButton btnEarned = new JButton("Earned");
+		GridBagConstraints gbc_btnEarned = new GridBagConstraints();
+		gbc_btnEarned.gridx = 2;
+		gbc_btnEarned.gridy = 0;
+		pnlSetGradeRangeLabel.add(btnEarned, gbc_btnEarned);
 		
 		JPanel pnlSetGradeRange = new JPanel();
 		GridBagConstraints gbc_pnlSetGradeRange = new GridBagConstraints();
-		gbc_pnlSetGradeRange.fill = GridBagConstraints.BOTH;
+		gbc_pnlSetGradeRange.anchor = GridBagConstraints.NORTH;
 		gbc_pnlSetGradeRange.insets = new Insets(0, 0, 5, 0);
 		gbc_pnlSetGradeRange.gridx = 0;
-		gbc_pnlSetGradeRange.gridy = 3;
+		gbc_pnlSetGradeRange.gridy = 2;
 		add(pnlSetGradeRange, gbc_pnlSetGradeRange);
 		GridBagLayout gbl_pnlSetGradeRange = new GridBagLayout();
 		gbl_pnlSetGradeRange.columnWidths = new int[] {75, 75, 75, 75, 75, 75, 0};
@@ -258,13 +233,92 @@ public class PercentilePanel extends JPanel {
 		gbc_btnUpdate.gridx = 5;
 		gbc_btnUpdate.gridy = 0;
 		pnlSetGradeRange.add(btnUpdate, gbc_btnUpdate);
+		// End Grade Score Ranges functional area
 		
+		// Label for Grade Distribution
+		JLabel lblGradeDistribution = new JLabel("Grade Distribution");
+		lblGradeDistribution.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblGradeDistribution.setVerticalAlignment(SwingConstants.BOTTOM);
+		lblGradeDistribution.setHorizontalAlignment(SwingConstants.LEFT);
+		GridBagConstraints gbc_lblGradeDistribution = new GridBagConstraints();
+		gbc_lblGradeDistribution.anchor = GridBagConstraints.SOUTH;
+		gbc_lblGradeDistribution.insets = new Insets(0, 5, 5, 0);
+		gbc_lblGradeDistribution.gridx = 0;
+		gbc_lblGradeDistribution.gridy = 3;
+		add(lblGradeDistribution, gbc_lblGradeDistribution);
+		
+		// 
+		JPanel pnlGradeDistribution = new JPanel();
+		GridBagConstraints gbc_pnlGradeDistribution = new GridBagConstraints();
+		gbc_pnlGradeDistribution.anchor = GridBagConstraints.NORTH;
+		gbc_pnlGradeDistribution.insets = new Insets(0, 0, 5, 0);
+		gbc_pnlGradeDistribution.gridx = 0;
+		gbc_pnlGradeDistribution.gridy = 4;
+		add(pnlGradeDistribution, gbc_pnlGradeDistribution);
+		GridBagLayout gbl_pnlGradeDistribution = new GridBagLayout();
+		gbl_pnlGradeDistribution.columnWidths = new int[] {75, 75, 75, 75, 75, 75, 0};
+		gbl_pnlGradeDistribution.rowHeights = new int[] {40, 0};
+		gbl_pnlGradeDistribution.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_pnlGradeDistribution.rowWeights = new double[]{0.0, Double.MIN_VALUE};
+		pnlGradeDistribution.setLayout(gbl_pnlGradeDistribution);
+		JLabel lblA = new JLabel();
+		LetterPercentLabel(lblA, "A", 33);
+		GridBagConstraints gbc_lblA = new GridBagConstraints();
+		gbc_lblA.fill = GridBagConstraints.VERTICAL;
+		gbc_lblA.insets = new Insets(0, 0, 0, 5);
+		gbc_lblA.gridx = 0;
+		gbc_lblA.gridy = 0;
+		pnlGradeDistribution.add(lblA, gbc_lblA);
+		
+		JLabel lblB = new JLabel("B: 20%");
+		GridBagConstraints gbc_lblB = new GridBagConstraints();
+		gbc_lblB.fill = GridBagConstraints.VERTICAL;
+		gbc_lblB.insets = new Insets(0, 0, 0, 5);
+		gbc_lblB.gridx = 1;
+		gbc_lblB.gridy = 0;
+		pnlGradeDistribution.add(lblB, gbc_lblB);
+		
+		JLabel lblC = new JLabel("C: 20%");
+		GridBagConstraints gbc_lblC = new GridBagConstraints();
+		gbc_lblC.fill = GridBagConstraints.VERTICAL;
+		gbc_lblC.insets = new Insets(0, 0, 0, 5);
+		gbc_lblC.gridx = 2;
+		gbc_lblC.gridy = 0;
+		pnlGradeDistribution.add(lblC, gbc_lblC);
+		
+		JLabel lblD = new JLabel("D: 20%");
+		GridBagConstraints gbc_lblD = new GridBagConstraints();
+		gbc_lblD.fill = GridBagConstraints.VERTICAL;
+		gbc_lblD.insets = new Insets(0, 0, 0, 5);
+		gbc_lblD.gridx = 3;
+		gbc_lblD.gridy = 0;
+		pnlGradeDistribution.add(lblD, gbc_lblD);
+		
+		JLabel lblF = new JLabel("F: 20%");
+		GridBagConstraints gbc_lblF = new GridBagConstraints();
+		gbc_lblF.insets = new Insets(0, 0, 0, 5);
+		gbc_lblF.fill = GridBagConstraints.VERTICAL;
+		gbc_lblF.gridx = 4;
+		gbc_lblF.gridy = 0;
+		pnlGradeDistribution.add(lblF, gbc_lblF);
+		
+		JLabel lblGradeRange = new JLabel("Students in Each Grade Range");
+		lblGradeRange.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblGradeRange.setVerticalAlignment(SwingConstants.BOTTOM);
+		GridBagConstraints gbc_lblGradeRange = new GridBagConstraints();
+		gbc_lblGradeRange.anchor = GridBagConstraints.SOUTH;
+		gbc_lblGradeRange.insets = new Insets(0, 5, 5, 0);
+		gbc_lblGradeRange.gridx = 0;
+		gbc_lblGradeRange.gridy = 5;
+		add(lblGradeRange, gbc_lblGradeRange);
+		
+				
 		JPanel pnlGiveGradeRange = new JPanel();
 		GridBagConstraints gbc_pnlGiveGradeRange = new GridBagConstraints();
-		gbc_pnlGiveGradeRange.fill = GridBagConstraints.BOTH;
+		gbc_pnlGiveGradeRange.anchor = GridBagConstraints.NORTH;
 		gbc_pnlGiveGradeRange.insets = new Insets(0, 0, 5, 0);
 		gbc_pnlGiveGradeRange.gridx = 0;
-		gbc_pnlGiveGradeRange.gridy = 4;
+		gbc_pnlGiveGradeRange.gridy = 6;
 		add(pnlGiveGradeRange, gbc_pnlGiveGradeRange);
 		GridBagLayout gbl_pnlGiveGradeRange = new GridBagLayout();
 		gbl_pnlGiveGradeRange.columnWidths = new int[] {75, 75, 75, 75, 75, 75, 0};
@@ -309,24 +363,24 @@ public class PercentilePanel extends JPanel {
 		pnlGiveGradeRange.add(lblF_2, gbc_lblF_2);
 		
 		JLabel lblPercentile = new JLabel("Students in Each Percentile");
+		lblPercentile.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblPercentile.setVerticalAlignment(SwingConstants.BOTTOM);
 		GridBagConstraints gbc_lblPercentile = new GridBagConstraints();
 		gbc_lblPercentile.anchor = GridBagConstraints.SOUTH;
-		gbc_lblPercentile.fill = GridBagConstraints.HORIZONTAL;
 		gbc_lblPercentile.insets = new Insets(0, 5, 5, 0);
 		gbc_lblPercentile.gridx = 0;
-		gbc_lblPercentile.gridy = 5;
+		gbc_lblPercentile.gridy = 7;
 		add(lblPercentile, gbc_lblPercentile);
 		
 		JPanel pnlSetPercentile = new JPanel();
 		GridBagConstraints gbc_pnlSetPercentile = new GridBagConstraints();
-		gbc_pnlSetPercentile.fill = GridBagConstraints.BOTH;
+		gbc_pnlSetPercentile.anchor = GridBagConstraints.NORTH;
 		gbc_pnlSetPercentile.insets = new Insets(0, 0, 5, 0);
 		gbc_pnlSetPercentile.gridx = 0;
-		gbc_pnlSetPercentile.gridy = 6;
+		gbc_pnlSetPercentile.gridy = 8;
 		add(pnlSetPercentile, gbc_pnlSetPercentile);
 		GridBagLayout gbl_pnlSetPercentile = new GridBagLayout();
-		gbl_pnlSetPercentile.columnWidths = new int[] {65, 10, 65, 50, 65, 10, 65, 0, 0};
+		gbl_pnlSetPercentile.columnWidths = new int[] {65, 30, 65, 50, 65, 30, 65, 0, 0};
 		gbl_pnlSetPercentile.rowHeights = new int[] {40, 0};
 		gbl_pnlSetPercentile.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		gbl_pnlSetPercentile.rowWeights = new double[]{0.0, Double.MIN_VALUE};
@@ -344,6 +398,7 @@ public class PercentilePanel extends JPanel {
 		textField.setHorizontalAlignment(SwingConstants.CENTER);
 		textField.setText("90");
 		GridBagConstraints gbc_textField = new GridBagConstraints();
+		gbc_textField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textField.insets = new Insets(0, 0, 0, 5);
 		gbc_textField.gridx = 1;
 		gbc_textField.gridy = 0;
@@ -393,10 +448,9 @@ public class PercentilePanel extends JPanel {
 		
 		JPanel pnlGivePercentile = new JPanel();
 		GridBagConstraints gbc_pnlGivePercentile = new GridBagConstraints();
-		gbc_pnlGivePercentile.insets = new Insets(0, 40, 0, 0);
-		gbc_pnlGivePercentile.fill = GridBagConstraints.BOTH;
+		gbc_pnlGivePercentile.anchor = GridBagConstraints.NORTH;
 		gbc_pnlGivePercentile.gridx = 0;
-		gbc_pnlGivePercentile.gridy = 7;
+		gbc_pnlGivePercentile.gridy = 9;
 		add(pnlGivePercentile, gbc_pnlGivePercentile);
 		GridBagLayout gbl_pnlGivePercentile = new GridBagLayout();
 		gbl_pnlGivePercentile.columnWidths = new int[] {90, 50, 55, 90, 50, 0};
