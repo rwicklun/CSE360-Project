@@ -204,7 +204,9 @@ public class BaseGUI extends JFrame {
 						}
 	                } else {
 	                	// Wrong file type exception
-	                	new ErrorPanel().setVisible(true);
+	                	ErrorPanel error = new ErrorPanel();
+	                	error.setString("File Type Error: \nplease load a \".txt\" file");
+	                	error.setVisible(true);
 	                }
 		    	} else {
 		    		

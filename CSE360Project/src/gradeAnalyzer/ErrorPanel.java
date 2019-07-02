@@ -12,6 +12,8 @@ import java.awt.Toolkit;
 @SuppressWarnings("serial")
 public class ErrorPanel extends JFrame {
 	static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+	private String errorMessage;
+	private JTextArea textArea;
 	public ErrorPanel() {
 		setType(Type.POPUP);
 		setTitle("Error:");
@@ -46,13 +48,19 @@ public class ErrorPanel extends JFrame {
 		textPanel.setLayout(new BorderLayout(0, 0));
 		
 		JScrollPane scrollPane = new JScrollPane();
-		JTextArea textArea = new JTextArea();
+		textArea = new JTextArea();
         textArea.setLineWrap(true);
         textArea.setWrapStyleWord(true);
         textArea.setFont(new Font("Times New Roman", Font.PLAIN, 18));// description text style
 		scrollPane.setViewportView(textArea);
 		textPanel.add(scrollPane);
 		
+		
+	}
+	public void setString(String error) {
+		errorMessage = error;
+		textArea.setText(errorMessage);
+		textArea.setEditable(false);
 		
 	}
 }
