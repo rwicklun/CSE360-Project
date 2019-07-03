@@ -190,9 +190,9 @@ public class BaseGUI extends JFrame {
 			                	try {
 									while(scan.hasNextFloat()) {
 										inputNumbers = scan.nextFloat();
-										floatList.add(inputNumbers);
+										floatList.addLast(inputNumbers);
 										roundedNumbers = Math.round(inputNumbers);
-										roundedList.add(roundedNumbers);
+										roundedList.addLast(roundedNumbers);
 									}
 									System.out.println("Float list: " + floatList); 
 									System.out.println("Rounded list: " + roundedList); 
