@@ -9,21 +9,6 @@ import java.util.*;
 
 @SuppressWarnings("serial")
 public class BaseGUI extends JFrame { 
-	
-	// test 
-	/*
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 */
 	public BaseGUI() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBackground(Color.BLACK);
@@ -42,14 +27,14 @@ public class BaseGUI extends JFrame {
 		try {
 			   // Set to cross-platform Windows Classic look and feel.
 			UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
-			} catch (UnsupportedLookAndFeelException e) {
-			   e.printStackTrace();
-			} catch (ClassNotFoundException e) {
-			   e.printStackTrace();
-			} catch (InstantiationException e) {
-			   e.printStackTrace();
-			} catch (IllegalAccessException e) {
-			   e.printStackTrace();
+			} catch (UnsupportedLookAndFeelException exception) {
+				exception.printStackTrace();
+			} catch (ClassNotFoundException exception) {
+				exception.printStackTrace();
+			} catch (InstantiationException exception) {
+				exception.printStackTrace();
+			} catch (IllegalAccessException exception) {
+				exception.printStackTrace();
 			}
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -183,6 +168,8 @@ public class BaseGUI extends JFrame {
 	private int roundedNumbers;
 	private String extension;
 	private Scanner scan;
+	protected LinkedList<Float> floatList = new LinkedList<Float>();
+	protected LinkedList<Integer> roundedList = new LinkedList<Integer>();
 	private static String getFileExtension(File file) {
         String fileName = file.getName();
         if(fileName.lastIndexOf(".") != -1 && fileName.lastIndexOf(".") != 0)
@@ -202,8 +189,12 @@ public class BaseGUI extends JFrame {
 							scan = new Scanner(file);
 							while(scan.hasNextFloat()) {
 								inputNumbers = scan.nextFloat();
+								floatList.add(inputNumbers);
 								roundedNumbers = Math.round(inputNumbers);
+								roundedList.add(roundedNumbers);
 							}
+							System.out.println("Float list: " + floatList); 
+							System.out.println("Rounded list: " + roundedList); 
 						} catch (FileNotFoundException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
