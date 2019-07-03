@@ -184,33 +184,36 @@ public class BaseGUI extends JFrame {
 		    	if (returnVal == JFileChooser.APPROVE_OPTION) {
 	                File file = fileChooser.getSelectedFile();
 	                extension = getFileExtension(file);
-	                if (extension.compareTo("txt") == 0) {
 		                try {
 							scan = new Scanner(file);
-							while(scan.hasNextFloat()) {
-								inputNumbers = scan.nextFloat();
-								floatList.add(inputNumbers);
-								roundedNumbers = Math.round(inputNumbers);
-								roundedList.add(roundedNumbers);
-							}
-							System.out.println("Float list: " + floatList); 
-							System.out.println("Rounded list: " + roundedList); 
-						} catch (FileNotFoundException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}catch (InputMismatchException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
+			                if (extension.compareTo("txt") == 0) {
+			                	try {
+									while(scan.hasNextFloat()) {
+										inputNumbers = scan.nextFloat();
+										floatList.add(inputNumbers);
+										roundedNumbers = Math.round(inputNumbers);
+										roundedList.add(roundedNumbers);
+									}
+									System.out.println("Float list: " + floatList); 
+									System.out.println("Rounded list: " + roundedList); 
+			                	} catch (InputMismatchException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+			                } else {
+				                // Wrong file type exception
+				                error.setString("File Type Error: \nPlease load a \".txt\" file");
+				                error.setVisible(true);
+			                }
+						} catch (FileNotFoundException exception) {
+			                // No existing file of that name exception
+			                error.setString("File Not Found: \nPlease load an existing file");
+			                error.setVisible(true);
 						} finally {
 							if (scan != null) {
 								scan.close();
 							}
 						}
-	                } else {
-	                	// Wrong file type exception
-	                	error.setString("File Type Error: \nplease load a \".txt\" file");
-	                	error.setVisible(true);
-	                }
 		    	} else {
 		    		//this is when the load box is closed or cancelled nothing needs to be done here.
 		    	}
