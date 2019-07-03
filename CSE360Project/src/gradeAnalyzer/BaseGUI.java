@@ -206,7 +206,7 @@ public class BaseGUI extends JFrame {
 				                error.setVisible(true);
 			                }
 						} catch (FileNotFoundException exception) {
-			                // No existing file of that name exception
+			                // File not found/ does not exist exception
 			                error.setString("File Not Found: \nPlease load an existing file");
 			                error.setVisible(true);
 						} finally {
