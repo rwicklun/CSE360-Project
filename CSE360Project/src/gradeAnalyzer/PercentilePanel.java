@@ -22,11 +22,15 @@ public class PercentilePanel extends JPanel {
 	private JTextField txtSetTop_Value;
 	private JTextField txtSetBottom_Value;
 	private Float floatArray[];
+	private PercentileMath percentileMath;
 
 	/**
 	 * GUI for the Percentile Panel
 	 */
 	public PercentilePanel() {
+		// Creates percentileMath
+		// 100 used temporarily for max possible
+		percentileMath = new PercentileMath(floatArray, 100);
 		// Main panel
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[] {450, 0};
@@ -75,12 +79,14 @@ public class PercentilePanel extends JPanel {
 		gbc_btnPossible.gridx = 1;
 		gbc_btnPossible.gridy = 0;
 		pnlSetGradeRangeLabel.add(btnPossible, gbc_btnPossible);
+		btnPossible.addActionListener(new maxPossibleListener());
 		// Max earned button
 		JButton btnEarned = new JButton("Earned");
 		GridBagConstraints gbc_btnEarned = new GridBagConstraints();
 		gbc_btnEarned.gridx = 2;
 		gbc_btnEarned.gridy = 0;
 		pnlSetGradeRangeLabel.add(btnEarned, gbc_btnEarned);
+		btnEarned.addActionListener(new maxEarnedListener());
 		// Custom set grade range section
 		JPanel pnlSetGradeRange = new JPanel();
 		GridBagConstraints gbc_pnlSetGradeRange = new GridBagConstraints();
@@ -543,5 +549,21 @@ public class PercentilePanel extends JPanel {
 	 */
 	public void LetterPercentLabel(JLabel label, String letter, float percent) {
 		label.setText(letter + ": " + percent + "%");
+	}
+	
+	private class maxPossibleListener implements ActionListener {
+		 @Override
+		 public void actionPerformed(ActionEvent event) {
+			 percentileMath.setMaxToPossible();
+		 }
+		
+	}
+	
+	private class maxEarnedListener implements ActionListener {
+		 @Override
+		 public void actionPerformed(ActionEvent event) {
+			 percentileMath.setMaxToEarned();
+		 }
+		
 	}
 }
