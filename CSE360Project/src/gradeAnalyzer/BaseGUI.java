@@ -196,12 +196,14 @@ public class BaseGUI extends JFrame {
 										roundedNumbers = Math.round(inputNumbers);
 										roundedList.addLast(roundedNumbers);
 									}
+
 					// Populates floatArray then sorts
 									floatArray = floatList.toArray(new Float[floatList.size()]);
 									Arrays.sort(floatArray);
 									System.out.println("Float list: " + floatList); 
 									System.out.println("Rounded list: " + roundedList); 
 									System.out.println("Float array: " + Arrays.toString(floatArray)); 
+
 			                	} catch (InputMismatchException e) {
 									// TODO Auto-generated catch block
 									e.printStackTrace();

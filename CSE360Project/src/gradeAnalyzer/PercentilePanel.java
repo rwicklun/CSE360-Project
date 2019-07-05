@@ -1,10 +1,7 @@
 package gradeAnalyzer;
 
 import javax.swing.JPanel;
-import java.awt.GridLayout;
-import java.awt.ComponentOrientation;
 import javax.swing.JLabel;
-import java.awt.FlowLayout;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import javax.swing.JButton;
