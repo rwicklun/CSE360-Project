@@ -260,7 +260,16 @@ public class StatisticsPanel extends JPanel{
 	                error.setString("Input Not A Number: \nPlease input only numbers");
 	                error.setVisible(true);
 	    		}
-	    		stats.setMaxGrade(maxPossible);
+	    		if (maxPossible > stats.getMinGrade()) {
+	    			stats.setMaxGrade(maxPossible);
+	    		} else {
+	    			stats.setMaxGrade(stats.getMaxGrade());
+	    			highest = "" + stats.getMaxGrade();
+	                // Input lower than min possible score
+	                error.setString("Input Smaller Than Min: \nPlease input a number greater than the "
+	                		+ "Lowest Possible Score");
+	                error.setVisible(true);
+	    		}
 	    		highestTextField.setText(highest);
 	    	} else if (event.getSource() == btnSetLowest) {
 	    		String lowest = lowestTextField.getText();
