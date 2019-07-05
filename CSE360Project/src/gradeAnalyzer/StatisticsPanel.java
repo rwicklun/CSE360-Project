@@ -6,6 +6,7 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.LinkedList;
 
 @SuppressWarnings("serial")
 public class StatisticsPanel extends JPanel{
@@ -31,6 +32,7 @@ public class StatisticsPanel extends JPanel{
 	private JButton btnReplaceGrade;
 	
 	private JButton btnReset;
+	private JButton btnRefresh;
 	
 	private StatisticsHandler stats = new StatisticsHandler();
 
@@ -108,7 +110,7 @@ public class StatisticsPanel extends JPanel{
 		add(lblMaximum, gbc_lblMaximum);
 		
 		maximumTextField = new JTextField();
-		maximumTextField.setText("95");
+		maximumTextField.setText(stats.getMaxAcheived());
 		GridBagConstraints gbc_maximumTextField = new GridBagConstraints();
 		gbc_maximumTextField.insets = new Insets(0, 0, 5, 5);
 		gbc_maximumTextField.fill = GridBagConstraints.HORIZONTAL;
@@ -126,7 +128,7 @@ public class StatisticsPanel extends JPanel{
 		add(lblMinimum, gbc_lblMinimum);
 		
 		minimumTextField = new JTextField();
-		minimumTextField.setText("13");
+		minimumTextField.setText(stats.getMinAcheived());
 		GridBagConstraints gbc_minimumTextField = new GridBagConstraints();
 		gbc_minimumTextField.insets = new Insets(0, 0, 5, 0);
 		gbc_minimumTextField.fill = GridBagConstraints.HORIZONTAL;
@@ -247,6 +249,17 @@ public class StatisticsPanel extends JPanel{
 		gbc_btnReset.gridy = 7;
 		btnReset.addActionListener(new ButtonListener());
 		add(btnReset, gbc_btnReset);
+		
+		btnRefresh = new JButton("Refresh");
+		GridBagConstraints gbc_btnRefresh = new GridBagConstraints();
+		gbc_btnRefresh.insets = new Insets(0, 0, 0, 5);
+		gbc_btnRefresh.gridx = 2;
+		gbc_btnRefresh.gridy = 7;
+		btnRefresh.addActionListener(new ButtonListener());
+		add(btnRefresh, gbc_btnRefresh);
+	}
+	public void addLinkedLists (LinkedList<Float> floater, LinkedList<Integer> rounder) {
+		stats.setLinkedLists(floater, rounder);
 	}
 	private int maxPossible;
 	private int minPossible;
@@ -275,6 +288,7 @@ public class StatisticsPanel extends JPanel{
 	                error.setVisible(true);
 	    		}
 	    		highestTextField.setText(highest);
+	    		maximumTextField.setText(stats.getMaxAcheived());
 	    	} else if (event.getSource() == btnSetLowest) {
 	    		String lowest = lowestTextField.getText();
 	    		try {
@@ -303,8 +317,11 @@ public class StatisticsPanel extends JPanel{
     			stats.setMinGrade(stats.getDefaultMinGrade());
     			lowestTextField.setText("" + stats.getMinGrade());
 	    		
+	    	}else if (event.getSource() == btnRefresh) {
+	    		maximumTextField.setText(stats.getMaxAcheived());
+	    		minimumTextField.setText(stats.getMinAcheived());
+	    		
 	    	}
 	    }
 	}
-
 }

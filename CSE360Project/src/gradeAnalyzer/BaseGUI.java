@@ -97,7 +97,7 @@ public class BaseGUI extends JFrame {
 		
 		
 		//stats tab start
-        statsPanel = new StatisticsPanel();
+        statsPanel = stats;
         statsPanel.setBackground(new Color(240, 240, 240));
         basePanel.addTab("Grade Statistics", null, statsPanel, null);
 		//stats tab end
@@ -195,6 +195,7 @@ public class BaseGUI extends JFrame {
 										floatList.addLast(inputNumbers);
 										roundedNumbers = Math.round(inputNumbers);
 										roundedList.addLast(roundedNumbers);
+										stats.addLinkedLists(floatList, roundedList);
 									}
 
 					// Populates floatArray then sorts
@@ -259,6 +260,7 @@ public class BaseGUI extends JFrame {
 	private JFileChooser fileChooser;
 	private JScrollPane scrollPane;
 	private JPanel statsPanel;
+	private StatisticsPanel stats = new StatisticsPanel();
 	private ErrorPanel error = new ErrorPanel();
 	static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	

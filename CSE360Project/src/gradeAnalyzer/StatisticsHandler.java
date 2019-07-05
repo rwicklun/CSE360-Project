@@ -13,7 +13,7 @@ public class StatisticsHandler {
 	public StatisticsHandler() {
 		
 	}
-	public StatisticsHandler(LinkedList<Float> floater, LinkedList<Integer> rounder) {
+	public void setLinkedLists (LinkedList<Float> floater, LinkedList<Integer> rounder) {
 		floatList = floater;
 		roundedList = rounder;
 	}
@@ -34,5 +34,37 @@ public class StatisticsHandler {
 	}
 	public int getDefaultMinGrade() {
 		return 0;
+	}
+	public String getMaxAcheived() {
+		if (roundedList != null ) {
+			int count = roundedList.size();
+			int max = roundedList.get(count - 1);
+			while(count > 0) {
+				int newNumber = roundedList.get(count - 1);
+				count--;
+				if (max < newNumber && newNumber < maximumPossibleGrade) {
+					max = newNumber;
+				}
+			}
+			return "" + max;
+		} else {
+			return "";
+		}
+	}
+	public String getMinAcheived() {
+		if (roundedList != null ) {
+			int count = roundedList.size();
+			int min = roundedList.get(count - 1);
+			while(count > 0) {
+				int newNumber = roundedList.get(count - 1);
+				count--;
+				if (min > newNumber && newNumber > minimumPossibleGrade) {
+					min = newNumber;
+				}
+			}
+			return "" + min;
+		} else {
+			return "";
+		}
 	}
 }
