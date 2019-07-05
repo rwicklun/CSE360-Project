@@ -7,16 +7,16 @@ import java.awt.Insets;
 
 @SuppressWarnings("serial")
 public class StatisticsPanel extends JPanel{
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
-	private JTextField textField_9;
-	private JTextField textField_6;
-	private JTextField textField_7;
-	private JTextField textField_8;
+	private JTextField lowestTextField;
+	private JTextField highestTextField;
+	private JTextField maximumTextField;
+	private JTextField minimumTextField;
+	private JTextField averageTextField;
+	private JTextField medianTextField;
+	private JTextField replaceOldGrade;
+	private JTextField addGradeTextField;
+	private JTextField deleteGradeTextField;
+	private JTextField replaceNewGrade;
 	public StatisticsPanel() {
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 61, 106, 50, 0};
@@ -33,15 +33,15 @@ public class StatisticsPanel extends JPanel{
 		gbc_lblHighestScore.gridy = 0;
 		add(lblHighestScore, gbc_lblHighestScore);
 		
-		textField_1 = new JTextField();
-		textField_1.setText("100");
-		GridBagConstraints gbc_textField_1 = new GridBagConstraints();
-		gbc_textField_1.insets = new Insets(0, 0, 5, 5);
-		gbc_textField_1.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField_1.gridx = 1;
-		gbc_textField_1.gridy = 0;
-		add(textField_1, gbc_textField_1);
-		textField_1.setColumns(10);
+		highestTextField = new JTextField();
+		highestTextField.setText("100");
+		GridBagConstraints gbc_highestTextField = new GridBagConstraints();
+		gbc_highestTextField.insets = new Insets(0, 0, 5, 5);
+		gbc_highestTextField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_highestTextField.gridx = 1;
+		gbc_highestTextField.gridy = 0;
+		add(highestTextField, gbc_highestTextField);
+		highestTextField.setColumns(10);
 		
 		JLabel lblLowestScore = new JLabel("Lowest Possible Score: ");
 		GridBagConstraints gbc_lblLowestScore = new GridBagConstraints();
@@ -51,15 +51,15 @@ public class StatisticsPanel extends JPanel{
 		gbc_lblLowestScore.gridy = 0;
 		add(lblLowestScore, gbc_lblLowestScore);
 		
-		textField = new JTextField();
-		textField.setText("0");
-		GridBagConstraints gbc_textField = new GridBagConstraints();
-		gbc_textField.insets = new Insets(0, 0, 5, 0);
-		gbc_textField.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField.gridx = 3;
-		gbc_textField.gridy = 0;
-		add(textField, gbc_textField);
-		textField.setColumns(10);
+		lowestTextField = new JTextField();
+		lowestTextField.setText("0");
+		GridBagConstraints gbc_lowestTextField = new GridBagConstraints();
+		gbc_lowestTextField.insets = new Insets(0, 0, 5, 0);
+		gbc_lowestTextField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_lowestTextField.gridx = 3;
+		gbc_lowestTextField.gridy = 0;
+		add(lowestTextField, gbc_lowestTextField);
+		lowestTextField.setColumns(10);
 		
 		JButton btnSetHighest = new JButton("Set Highest");
 		GridBagConstraints gbc_btnSetHighest = new GridBagConstraints();
@@ -83,15 +83,15 @@ public class StatisticsPanel extends JPanel{
 		gbc_lblMaximum.gridy = 2;
 		add(lblMaximum, gbc_lblMaximum);
 		
-		textField_2 = new JTextField();
-		textField_2.setText("95");
-		GridBagConstraints gbc_textField_2 = new GridBagConstraints();
-		gbc_textField_2.insets = new Insets(0, 0, 5, 5);
-		gbc_textField_2.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField_2.gridx = 1;
-		gbc_textField_2.gridy = 2;
-		add(textField_2, gbc_textField_2);
-		textField_2.setColumns(10);
+		maximumTextField = new JTextField();
+		maximumTextField.setText("95");
+		GridBagConstraints gbc_maximumTextField = new GridBagConstraints();
+		gbc_maximumTextField.insets = new Insets(0, 0, 5, 5);
+		gbc_maximumTextField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_maximumTextField.gridx = 1;
+		gbc_maximumTextField.gridy = 2;
+		add(maximumTextField, gbc_maximumTextField);
+		maximumTextField.setColumns(10);
 		
 		JLabel lblMinimum = new JLabel("Minimum Score: ");
 		GridBagConstraints gbc_lblMinimum = new GridBagConstraints();
@@ -101,15 +101,15 @@ public class StatisticsPanel extends JPanel{
 		gbc_lblMinimum.gridy = 2;
 		add(lblMinimum, gbc_lblMinimum);
 		
-		textField_3 = new JTextField();
-		textField_3.setText("14");
-		GridBagConstraints gbc_textField_3 = new GridBagConstraints();
-		gbc_textField_3.insets = new Insets(0, 0, 5, 0);
-		gbc_textField_3.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField_3.gridx = 3;
-		gbc_textField_3.gridy = 2;
-		add(textField_3, gbc_textField_3);
-		textField_3.setColumns(10);
+		minimumTextField = new JTextField();
+		minimumTextField.setText("13");
+		GridBagConstraints gbc_minimumTextField = new GridBagConstraints();
+		gbc_minimumTextField.insets = new Insets(0, 0, 5, 0);
+		gbc_minimumTextField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_minimumTextField.gridx = 3;
+		gbc_minimumTextField.gridy = 2;
+		add(minimumTextField, gbc_minimumTextField);
+		minimumTextField.setColumns(10);
 		
 		JLabel lblAverageScore = new JLabel("Average Score: ");
 		GridBagConstraints gbc_lblAverageScore = new GridBagConstraints();
@@ -119,15 +119,15 @@ public class StatisticsPanel extends JPanel{
 		gbc_lblAverageScore.gridy = 3;
 		add(lblAverageScore, gbc_lblAverageScore);
 		
-		textField_4 = new JTextField();
-		textField_4.setText("72");
-		GridBagConstraints gbc_textField_4 = new GridBagConstraints();
-		gbc_textField_4.insets = new Insets(0, 0, 5, 5);
-		gbc_textField_4.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField_4.gridx = 1;
-		gbc_textField_4.gridy = 3;
-		add(textField_4, gbc_textField_4);
-		textField_4.setColumns(10);
+		averageTextField = new JTextField();
+		averageTextField.setText("72");
+		GridBagConstraints gbc_averageTextField = new GridBagConstraints();
+		gbc_averageTextField.insets = new Insets(0, 0, 5, 5);
+		gbc_averageTextField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_averageTextField.gridx = 1;
+		gbc_averageTextField.gridy = 3;
+		add(averageTextField, gbc_averageTextField);
+		averageTextField.setColumns(10);
 		
 		JLabel lblMedianScore = new JLabel("Median Score:");
 		GridBagConstraints gbc_lblMedianScore = new GridBagConstraints();
@@ -137,15 +137,15 @@ public class StatisticsPanel extends JPanel{
 		gbc_lblMedianScore.gridy = 3;
 		add(lblMedianScore, gbc_lblMedianScore);
 		
-		textField_5 = new JTextField();
-		textField_5.setText("68");
-		GridBagConstraints gbc_textField_5 = new GridBagConstraints();
-		gbc_textField_5.insets = new Insets(0, 0, 5, 0);
-		gbc_textField_5.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField_5.gridx = 3;
-		gbc_textField_5.gridy = 3;
-		add(textField_5, gbc_textField_5);
-		textField_5.setColumns(10);
+		medianTextField = new JTextField();
+		medianTextField.setText("68");
+		GridBagConstraints gbc_medianTextField = new GridBagConstraints();
+		gbc_medianTextField.insets = new Insets(0, 0, 5, 0);
+		gbc_medianTextField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_medianTextField.gridx = 3;
+		gbc_medianTextField.gridy = 3;
+		add(medianTextField, gbc_medianTextField);
+		medianTextField.setColumns(10);
 		
 		JButton btnAddGrade = new JButton("Add Grade:");
 		GridBagConstraints gbc_btnAddGrade = new GridBagConstraints();
@@ -154,15 +154,15 @@ public class StatisticsPanel extends JPanel{
 		gbc_btnAddGrade.gridy = 4;
 		add(btnAddGrade, gbc_btnAddGrade);
 		
-		textField_6 = new JTextField();
-		textField_6.setText("50");
-		GridBagConstraints gbc_textField_6 = new GridBagConstraints();
-		gbc_textField_6.insets = new Insets(0, 0, 5, 5);
-		gbc_textField_6.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField_6.gridx = 1;
-		gbc_textField_6.gridy = 4;
-		add(textField_6, gbc_textField_6);
-		textField_6.setColumns(10);
+		addGradeTextField = new JTextField();
+		addGradeTextField.setText("51");
+		GridBagConstraints gbc_addGradeTextField = new GridBagConstraints();
+		gbc_addGradeTextField.insets = new Insets(0, 0, 5, 5);
+		gbc_addGradeTextField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_addGradeTextField.gridx = 1;
+		gbc_addGradeTextField.gridy = 4;
+		add(addGradeTextField, gbc_addGradeTextField);
+		addGradeTextField.setColumns(10);
 		
 		JButton btnDeleteGrade = new JButton("Delete Grade:");
 		GridBagConstraints gbc_btnDeleteGrade = new GridBagConstraints();
@@ -171,15 +171,15 @@ public class StatisticsPanel extends JPanel{
 		gbc_btnDeleteGrade.gridy = 4;
 		add(btnDeleteGrade, gbc_btnDeleteGrade);
 		
-		textField_7 = new JTextField();
-		textField_7.setText("50");
-		GridBagConstraints gbc_textField_7 = new GridBagConstraints();
-		gbc_textField_7.insets = new Insets(0, 0, 5, 0);
-		gbc_textField_7.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField_7.gridx = 3;
-		gbc_textField_7.gridy = 4;
-		add(textField_7, gbc_textField_7);
-		textField_7.setColumns(10);
+		deleteGradeTextField = new JTextField();
+		deleteGradeTextField.setText("50");
+		GridBagConstraints gbc_deleteGradeTextField = new GridBagConstraints();
+		gbc_deleteGradeTextField.insets = new Insets(0, 0, 5, 0);
+		gbc_deleteGradeTextField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_deleteGradeTextField.gridx = 3;
+		gbc_deleteGradeTextField.gridy = 4;
+		add(deleteGradeTextField, gbc_deleteGradeTextField);
+		deleteGradeTextField.setColumns(10);
 		
 		JButton btnReplaceGrade = new JButton("Replace Grade:");
 		GridBagConstraints gbc_btnReplaceGrade = new GridBagConstraints();
@@ -188,15 +188,15 @@ public class StatisticsPanel extends JPanel{
 		gbc_btnReplaceGrade.gridy = 5;
 		add(btnReplaceGrade, gbc_btnReplaceGrade);
 		
-		textField_9 = new JTextField();
-		textField_9.setText("14");
-		GridBagConstraints gbc_textField_9 = new GridBagConstraints();
-		gbc_textField_9.insets = new Insets(0, 0, 5, 5);
-		gbc_textField_9.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField_9.gridx = 1;
-		gbc_textField_9.gridy = 5;
-		add(textField_9, gbc_textField_9);
-		textField_9.setColumns(10);
+		replaceOldGrade = new JTextField();
+		replaceOldGrade.setText("14");
+		GridBagConstraints gbc_replaceOldGrade = new GridBagConstraints();
+		gbc_replaceOldGrade.insets = new Insets(0, 0, 5, 5);
+		gbc_replaceOldGrade.fill = GridBagConstraints.HORIZONTAL;
+		gbc_replaceOldGrade.gridx = 1;
+		gbc_replaceOldGrade.gridy = 5;
+		add(replaceOldGrade, gbc_replaceOldGrade);
+		replaceOldGrade.setColumns(10);
 		
 		JLabel lblWith = new JLabel("With:");
 		GridBagConstraints gbc_lblWith = new GridBagConstraints();
@@ -206,15 +206,15 @@ public class StatisticsPanel extends JPanel{
 		gbc_lblWith.gridy = 5;
 		add(lblWith, gbc_lblWith);
 		
-		textField_8 = new JTextField();
-		textField_8.setText("92");
-		GridBagConstraints gbc_textField_8 = new GridBagConstraints();
-		gbc_textField_8.insets = new Insets(0, 0, 5, 0);
-		gbc_textField_8.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField_8.gridx = 3;
-		gbc_textField_8.gridy = 5;
-		add(textField_8, gbc_textField_8);
-		textField_8.setColumns(10);
+		replaceNewGrade = new JTextField();
+		replaceNewGrade.setText("92");
+		GridBagConstraints gbc_replaceNewGrade = new GridBagConstraints();
+		gbc_replaceNewGrade.insets = new Insets(0, 0, 5, 0);
+		gbc_replaceNewGrade.fill = GridBagConstraints.HORIZONTAL;
+		gbc_replaceNewGrade.gridx = 3;
+		gbc_replaceNewGrade.gridy = 5;
+		add(replaceNewGrade, gbc_replaceNewGrade);
+		replaceNewGrade.setColumns(10);
 		
 		JButton btnReset = new JButton("Reset");
 		GridBagConstraints gbc_btnReset = new GridBagConstraints();
