@@ -170,6 +170,8 @@ public class BaseGUI extends JFrame {
 	private Scanner scan;
 	protected LinkedList<Float> floatList = new LinkedList<Float>();
 	protected LinkedList<Integer> roundedList = new LinkedList<Integer>();
+	protected Float floatArray[];
+	
 	private static String getFileExtension(File file) {
         String fileName = file.getName();
         if(fileName.lastIndexOf(".") != -1 && fileName.lastIndexOf(".") != 0)
@@ -194,8 +196,12 @@ public class BaseGUI extends JFrame {
 										roundedNumbers = Math.round(inputNumbers);
 										roundedList.addLast(roundedNumbers);
 									}
+					// Populates floatArray then sorts
+									floatArray = floatList.toArray(new Float[floatList.size()]);
+									Arrays.sort(floatArray);
 									System.out.println("Float list: " + floatList); 
 									System.out.println("Rounded list: " + roundedList); 
+									System.out.println("Float array: " + Arrays.toString(floatArray)); 
 			                	} catch (InputMismatchException e) {
 									// TODO Auto-generated catch block
 									e.printStackTrace();

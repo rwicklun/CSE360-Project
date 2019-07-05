@@ -544,6 +544,6 @@ public class PercentilePanel extends JPanel {
 	 * @param percent	float Percent to be associated with letter
 	 */
 	public void LetterPercentLabel(JLabel label, String letter, float percent) {
-		label.setText("A: 20%");
+		label.setText(letter + ": " + percent + "%");
 	}
 }
