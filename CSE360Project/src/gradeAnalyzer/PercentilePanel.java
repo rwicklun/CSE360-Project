@@ -30,7 +30,7 @@ public class PercentilePanel extends JPanel {
 	public PercentilePanel() {
 		// Creates percentileMath
 		// 100 used temporarily for max possible
-		percentileMath = new PercentileMath(floatArray, 100);
+		//percentileMath = new PercentileMath(floatArray, 100);
 		// Main panel
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[] {450, 0};
