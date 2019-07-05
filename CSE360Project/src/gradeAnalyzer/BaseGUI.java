@@ -195,8 +195,8 @@ public class BaseGUI extends JFrame {
 										floatList.addLast(inputNumbers);
 										roundedNumbers = Math.round(inputNumbers);
 										roundedList.addLast(roundedNumbers);
-										stats.addLinkedLists(floatList, roundedList);
 									}
+									stats.addLinkedLists(floatList, roundedList);
 
 					// Populates floatArray then sorts
 									floatArray = floatList.toArray(new Float[floatList.size()]);

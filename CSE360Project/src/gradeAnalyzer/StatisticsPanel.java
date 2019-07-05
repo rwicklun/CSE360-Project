@@ -146,7 +146,7 @@ public class StatisticsPanel extends JPanel{
 		add(lblAverageScore, gbc_lblAverageScore);
 		
 		averageTextField = new JTextField();
-		averageTextField.setText("72");
+		averageTextField.setText(stats.getAverage());
 		GridBagConstraints gbc_averageTextField = new GridBagConstraints();
 		gbc_averageTextField.insets = new Insets(0, 0, 5, 5);
 		gbc_averageTextField.fill = GridBagConstraints.HORIZONTAL;
@@ -320,6 +320,7 @@ public class StatisticsPanel extends JPanel{
 	    	}else if (event.getSource() == btnRefresh) {
 	    		maximumTextField.setText(stats.getMaxAcheived());
 	    		minimumTextField.setText(stats.getMinAcheived());
+	    		averageTextField.setText(stats.getAverage());
 	    		
 	    	}
 	    }
