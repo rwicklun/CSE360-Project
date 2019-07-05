@@ -170,7 +170,7 @@ public class BaseGUI extends JFrame {
 	private Scanner scan;
 	protected LinkedList<Float> floatList = new LinkedList<Float>();
 	protected LinkedList<Integer> roundedList = new LinkedList<Integer>();
-	protected Float floatArray[];
+	private Float floatArray[];
 	
 	private static String getFileExtension(File file) {
         String fileName = file.getName();

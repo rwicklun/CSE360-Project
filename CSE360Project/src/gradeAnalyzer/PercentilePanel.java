@@ -21,6 +21,7 @@ public class PercentilePanel extends JPanel {
 	private JTextField txtSetGradeF;
 	private JTextField txtSetTop_Value;
 	private JTextField txtSetBottom_Value;
+	private Float floatArray[];
 
 	/**
 	 * GUI for the Percentile Panel
