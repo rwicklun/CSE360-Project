@@ -32,4 +32,7 @@ public class StatisticsHandler {
 	public int getMinGrade() {
 		return minimumPossibleGrade;
 	}
+	public int getDefaultMinGrade() {
+		return 0;
+	}
 }

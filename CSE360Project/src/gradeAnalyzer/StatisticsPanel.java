@@ -29,6 +29,9 @@ public class StatisticsPanel extends JPanel{
 	private JTextField replaceOldGrade;
 	private JTextField replaceNewGrade;
 	private JButton btnReplaceGrade;
+	
+	private JButton btnReset;
+	
 	private StatisticsHandler stats = new StatisticsHandler();
 
 	private ErrorPanel error = new ErrorPanel();
@@ -237,11 +240,12 @@ public class StatisticsPanel extends JPanel{
 		add(replaceNewGrade, gbc_replaceNewGrade);
 		replaceNewGrade.setColumns(10);
 		
-		JButton btnReset = new JButton("Reset");
+		btnReset = new JButton("Reset");
 		GridBagConstraints gbc_btnReset = new GridBagConstraints();
 		gbc_btnReset.insets = new Insets(0, 0, 0, 5);
 		gbc_btnReset.gridx = 0;
 		gbc_btnReset.gridy = 7;
+		btnReset.addActionListener(new ButtonListener());
 		add(btnReset, gbc_btnReset);
 	}
 	private int maxPossible;
@@ -293,6 +297,12 @@ public class StatisticsPanel extends JPanel{
 	                error.setVisible(true);
 	    		}
 	    		lowestTextField.setText(lowest);
+	    	} else if (event.getSource() == btnReset) {
+    			stats.setMaxGrade(stats.getDefaultMaxGrade());
+	    		highestTextField.setText("" + stats.getMaxGrade());
+    			stats.setMinGrade(stats.getDefaultMinGrade());
+    			lowestTextField.setText("" + stats.getMinGrade());
+	    		
 	    	}
 	    }
 	}
