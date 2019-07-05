@@ -194,8 +194,6 @@ public class BaseGUI extends JFrame {
 										roundedNumbers = Math.round(inputNumbers);
 										roundedList.addLast(roundedNumbers);
 									}
-									System.out.println("Float list: " + floatList); 
-									System.out.println("Rounded list: " + roundedList); 
 			                	} catch (InputMismatchException e) {
 									// TODO Auto-generated catch block
 									e.printStackTrace();

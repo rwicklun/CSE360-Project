@@ -4,19 +4,36 @@ import javax.swing.*;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 @SuppressWarnings("serial")
 public class StatisticsPanel extends JPanel{
+	private JButton btnSetLowest;
 	private JTextField lowestTextField;
+	
+	private JButton btnSetHighest;
 	private JTextField highestTextField;
+	
 	private JTextField maximumTextField;
 	private JTextField minimumTextField;
 	private JTextField averageTextField;
 	private JTextField medianTextField;
-	private JTextField replaceOldGrade;
+	
 	private JTextField addGradeTextField;
+	private JButton btnAddGrade;
+	
 	private JTextField deleteGradeTextField;
+	private JButton btnDeleteGrade;
+	
+	private JTextField replaceOldGrade;
 	private JTextField replaceNewGrade;
+	private JButton btnReplaceGrade;
+	private StatisticsHandler stats = new StatisticsHandler();
+
+	private ErrorPanel error = new ErrorPanel();
+	
+	
 	public StatisticsPanel() {
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 61, 106, 50, 0};
@@ -34,7 +51,8 @@ public class StatisticsPanel extends JPanel{
 		add(lblHighestScore, gbc_lblHighestScore);
 		
 		highestTextField = new JTextField();
-		highestTextField.setText("100");
+		String highest = "" + stats.getMaxGrade();
+		highestTextField.setText(highest);
 		GridBagConstraints gbc_highestTextField = new GridBagConstraints();
 		gbc_highestTextField.insets = new Insets(0, 0, 5, 5);
 		gbc_highestTextField.fill = GridBagConstraints.HORIZONTAL;
@@ -52,7 +70,8 @@ public class StatisticsPanel extends JPanel{
 		add(lblLowestScore, gbc_lblLowestScore);
 		
 		lowestTextField = new JTextField();
-		lowestTextField.setText("0");
+		String lowest = "" + stats.getMinGrade();
+		lowestTextField.setText(lowest);
 		GridBagConstraints gbc_lowestTextField = new GridBagConstraints();
 		gbc_lowestTextField.insets = new Insets(0, 0, 5, 0);
 		gbc_lowestTextField.fill = GridBagConstraints.HORIZONTAL;
@@ -61,18 +80,20 @@ public class StatisticsPanel extends JPanel{
 		add(lowestTextField, gbc_lowestTextField);
 		lowestTextField.setColumns(10);
 		
-		JButton btnSetHighest = new JButton("Set Highest");
+		btnSetHighest = new JButton("Set Highest");
 		GridBagConstraints gbc_btnSetHighest = new GridBagConstraints();
 		gbc_btnSetHighest.insets = new Insets(0, 0, 5, 5);
 		gbc_btnSetHighest.gridx = 0;
 		gbc_btnSetHighest.gridy = 1;
+		btnSetHighest.addActionListener(new ButtonListener());
 		add(btnSetHighest, gbc_btnSetHighest);
 		
-		JButton btnSetLowest = new JButton("Set Lowest");
+		btnSetLowest = new JButton("Set Lowest");
 		GridBagConstraints gbc_btnSetLowest = new GridBagConstraints();
 		gbc_btnSetLowest.insets = new Insets(0, 0, 5, 5);
 		gbc_btnSetLowest.gridx = 2;
 		gbc_btnSetLowest.gridy = 1;
+		btnSetLowest.addActionListener(new ButtonListener());
 		add(btnSetLowest, gbc_btnSetLowest);
 		
 		JLabel lblMaximum = new JLabel("Maximum Score: ");
@@ -147,7 +168,7 @@ public class StatisticsPanel extends JPanel{
 		add(medianTextField, gbc_medianTextField);
 		medianTextField.setColumns(10);
 		
-		JButton btnAddGrade = new JButton("Add Grade:");
+		btnAddGrade = new JButton("Add Grade:");
 		GridBagConstraints gbc_btnAddGrade = new GridBagConstraints();
 		gbc_btnAddGrade.insets = new Insets(0, 0, 5, 5);
 		gbc_btnAddGrade.gridx = 0;
@@ -164,7 +185,7 @@ public class StatisticsPanel extends JPanel{
 		add(addGradeTextField, gbc_addGradeTextField);
 		addGradeTextField.setColumns(10);
 		
-		JButton btnDeleteGrade = new JButton("Delete Grade:");
+		btnDeleteGrade = new JButton("Delete Grade:");
 		GridBagConstraints gbc_btnDeleteGrade = new GridBagConstraints();
 		gbc_btnDeleteGrade.insets = new Insets(0, 0, 5, 5);
 		gbc_btnDeleteGrade.gridx = 2;
@@ -181,7 +202,7 @@ public class StatisticsPanel extends JPanel{
 		add(deleteGradeTextField, gbc_deleteGradeTextField);
 		deleteGradeTextField.setColumns(10);
 		
-		JButton btnReplaceGrade = new JButton("Replace Grade:");
+		btnReplaceGrade = new JButton("Replace Grade:");
 		GridBagConstraints gbc_btnReplaceGrade = new GridBagConstraints();
 		gbc_btnReplaceGrade.insets = new Insets(0, 0, 5, 5);
 		gbc_btnReplaceGrade.gridx = 0;
@@ -222,6 +243,49 @@ public class StatisticsPanel extends JPanel{
 		gbc_btnReset.gridx = 0;
 		gbc_btnReset.gridy = 7;
 		add(btnReset, gbc_btnReset);
+	}
+	private int maxPossible;
+	private int minPossible;
+	private class ButtonListener implements ActionListener {
+	    @Override
+	    public void actionPerformed(ActionEvent event) {
+	    	if (event.getSource() == btnSetHighest) {
+	    		String highest = highestTextField.getText();
+	    		try {
+	    		maxPossible = Integer.parseInt(highest);
+	    		} catch (NumberFormatException exception) {
+	    			stats.setMaxGrade(stats.getMaxGrade());
+	    			highest = "" + stats.getMaxGrade();
+	                // Input not a number.
+	                error.setString("Input Not A Number: \nPlease input only numbers");
+	                error.setVisible(true);
+	    		}
+	    		stats.setMaxGrade(maxPossible);
+	    		highestTextField.setText(highest);
+	    	} else if (event.getSource() == btnSetLowest) {
+	    		String lowest = lowestTextField.getText();
+	    		try {
+	    		minPossible = Integer.parseInt(lowest);
+	    		} catch (NumberFormatException exception) {
+	    			stats.setMinGrade(stats.getMinGrade());
+	    			lowest = "" + stats.getMinGrade();
+	                // Input not a number.
+	                error.setString("Input Not A Number: \nPlease input only numbers");
+	                error.setVisible(true);
+	    		}
+	    		if (minPossible < stats.getMaxGrade()) {
+	    			stats.setMinGrade(minPossible);
+	    		} else {
+	    			stats.setMinGrade(stats.getMinGrade());
+	    			lowest = "" + stats.getMinGrade();
+	                // Input greater than max possible score
+	                error.setString("Input Greater Than Max: \nPlease input a number less than the "
+	                		+ "Highest Possible Score");
+	                error.setVisible(true);
+	    		}
+	    		lowestTextField.setText(lowest);
+	    	}
+	    }
 	}
 
 }
