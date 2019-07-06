@@ -289,6 +289,7 @@ public class StatisticsPanel extends JPanel{
 	    		}
 	    		highestTextField.setText(highest);
 	    		maximumTextField.setText(stats.getMaxAcheived());
+	    		averageTextField.setText(stats.getAverage());
 	    	} else if (event.getSource() == btnSetLowest) {
 	    		String lowest = lowestTextField.getText();
 	    		try {
@@ -311,6 +312,8 @@ public class StatisticsPanel extends JPanel{
 	                error.setVisible(true);
 	    		}
 	    		lowestTextField.setText(lowest);
+	    		minimumTextField.setText(stats.getMinAcheived());
+	    		averageTextField.setText(stats.getAverage());
 	    	} else if (event.getSource() == btnReset) {
     			stats.setMaxGrade(stats.getDefaultMaxGrade());
 	    		highestTextField.setText("" + stats.getMaxGrade());
