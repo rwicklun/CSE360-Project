@@ -168,8 +168,8 @@ public class BaseGUI extends JFrame {
 	private int roundedNumbers;
 	private String extension;
 	private Scanner scan;
-	protected LinkedList<Float> floatList = new LinkedList<Float>();
-	protected LinkedList<Integer> roundedList = new LinkedList<Integer>();
+	protected LinkedList<Float> floatList;
+	protected LinkedList<Integer> roundedList;
 	private Float floatArray[];
 	
 	private static String getFileExtension(File file) {
@@ -190,12 +190,8 @@ public class BaseGUI extends JFrame {
 							scan = new Scanner(file);
 			                if (extension.compareTo("txt") == 0) {
 			                	try {
-			                		if (floatList != null) {
-			                			floatList = new LinkedList<Float>();
-			                		}
-			                		if (roundedList != null) {
-			                			roundedList = new LinkedList<Integer>();
-			                		}
+			                		floatList = new LinkedList<Float>();
+			                		roundedList = new LinkedList<Integer>();
 									while(scan.hasNextFloat()) {
 										inputNumbers = scan.nextFloat();
 										floatList.addLast(inputNumbers);
