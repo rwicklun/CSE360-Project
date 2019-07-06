@@ -42,7 +42,7 @@ public class StatisticsHandler {
 			while(count > 0) {
 				int newNumber = roundedList.get(count - 1);
 				count--;
-				if (max < newNumber && newNumber < maximumPossibleGrade) {
+				if (max <= newNumber && newNumber <= maximumPossibleGrade) {
 					max = newNumber;
 				}
 			}
@@ -58,7 +58,7 @@ public class StatisticsHandler {
 			while(count > 0) {
 				int newNumber = roundedList.get(count - 1);
 				count--;
-				if (min > newNumber && newNumber > minimumPossibleGrade) {
+				if (min >= newNumber && newNumber >= minimumPossibleGrade) {
 					min = newNumber;
 				}
 			}
