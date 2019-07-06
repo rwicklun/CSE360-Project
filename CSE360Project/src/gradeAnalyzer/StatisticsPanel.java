@@ -323,7 +323,7 @@ public class StatisticsPanel extends JPanel{
 	    		highestTextField.setText("" + stats.getMaxGrade());
     			stats.setMinGrade(stats.getDefaultMinGrade());
     			lowestTextField.setText("" + stats.getMinGrade());
-	    		
+    			refresh();
 	    	}else if (event.getSource() == btnRefresh) {
 	    		refresh();
 	    	}
