@@ -190,6 +190,12 @@ public class BaseGUI extends JFrame {
 							scan = new Scanner(file);
 			                if (extension.compareTo("txt") == 0) {
 			                	try {
+			                		if (floatList != null) {
+			                			floatList = new LinkedList<Float>();
+			                		}
+			                		if (roundedList != null) {
+			                			roundedList = new LinkedList<Integer>();
+			                		}
 									while(scan.hasNextFloat()) {
 										inputNumbers = scan.nextFloat();
 										floatList.addLast(inputNumbers);
