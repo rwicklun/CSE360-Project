@@ -190,6 +190,7 @@ public class BaseGUI extends JFrame {
 							scan = new Scanner(file);
 			                if (extension.compareTo("txt") == 0) {
 			                	try {
+			                		//attempts to create the Linked Lists for both floating point and integer numbers
 			                		floatList = new LinkedList<Float>();
 			                		roundedList = new LinkedList<Integer>();
 									while(scan.hasNextFloat()) {
@@ -198,6 +199,7 @@ public class BaseGUI extends JFrame {
 										roundedNumbers = Math.round(inputNumbers);
 										roundedList.addLast(roundedNumbers);
 									}
+									//gives the StatsHandler the LinkedLists
 									stats.addLinkedLists(floatList, roundedList);
 
 					// Populates floatArray then sorts

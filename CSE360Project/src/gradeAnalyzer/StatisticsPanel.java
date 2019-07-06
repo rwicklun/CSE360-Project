@@ -164,7 +164,7 @@ public class StatisticsPanel extends JPanel{
 		add(lblMedianScore, gbc_lblMedianScore);
 		
 		medianTextField = new JTextField();
-		medianTextField.setText("68");
+		medianTextField.setText(stats.getMedian());
 		GridBagConstraints gbc_medianTextField = new GridBagConstraints();
 		gbc_medianTextField.insets = new Insets(0, 0, 5, 0);
 		gbc_medianTextField.fill = GridBagConstraints.HORIZONTAL;
@@ -261,6 +261,12 @@ public class StatisticsPanel extends JPanel{
 	public void addLinkedLists (LinkedList<Float> floater, LinkedList<Integer> rounder) {
 		stats.setLinkedLists(floater, rounder);
 	}
+	private void refresh() {
+		maximumTextField.setText(stats.getMaxAcheived());
+		minimumTextField.setText(stats.getMinAcheived());
+		averageTextField.setText(stats.getAverage());
+		medianTextField.setText(stats.getMedian());
+	}
 	private int maxPossible;
 	private int minPossible;
 	private class ButtonListener implements ActionListener {
@@ -288,8 +294,7 @@ public class StatisticsPanel extends JPanel{
 	                error.setVisible(true);
 	    		}
 	    		highestTextField.setText(highest);
-	    		maximumTextField.setText(stats.getMaxAcheived());
-	    		averageTextField.setText(stats.getAverage());
+	    		refresh();
 	    	} else if (event.getSource() == btnSetLowest) {
 	    		String lowest = lowestTextField.getText();
 	    		try {
@@ -312,8 +317,7 @@ public class StatisticsPanel extends JPanel{
 	                error.setVisible(true);
 	    		}
 	    		lowestTextField.setText(lowest);
-	    		minimumTextField.setText(stats.getMinAcheived());
-	    		averageTextField.setText(stats.getAverage());
+	    		refresh();
 	    	} else if (event.getSource() == btnReset) {
     			stats.setMaxGrade(stats.getDefaultMaxGrade());
 	    		highestTextField.setText("" + stats.getMaxGrade());
@@ -321,10 +325,7 @@ public class StatisticsPanel extends JPanel{
     			lowestTextField.setText("" + stats.getMinGrade());
 	    		
 	    	}else if (event.getSource() == btnRefresh) {
-	    		maximumTextField.setText(stats.getMaxAcheived());
-	    		minimumTextField.setText(stats.getMinAcheived());
-	    		averageTextField.setText(stats.getAverage());
-	    		
+	    		refresh();
 	    	}
 	    }
 	}

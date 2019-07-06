@@ -10,12 +10,15 @@ public class StatisticsHandler {
 	private int maximumPossibleGrade = 100;
 	//default minimum set to 0
 	private int minimumPossibleGrade = 0;
+	private Integer sortRounded[];
 	public StatisticsHandler() {
 		
 	}
 	public void setLinkedLists (LinkedList<Float> floater, LinkedList<Integer> rounder) {
 		floatList = floater;
 		roundedList = rounder;
+		sortRounded = roundedList.toArray(new Integer[roundedList.size()]);
+		Arrays.sort(sortRounded);
 	}
 	public void setMaxGrade(int max) {
 		maximumPossibleGrade = max;
@@ -92,5 +95,33 @@ public class StatisticsHandler {
 			return "";
 		}
 		
+	}
+	public String getMedian() {
+		if (sortRounded != null) {
+		int lowerBound = 0;
+		int upperBound = sortRounded.length;
+			for (int iterator = 0; iterator < sortRounded.length; iterator++) {
+				if (minimumPossibleGrade > sortRounded[iterator]) {
+					lowerBound = iterator + 1;
+				}
+			}
+			for (int iterator = sortRounded.length - 1; iterator >= 0; iterator--) {
+				if (maximumPossibleGrade < sortRounded[iterator]) {
+					upperBound = iterator;
+				}
+			}
+			Integer subArray[] = Arrays.copyOfRange(sortRounded, lowerBound, upperBound);
+			float median;
+			int subRoundedLength = subArray.length;
+			int middleLocation = subRoundedLength / 2;
+			if (subRoundedLength % 2 == 0) {
+				median = ((float) sortRounded[middleLocation - 1] + (float) sortRounded[middleLocation]) / (float) 2;
+			} else {
+				median = (float)sortRounded[middleLocation + 1];
+			}
+			return "" + median;
+		} else {
+			return "";
+		}
 	}
 }
