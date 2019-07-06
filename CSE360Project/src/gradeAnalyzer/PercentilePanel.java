@@ -29,8 +29,8 @@ public class PercentilePanel extends JPanel {
 	 */
 	public PercentilePanel() {
 		// Creates percentileMath
-		// 100 used temporarily for max possible
-		//percentileMath = new PercentileMath(floatArray, 100);
+		percentileMath = new PercentileMath();
+		
 		// Main panel
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[] {450, 0};
@@ -549,6 +549,14 @@ public class PercentilePanel extends JPanel {
 	 */
 	public void LetterPercentLabel(JLabel label, String letter, float percent) {
 		label.setText(letter + ": " + percent + "%");
+	}
+	
+	public void setfloatArray(Float floatArrayIn[]) {
+		percentileMath.setFloatArray(floatArrayIn);
+	}
+	
+	private void setMaxPossible(int maxPossibleIn) {
+		percentileMath.setMaxPossible(maxPossibleIn);
 	}
 	
 	private class maxPossibleListener implements ActionListener {

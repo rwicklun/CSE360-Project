@@ -170,12 +170,12 @@ public class BaseGUI extends JFrame {
 	private Scanner scan;
 	protected LinkedList<Float> floatList = new LinkedList<Float>();
 	protected LinkedList<Integer> roundedList = new LinkedList<Integer>();
-	private Float floatArray[] = {1f, 2.5f, 4.34f, 7.43f, 3.6f};
+	private Float floatArray[];
 	
 	private static String getFileExtension(File file) {
         String fileName = file.getName();
         if(fileName.lastIndexOf(".") != -1 && fileName.lastIndexOf(".") != 0)
-        return fileName.substring(fileName.lastIndexOf(".")+1);
+        return fileName.substring(fileName.lastIndexOf(".") + 1);
         else return "";
     }
 	private class LoadSaveListener implements ActionListener {

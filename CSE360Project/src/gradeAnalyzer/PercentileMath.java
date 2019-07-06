@@ -7,6 +7,13 @@ public class PercentileMath {
 	private float maxEarned;
 	private float maxInUse;
 	
+	public PercentileMath() {
+		floatArray = null;
+		maxPossible = 100;
+		maxEarned = 100;
+		maxInUse = maxPossible;
+	}
+	
 	public PercentileMath(Float floatArrayIn[], int maxPossibleIn) {
 		floatArray = floatArrayIn;
 		maxPossible = maxPossibleIn;
@@ -17,6 +24,10 @@ public class PercentileMath {
 	public void setFloatArray(Float floatArrayIn[]) {
 		floatArray = floatArrayIn;
 		maxEarned = floatArray[floatArray.length - 1];
+	}
+	
+	public void setMaxPossible(int maxPossibleIn) {
+		maxPossible = maxPossibleIn;
 	}
 	
 	public void setMaxToPossible() {
