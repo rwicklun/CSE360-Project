@@ -25,9 +25,14 @@ public class PercentilePanel extends JPanel {
 	private JTextField txtSetGradeF;
 	private JTextField txtSetTop_Value;
 	private JTextField txtSetBottom_Value;
+	
 	private Float floatArray[];
 	private PercentileMath percentileMath;
-
+	private int gradeRangeA;
+	private int gradeRangeB;
+	private int gradeRangeC;
+	private int gradeRangeD;
+	private int gradeRangeF;
 
 	
 	/**
@@ -130,7 +135,7 @@ public class PercentilePanel extends JPanel {
 		JLabel lblSetGradeAPercent = new JLabel("%");
 		GridBagConstraints gbc_lblSetGradeAPercent = new GridBagConstraints();
 		gbc_lblSetGradeAPercent.anchor = GridBagConstraints.EAST;
-		gbc_lblSetGradeAPercent.insets = new Insets(0, 0, 0, 15);
+		gbc_lblSetGradeAPercent.insets = new Insets(0, 0, 0, 10);
 		gbc_lblSetGradeAPercent.gridx = 0;
 		gbc_lblSetGradeAPercent.gridy = 0;
 		pnlSetGradeRange.add(lblSetGradeAPercent, gbc_lblSetGradeAPercent);
@@ -156,7 +161,7 @@ public class PercentilePanel extends JPanel {
 		JLabel lblSetGradeBPercent = new JLabel("%");
 		GridBagConstraints gbc_lblSetGradeBPercent = new GridBagConstraints();
 		gbc_lblSetGradeBPercent.anchor = GridBagConstraints.EAST;
-		gbc_lblSetGradeBPercent.insets = new Insets(0, 0, 0, 15);
+		gbc_lblSetGradeBPercent.insets = new Insets(0, 0, 0, 10);
 		gbc_lblSetGradeBPercent.gridx = 1;
 		gbc_lblSetGradeBPercent.gridy = 0;
 		pnlSetGradeRange.add(lblSetGradeBPercent, gbc_lblSetGradeBPercent);
@@ -182,7 +187,7 @@ public class PercentilePanel extends JPanel {
 		JLabel lblSetGradeCPercent = new JLabel("%");
 		GridBagConstraints gbc_lblSetGradeCPercent = new GridBagConstraints();
 		gbc_lblSetGradeCPercent.anchor = GridBagConstraints.EAST;
-		gbc_lblSetGradeCPercent.insets = new Insets(0, 0, 0, 15);
+		gbc_lblSetGradeCPercent.insets = new Insets(0, 0, 0, 10);
 		gbc_lblSetGradeCPercent.gridx = 2;
 		gbc_lblSetGradeCPercent.gridy = 0;
 		pnlSetGradeRange.add(lblSetGradeCPercent, gbc_lblSetGradeCPercent);
@@ -208,7 +213,7 @@ public class PercentilePanel extends JPanel {
 		JLabel lblSetGradeDPercent = new JLabel("%");
 		GridBagConstraints gbc_lblSetGradeDPercent = new GridBagConstraints();
 		gbc_lblSetGradeDPercent.anchor = GridBagConstraints.EAST;
-		gbc_lblSetGradeDPercent.insets = new Insets(0, 0, 0, 15);
+		gbc_lblSetGradeDPercent.insets = new Insets(0, 0, 0, 10);
 		gbc_lblSetGradeDPercent.gridx = 3;
 		gbc_lblSetGradeDPercent.gridy = 0;
 		pnlSetGradeRange.add(lblSetGradeDPercent, gbc_lblSetGradeDPercent);
@@ -234,7 +239,7 @@ public class PercentilePanel extends JPanel {
 		JLabel lblSetGradeFPercent = new JLabel("%");
 		GridBagConstraints gbc_lblSetGradeFPercent = new GridBagConstraints();
 		gbc_lblSetGradeFPercent.anchor = GridBagConstraints.EAST;
-		gbc_lblSetGradeFPercent.insets = new Insets(0, 0, 0, 15);
+		gbc_lblSetGradeFPercent.insets = new Insets(0, 0, 0, 10);
 		gbc_lblSetGradeFPercent.gridx = 4;
 		gbc_lblSetGradeFPercent.gridy = 0;
 		pnlSetGradeRange.add(lblSetGradeFPercent, gbc_lblSetGradeFPercent);
@@ -554,11 +559,11 @@ public class PercentilePanel extends JPanel {
 	 * @param letter	Grade letter to be set into string
 	 * @param percent	float Percent to be associated with letter
 	 */
-	public void LetterPercentLabel(JLabel label, String letter, float percent) {
+	private void LetterPercentLabel(JLabel label, String letter, float percent) {
 		label.setText(letter + ": " + percent + "%");
 	}
 	
-	public void setfloatArray(Float floatArrayIn[]) {
+	private void setfloatArray(Float floatArrayIn[]) {
 		percentileMath.setFloatArray(floatArrayIn);
 	}
 	
@@ -588,6 +593,10 @@ public class PercentilePanel extends JPanel {
 	}
 	
 	private class setGradeRangeListener implements ActionListener {
+		private char gradeLetter;
+		public setGradeRangeListener(char gradeLetterIn) {
+			this.gradeLetter = gradeLetterIn;
+		}
 		@Override
 		public void actionPerformed(ActionEvent event) {
 			
