@@ -38,5 +38,7 @@ public class PercentileMath {
 		maxInUse = maxEarned;
 	}
 	
-	
+	public void updateGradeRanges() {
+		
+	}
 }
