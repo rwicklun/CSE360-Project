@@ -48,7 +48,6 @@ public class Calculations {
 			return "";
 		}
 	}
-	
 	public String getMinEarned() {
 		if (roundedList != null ) {
 			return Integer.toString(roundedArray[0]);
@@ -58,7 +57,9 @@ public class Calculations {
 		}
 	}
 	
-	
+	public int studentCount() {
+		return roundedArray.length;
+	}
 	
 // Start Statistics only --------------------------------------------------------------------------
 	public String getAverage() {
@@ -118,6 +119,35 @@ public class Calculations {
 	
 	public void setMaxInUseToEarned() {
 		maxInUse = maxEarned;
+	}
+	
+	public int[] countStuPerGrade(int gradeA, int gradeB, int gradeC, int gradeD, int gradeF) {
+		int countA = 0;
+		int countB = 0;
+		int countC = 0;
+		int countD = 0;
+		int countF = 0;
+		int countArray[];
+		
+		for(int index = 0; index < roundedArray.length; index ++) {
+			if (roundedArray[index] <= gradeF) {
+				countF ++;
+			}
+			else if (roundedArray[index] <= gradeD) {
+				countD ++;
+			}
+			else if (roundedArray[index] <= gradeC) {
+				countC ++;
+			}
+			else if (roundedArray[index] <= gradeB) {
+				countB ++;
+			}
+			else if (roundedArray[index] <= gradeA) {
+				countA ++;
+			}
+		}
+		countArray = new int[] {countA, countB, countC, countD, countF};
+		return countArray;
 	}
 	
 // End Percentile only ----------------------------------------------------------------------------
