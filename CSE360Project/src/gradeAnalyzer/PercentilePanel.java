@@ -19,6 +19,9 @@ import java.awt.Font;
 @SuppressWarnings("serial")
 public class PercentilePanel extends JPanel {
 	private JPanel pnlGradeDistribution;
+	private JPanel pnlStudentsPerGrade;
+	private JPanel pnlGivePercentile;
+	
 	private JTextField txtSetGradeA;
 	private JTextField txtSetGradeB;
 	private JTextField txtSetGradeC;
@@ -565,6 +568,15 @@ public class PercentilePanel extends JPanel {
 		label.setText(letter + ": " + percent + "%");
 	}
 	
+	private void refreshPanels() {
+		pnlGradeDistribution.revalidate();
+		pnlGradeDistribution.repaint();
+		pnlStudentsPerGrade.revalidate();
+		pnlStudentsPerGrade.repaint();
+		pnlGivePercentile.revalidate();
+		pnlGivePercentile.repaint();
+	}
+	
 	private class maxPossibleListener implements ActionListener {
 		 @Override
 		 public void actionPerformed(ActionEvent event) {
@@ -587,9 +599,8 @@ public class PercentilePanel extends JPanel {
 			gradeRangeC = Integer.parseInt(txtSetGradeC.getText());
 			gradeRangeD = Integer.parseInt(txtSetGradeD.getText());
 			gradeRangeF = Integer.parseInt(txtSetGradeF.getText());
-			pnlGradeDistribution.revalidate();
-			pnlGradeDistribution.repaint();
 			
+			refreshPanels();
 		}
 	}
 	

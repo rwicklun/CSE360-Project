@@ -1,17 +1,5 @@
 package gradeAnalyzer;
 
-
-/*
- * 
- * testing commit
- * 
- * 
- */
-
-
-
-
-
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.filechooser.*;

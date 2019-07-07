@@ -58,6 +58,8 @@ public class Calculations {
 		}
 	}
 	
+	
+	
 // Start Statistics only --------------------------------------------------------------------------
 	public String getAverage() {
 		if (roundedList != null ) {
