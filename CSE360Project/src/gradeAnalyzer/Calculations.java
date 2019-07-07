@@ -138,6 +138,54 @@ public class Calculations {
 			return "";
 		}
 	}
+	public String addGrade(float newGrade) {
+		if (newGrade <= maxPossible && newGrade >= minPossible) {
+			floatList.add(newGrade);
+			roundedList.add(Math.round(newGrade));
+			roundedArray = roundedList.toArray(new Integer[roundedList.size()]);
+			Arrays.sort(roundedArray);
+			return "Adding " + newGrade + " was successful.";
+		} else {
+			ErrorPanel error = new ErrorPanel();
+			error.setString("Grade Out Of Bounds: \nPlease input a grade between " + maxPossible + " and " + minPossible + ".");
+			error.setVisible(true);
+			return "";
+		}
+	}
+	public String deleteGrade(float oldGrade) {
+		if (floatList != null) {
+			int floatFound = floatList.lastIndexOf(oldGrade);
+			if (floatFound != -1) {
+				floatList.remove(floatFound);
+				roundedList.remove(floatFound);
+				roundedArray = roundedList.toArray(new Integer[roundedList.size()]);
+				Arrays.sort(roundedArray);
+				return "Deleting " + oldGrade + " was successful.";
+			} else if (oldGrade % 1 == 0) {
+				int roundedFound = roundedList.lastIndexOf((int) oldGrade);
+				if (roundedFound != -1) {
+					floatList.remove(roundedFound);
+					roundedList.remove(roundedFound);
+					roundedArray = roundedList.toArray(new Integer[roundedList.size()]);
+					Arrays.sort(roundedArray);
+					return "Deleting " + oldGrade + " was successful.";
+				} else {
+					ErrorPanel error = new ErrorPanel();
+					error.setString("Grade Not Found: \nPlease enter one of the following grades:\n"
+							+ floatList.toString() + ", or " + roundedList.toString());
+					error.setVisible(true);
+					return "";
+				}
+			} else {
+				ErrorPanel error = new ErrorPanel();
+				error.setString("Grade Not Found: \nPlease enter one of the following grades:\n"
+						+ floatList.toString() + ", or " + roundedList.toString());
+				error.setVisible(true);
+				return "";
+			}
+		}
+		return "";
+	}
 	
 // End Statistics only ----------------------------------------------------------------------------
 	
