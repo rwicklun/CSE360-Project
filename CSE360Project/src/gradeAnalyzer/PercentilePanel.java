@@ -629,7 +629,12 @@ public class PercentilePanel extends JPanel {
 			gradeDistributD = 100 * stuCountArray[3] / stuCount;
 			gradeDistributF = 100 * stuCountArray[4] / stuCount;
 			
-			letterPercentLabel(lblGradeDistributionA, "A", 33);
+			letterPercentLabel(lblGradeDistributionA, "A", gradeDistributA);
+			letterPercentLabel(lblGradeDistributionB, "A", gradeDistributB);
+			letterPercentLabel(lblGradeDistributionC, "A", gradeDistributC);
+			letterPercentLabel(lblGradeDistributionD, "A", gradeDistributD);
+			letterPercentLabel(lblGradeDistributionF, "A", gradeDistributF);
+			
 			refreshPanels();
 		}
 		
