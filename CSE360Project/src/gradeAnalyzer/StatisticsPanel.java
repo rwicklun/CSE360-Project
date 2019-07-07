@@ -34,8 +34,9 @@ public class StatisticsPanel extends JPanel{
 	private JButton btnReset;
 	private JButton btnRefresh;
 	
-	private StatisticsHandler stats = new StatisticsHandler();
-
+//	private StatisticsHandler stats = new StatisticsHandler();
+	private Calculations stats = new Calculations();
+	
 	private ErrorPanel error = new ErrorPanel();
 	
 	
@@ -56,7 +57,7 @@ public class StatisticsPanel extends JPanel{
 		add(lblHighestScore, gbc_lblHighestScore);
 		
 		highestTextField = new JTextField();
-		String highest = "" + stats.getMaxGrade();
+		String highest = "" + stats.getMaxPossible();
 		highestTextField.setText(highest);
 		GridBagConstraints gbc_highestTextField = new GridBagConstraints();
 		gbc_highestTextField.insets = new Insets(0, 0, 5, 5);
@@ -75,7 +76,7 @@ public class StatisticsPanel extends JPanel{
 		add(lblLowestScore, gbc_lblLowestScore);
 		
 		lowestTextField = new JTextField();
-		String lowest = "" + stats.getMinGrade();
+		String lowest = "" + stats.getMinPossible();
 		lowestTextField.setText(lowest);
 		GridBagConstraints gbc_lowestTextField = new GridBagConstraints();
 		gbc_lowestTextField.insets = new Insets(0, 0, 5, 0);
@@ -110,7 +111,7 @@ public class StatisticsPanel extends JPanel{
 		add(lblMaximum, gbc_lblMaximum);
 		
 		maximumTextField = new JTextField();
-		maximumTextField.setText(stats.getMaxAcheived());
+		maximumTextField.setText(stats.getMaxEarned());
 		GridBagConstraints gbc_maximumTextField = new GridBagConstraints();
 		gbc_maximumTextField.insets = new Insets(0, 0, 5, 5);
 		gbc_maximumTextField.fill = GridBagConstraints.HORIZONTAL;
@@ -128,7 +129,7 @@ public class StatisticsPanel extends JPanel{
 		add(lblMinimum, gbc_lblMinimum);
 		
 		minimumTextField = new JTextField();
-		minimumTextField.setText(stats.getMinAcheived());
+		minimumTextField.setText(stats.getMinEarned());
 		GridBagConstraints gbc_minimumTextField = new GridBagConstraints();
 		gbc_minimumTextField.insets = new Insets(0, 0, 5, 0);
 		gbc_minimumTextField.fill = GridBagConstraints.HORIZONTAL;
@@ -258,12 +259,12 @@ public class StatisticsPanel extends JPanel{
 		btnRefresh.addActionListener(new ButtonListener());
 		add(btnRefresh, gbc_btnRefresh);
 	}
-	public void addLinkedLists (LinkedList<Float> floater, LinkedList<Integer> rounder) {
-		stats.setLinkedLists(floater, rounder);
+	public void addLinkedLists (LinkedList<Float> floatListIn, LinkedList<Integer> roundedListIn) {
+		stats.setLinkedLists(floatListIn, roundedListIn);
 	}
 	private void refresh() {
-		maximumTextField.setText(stats.getMaxAcheived());
-		minimumTextField.setText(stats.getMinAcheived());
+		maximumTextField.setText(stats.getMaxEarned());
+		minimumTextField.setText(stats.getMinEarned());
 		averageTextField.setText(stats.getAverage());
 		medianTextField.setText(stats.getMedian());
 	}
@@ -277,17 +278,17 @@ public class StatisticsPanel extends JPanel{
 	    		try {
 	    		maxPossible = Integer.parseInt(highest);
 	    		} catch (NumberFormatException exception) {
-	    			stats.setMaxGrade(stats.getMaxGrade());
-	    			highest = "" + stats.getMaxGrade();
+	    			stats.setMaxPossible(stats.getMaxPossible());
+	    			highest = "" + stats.getMaxPossible();
 	                // Input not a number.
 	                error.setString("Input Not A Number: \nPlease input only numbers");
 	                error.setVisible(true);
 	    		}
-	    		if (maxPossible > stats.getMinGrade()) {
-	    			stats.setMaxGrade(maxPossible);
+	    		if (maxPossible > stats.getMinPossible()) {
+	    			stats.setMaxPossible(maxPossible);
 	    		} else {
-	    			stats.setMaxGrade(stats.getMaxGrade());
-	    			highest = "" + stats.getMaxGrade();
+	    			stats.setMaxPossible(stats.getMaxPossible());
+	    			highest = "" + stats.getMaxPossible();
 	                // Input lower than min possible score
 	                error.setString("Input Smaller Than Min: \nPlease input a number greater than the "
 	                		+ "Lowest Possible Score");
@@ -300,17 +301,17 @@ public class StatisticsPanel extends JPanel{
 	    		try {
 	    		minPossible = Integer.parseInt(lowest);
 	    		} catch (NumberFormatException exception) {
-	    			stats.setMinGrade(stats.getMinGrade());
-	    			lowest = "" + stats.getMinGrade();
+	    			stats.setMinPossible(stats.getMinPossible());
+	    			lowest = "" + stats.getMinPossible();
 	                // Input not a number.
 	                error.setString("Input Not A Number: \nPlease input only numbers");
 	                error.setVisible(true);
 	    		}
-	    		if (minPossible < stats.getMaxGrade()) {
-	    			stats.setMinGrade(minPossible);
+	    		if (minPossible < stats.getMaxPossible()) {
+	    			stats.setMinPossible(minPossible);
 	    		} else {
-	    			stats.setMinGrade(stats.getMinGrade());
-	    			lowest = "" + stats.getMinGrade();
+	    			stats.setMinPossible(stats.getMinPossible());
+	    			lowest = "" + stats.getMinPossible();
 	                // Input greater than max possible score
 	                error.setString("Input Greater Than Max: \nPlease input a number less than the "
 	                		+ "Highest Possible Score");
@@ -319,10 +320,10 @@ public class StatisticsPanel extends JPanel{
 	    		lowestTextField.setText(lowest);
 	    		refresh();
 	    	} else if (event.getSource() == btnReset) {
-    			stats.setMaxGrade(stats.getDefaultMaxGrade());
-	    		highestTextField.setText("" + stats.getMaxGrade());
-    			stats.setMinGrade(stats.getDefaultMinGrade());
-    			lowestTextField.setText("" + stats.getMinGrade());
+    			stats.setMaxPossible(stats.getDefaultMaxPossible());
+	    		highestTextField.setText("" + stats.getMaxPossible());
+    			stats.setMinPossible(stats.getDefaultMinPossible());
+    			lowestTextField.setText("" + stats.getMinPossible());
     			refresh();
 	    	}else if (event.getSource() == btnRefresh) {
 	    		refresh();
