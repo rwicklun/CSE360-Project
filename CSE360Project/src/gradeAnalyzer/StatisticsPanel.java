@@ -34,7 +34,7 @@ public class StatisticsPanel extends JPanel{
 	private JButton btnReset;
 	private JButton btnRefresh;
 	
-//	private StatisticsHandler stats = new StatisticsHandler();
+	//private StatisticsHandler stats = new StatisticsHandler();
 	private Calculations stats = new Calculations();
 	
 	private ErrorPanel error = new ErrorPanel();

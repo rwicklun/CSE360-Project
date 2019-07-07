@@ -60,29 +60,20 @@ public class Calculations {
 	
 	public String getAverage() {
 		if (roundedList != null ) {
-			int iterator = roundedList.size();
 			int sum = 0;
-			float average = 0;
 			int count = 0;
-			while(iterator > 0) {
-				int input = roundedList.get(iterator - 1);
-				if ((input >= minPossible) && (input <= maxPossible)) {
-					count++;
-					sum = sum + input;
-				}
-				iterator--;
-			}
-			if (count >= 1) {
-				average = (float)sum / (float)count;
-				return "" + average;
-			} else {
-				return "";
-			}
+			float average;
 			
-		} else {
+			for(int index = 0; index < roundedArray.length; index ++) {
+				sum += roundedArray[index];
+				count ++;
+			}
+			average = sum / (float)count;
+			return Float.toString(average);
+		}
+		else {
 			return "";
 		}
-		
 	}
 	
 	public String getMedian() {
