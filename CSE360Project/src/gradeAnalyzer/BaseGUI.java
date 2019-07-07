@@ -22,7 +22,7 @@ public class BaseGUI extends JFrame {
         
 	}
 
-	// Trying the commit on a new computer before testing the code
+	// Trying to commit on a new computer before testing the code
 	
 	public static void main(String[] args) {
 		try {
