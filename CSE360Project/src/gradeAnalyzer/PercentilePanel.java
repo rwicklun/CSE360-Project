@@ -53,7 +53,7 @@ public class PercentilePanel extends JPanel {
 	private int gradeDistributD;
 	private int gradeDistributF;
 	
-	private int stuCountArray[];
+	private int stuCountArray[] = new int[5];
 	private int stuCount;
 	private int stuPerGradeA;
 	private int stuPerGradeB;

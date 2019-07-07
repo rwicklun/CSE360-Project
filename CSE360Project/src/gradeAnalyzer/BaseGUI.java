@@ -170,7 +170,6 @@ public class BaseGUI extends JFrame {
 	private Scanner scan;
 	protected LinkedList<Float> floatList;
 	protected LinkedList<Integer> roundedList;
-	private Float floatArray[];
 	
 	private static String getFileExtension(File file) {
         String fileName = file.getName();
@@ -199,15 +198,11 @@ public class BaseGUI extends JFrame {
 										roundedNumbers = Math.round(inputNumbers);
 										roundedList.addLast(roundedNumbers);
 									}
-									//gives the StatsHandler the LinkedLists
+									//gives the Calculations the LinkedLists
 									calculations.setLinkedLists(floatList, roundedList);
-
-					// Populates floatArray then sorts
-									floatArray = floatList.toArray(new Float[floatList.size()]);
-									Arrays.sort(floatArray);
 									System.out.println("Float list: " + floatList); 
 									System.out.println("Rounded list: " + roundedList); 
-									System.out.println("Float array: " + Arrays.toString(floatArray)); 
+									calculations.printRoundedArray();
 
 			                	} catch (InputMismatchException e) {
 									// TODO Auto-generated catch block

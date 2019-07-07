@@ -21,6 +21,9 @@ public class Calculations {
 		roundedArray = roundedList.toArray(new Integer[roundedList.size()]);
 		Arrays.sort(roundedArray);
 	}
+	public void printRoundedArray() {
+		System.out.println("Rounded array " + Arrays.toString(roundedArray)); 
+	}
 	public void setMaxPossible(int max) {
 		maxPossible = max;
 	}
