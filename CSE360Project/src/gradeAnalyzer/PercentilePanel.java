@@ -27,7 +27,7 @@ public class PercentilePanel extends JPanel {
 	private JTextField txtSetBottom_Value;
 	
 	private Float floatArray[];
-	private PercentileMath percentileMath;
+	private Calculations calculations = new Calculations();
 	private int gradeRangeA;
 	private int gradeRangeB;
 	private int gradeRangeC;
@@ -39,8 +39,6 @@ public class PercentilePanel extends JPanel {
 	 * GUI for the Percentile Panel
 	 */
 	public PercentilePanel() {
-		// Creates percentileMath
-		percentileMath = new PercentileMath();
 		
 		// Main panel
 		GridBagLayout gridBagLayout = new GridBagLayout();
@@ -563,25 +561,17 @@ public class PercentilePanel extends JPanel {
 		label.setText(letter + ": " + percent + "%");
 	}
 	
-	private void setfloatArray(Float floatArrayIn[]) {
-		percentileMath.setFloatArray(floatArrayIn);
-	}
-	
-	private void setMaxPossible(int maxPossibleIn) {
-		percentileMath.setMaxPossible(maxPossibleIn);
-	}
-	
 	private class maxPossibleListener implements ActionListener {
 		 @Override
 		 public void actionPerformed(ActionEvent event) {
-			 percentileMath.setMaxToPossible();
+			 calculations.setMaxInUseToPossible();
 		 }
 	}
 	
 	private class maxEarnedListener implements ActionListener {
 		 @Override
 		 public void actionPerformed(ActionEvent event) {
-			 percentileMath.setMaxToEarned();
+			 calculations.setMaxInUseToEarned();
 		 }
 	}
 	

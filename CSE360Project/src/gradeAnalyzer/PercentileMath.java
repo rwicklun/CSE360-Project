@@ -30,11 +30,11 @@ public class PercentileMath {
 		maxPossible = maxPossibleIn;
 	}
 	
-	public void setMaxToPossible() {
+	public void setMaxInUseToPossible() {
 		maxInUse = maxPossible;
 	}
 	
-	public void setMaxToEarned() {
+	public void setMaxInUseToEarned() {
 		maxInUse = maxEarned;
 	}
 	

@@ -58,6 +58,7 @@ public class Calculations {
 		}
 	}
 	
+	// Start Statistics only ----------------------------------------------------------------------
 	public String getAverage() {
 		if (roundedList != null ) {
 			int sum = 0;
@@ -104,5 +105,18 @@ public class Calculations {
 			return "";
 		}
 	}
-
+	
+	// End Statistics only ------------------------------------------------------------------------
+	
+	// Start Percentile only ----------------------------------------------------------------------
+	
+	public void setMaxInUseToPossible() {
+		maxInUse = maxPossible;
+	}
+	
+	public void setMaxInUseToEarned() {
+		maxInUse = maxEarned;
+	}
+	
+	// End Percentile only ------------------------------------------------------------------------
 }
