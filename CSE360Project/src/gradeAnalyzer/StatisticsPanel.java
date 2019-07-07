@@ -223,10 +223,11 @@ public class StatisticsPanel extends JPanel{
 		gbc_btnReplaceGrade.insets = new Insets(0, 0, 5, 5);
 		gbc_btnReplaceGrade.gridx = 0;
 		gbc_btnReplaceGrade.gridy = 5;
+		btnReplaceGrade.addActionListener(new ButtonListener());
 		add(btnReplaceGrade, gbc_btnReplaceGrade);
 		
 		replaceOldGrade = new JTextField();
-		replaceOldGrade.setText("14");
+		replaceOldGrade.setText("");
 		GridBagConstraints gbc_replaceOldGrade = new GridBagConstraints();
 		gbc_replaceOldGrade.insets = new Insets(0, 0, 5, 5);
 		gbc_replaceOldGrade.fill = GridBagConstraints.HORIZONTAL;
@@ -244,7 +245,7 @@ public class StatisticsPanel extends JPanel{
 		add(lblWith, gbc_lblWith);
 		
 		replaceNewGrade = new JTextField();
-		replaceNewGrade.setText("92");
+		replaceNewGrade.setText("");
 		GridBagConstraints gbc_replaceNewGrade = new GridBagConstraints();
 		gbc_replaceNewGrade.insets = new Insets(0, 0, 5, 0);
 		gbc_replaceNewGrade.fill = GridBagConstraints.HORIZONTAL;
@@ -277,10 +278,15 @@ public class StatisticsPanel extends JPanel{
 		minimumTextField.setText(stats.getMinEarned());
 		averageTextField.setText(stats.getAverage());
 		medianTextField.setText(stats.getMedian());
+		deleteGradeTextField.setText("");
+		addGradeTextField.setText("");
+		replaceOldGrade.setText("");
+		replaceNewGrade.setText("");
 	}
 	private int maxPossible;
 	private int minPossible;
-	private float input;
+	private float addInput;
+	private float deleteInput;
 	/**
 	 * 
 	 * @author Richard Wicklund
@@ -292,6 +298,8 @@ public class StatisticsPanel extends JPanel{
 		 */
 	    @Override
 	    public void actionPerformed(ActionEvent event) {
+	    	//Start of Set Highest button
+	    	
 	    	if (event.getSource() == btnSetHighest) {
 	    		String highest = highestTextField.getText();
 	    		try {
@@ -315,6 +323,11 @@ public class StatisticsPanel extends JPanel{
 	    		}
 	    		highestTextField.setText(highest);
 	    		refresh();
+		    //End of Set Highest button
+	    		
+	    		
+	    	//Start of set Lowest button
+	    		
 	    	} else if (event.getSource() == btnSetLowest) {
 	    		String lowest = lowestTextField.getText();
 	    		try {
@@ -338,11 +351,17 @@ public class StatisticsPanel extends JPanel{
 	    		}
 	    		lowestTextField.setText(lowest);
 	    		refresh();
+	    	//End of set Lowest button
+	    		
+	    		
+	    		
+	    	//Start of add button
+	    		
 	    	}  else if (event.getSource() == btnAddGrade) {
 	    		String adding = addGradeTextField.getText();
 	    		boolean addSuccesful = true;
 	    		try {
-	    		input = Float.parseFloat(adding);
+	    		addInput = Float.parseFloat(adding);
 	    		} catch (NumberFormatException exception) {
 	    			addGradeTextField.setText("");
 	    			addSuccesful = false;
@@ -351,23 +370,29 @@ public class StatisticsPanel extends JPanel{
 	                error.setVisible(true);
 	    		}
 	    		if (addSuccesful) {
-	    			addGradeTextField.setText(stats.addGrade(input));
+	    			stats.addGrade(addInput);
 	    		}
 	    		refresh();
+	    	//End of add button
+	    		
+	    		
+	    		
+	    	//Start of delete button
+	    		
 	    	}  else if (event.getSource() == btnDeleteGrade) {
 	    		String deleteString = deleteGradeTextField.getText();
 	    		boolean deleteSuccesful = true;
 	    		try {
-	    		input = Float.parseFloat(deleteString);
+	    		deleteInput = Float.parseFloat(deleteString);
 	    		} catch (NumberFormatException exception) {
-	    			addGradeTextField.setText("");
+	    			deleteGradeTextField.setText("");
 	    			deleteSuccesful = false;
 	                // Input not a number.
 	                error.setString("Input Not A Floating Point Number: \nPlease input only floating point numbers");
 	                error.setVisible(true);
 	    		}
 	    		if (deleteSuccesful) {
-	    			deleteGradeTextField.setText(stats.deleteGrade(input));
+	    			stats.deleteGrade(deleteInput);
 	    		}
 	    		refresh();
 	    	} else if (event.getSource() == btnReset) {
@@ -376,9 +401,45 @@ public class StatisticsPanel extends JPanel{
     			stats.setMinPossible(stats.getDefaultMinPossible());
     			lowestTextField.setText("" + stats.getMinPossible());
     			refresh();
-	    	}else if (event.getSource() == btnRefresh) {
+    		//End of delete button
+    			
+    			
+    		//Start of replace button
+    			
+	    	} else if (event.getSource() == btnReplaceGrade) {
+	    		String deleteString = replaceOldGrade.getText();
+	    		String addString = replaceNewGrade.getText();
+	    		boolean deleteInputSuccessful = true;
+	    		boolean addInputSuccessful = true;
+	    		try {
+	    		deleteInput = Float.parseFloat(deleteString);
+		    		try {
+		    			addInput = Float.parseFloat(addString);
+		    		} catch (NumberFormatException exception) {
+		    			replaceNewGrade.setText("");
+		    			addInputSuccessful = false;
+		                // Input not a number.
+		                error.setString("New Input Not A Floating Point Number: \nPlease input only floating point numbers");
+		                error.setVisible(true);
+		    		}
+	    		} catch (NumberFormatException exception) {
+	    			replaceOldGrade.setText("");
+	    			deleteInputSuccessful = false;
+	                // Input not a number.
+	                error.setString("Old Input Not A Floating Point Number: \nPlease input only floating point numbers");
+	                error.setVisible(true);
+	    		} if (addInputSuccessful == true && deleteInputSuccessful == true) {
+	    			stats.replaceGrade(deleteInput, addInput);
+	    			refresh();
+	    		}
+	    	//End of replace button
+	    		
+	    		
+	    	//Start of refresh button
+	    	} else if (event.getSource() == btnRefresh) {
 	    		refresh();
 	    	}
+	    	//End of refresh button
 	    }
 	}
 }

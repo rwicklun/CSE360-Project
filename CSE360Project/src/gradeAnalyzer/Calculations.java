@@ -53,28 +53,36 @@ public class Calculations {
 	
 	public String getMaxEarned() {
 		if (roundedList != null ) {
-			int max = minPossible;
-			for (int count = roundedList.size(); count > 0; count--) {
-				int newNumber = roundedList.get(count - 1);
-				if (max <= newNumber && newNumber <= maxPossible) {
-					max = newNumber;
+			if (roundedArray.length != 0) {
+				int max = minPossible;
+				for (int count = roundedList.size(); count > 0; count--) {
+					int newNumber = roundedList.get(count - 1);
+					if (max <= newNumber && newNumber <= maxPossible) {
+						max = newNumber;
+					}
 				}
+				return "" + max;
+			} else {
+				return "";
 			}
-			return "" + max;
 		} else {
 			return "";
 		}
 	}
 	public String getMinEarned() {
 		if (roundedList != null ) {
-			int min = maxPossible;
-			for (int count = 0; count < roundedList.size(); count++) {
-				int newNumber = roundedList.get(count);
-				if (min >= newNumber && newNumber >= minPossible) {
-					min = newNumber;
+			if (roundedArray.length != 0) {
+				int min = maxPossible;
+				for (int count = 0; count < roundedList.size(); count++) {
+					int newNumber = roundedList.get(count);
+					if (min >= newNumber && newNumber >= minPossible) {
+						min = newNumber;
+					}
 				}
+				return "" + min;
+			} else {
+				return "";
 			}
-			return "" + min;
 		} else {
 			return "";
 		}
@@ -112,47 +120,53 @@ public class Calculations {
 	
 	public String getMedian() {
 		if (roundedArray != null) {
-		int lowerBound = 0;
-		int upperBound = roundedArray.length;
-			for (int iterator = 0; iterator < roundedArray.length; iterator++) {
-				if (minPossible > roundedArray[iterator]) {
-					lowerBound = iterator + 1;
+			if (roundedArray.length != 0) {
+				int lowerBound = 0;
+				int upperBound = roundedArray.length;
+				for (int iterator = 0; iterator < roundedArray.length; iterator++) {
+					if (minPossible > roundedArray[iterator]) {
+						lowerBound = iterator + 1;
+					}
 				}
-			}
-			for (int iterator = roundedArray.length - 1; iterator >= 0; iterator--) {
-				if (maxPossible < roundedArray[iterator]) {
-					upperBound = iterator;
+				for (int iterator = roundedArray.length - 1; iterator >= 0; iterator--) {
+					if (maxPossible < roundedArray[iterator]) {
+						upperBound = iterator;
+					}
 				}
-			}
-			Integer subArray[] = Arrays.copyOfRange(roundedArray, lowerBound, upperBound);
-			float median;
-			int subRoundedLength = subArray.length;
-			int middleLocation = subRoundedLength / 2;
-			if (subRoundedLength % 2 == 0) {
-				median = ((float) roundedArray[middleLocation - 1] + (float) roundedArray[middleLocation]) / (float) 2;
+				Integer subArray[] = Arrays.copyOfRange(roundedArray, lowerBound, upperBound);
+				float median;
+				int subRoundedLength = subArray.length;
+				int middleLocation = subRoundedLength / 2;
+				if (subRoundedLength % 2 == 0) {
+					median = ((float) roundedArray[middleLocation - 1] + (float) roundedArray[middleLocation]) / (float) 2;
+				} else {
+					median = (float)roundedArray[middleLocation];
+				}
+				return "" + median;
 			} else {
-				median = (float)roundedArray[middleLocation + 1];
+				return "";
 			}
-			return "" + median;
 		} else {
 			return "";
 		}
 	}
-	public String addGrade(float newGrade) {
+	public void addGrade(float newGrade) {
+		if (floatList == null) {
+			floatList = new LinkedList<Float>();
+    		roundedList = new LinkedList<Integer>();
+		}
 		if (newGrade <= maxPossible && newGrade >= minPossible) {
 			floatList.add(newGrade);
 			roundedList.add(Math.round(newGrade));
 			roundedArray = roundedList.toArray(new Integer[roundedList.size()]);
 			Arrays.sort(roundedArray);
-			return "Adding " + newGrade + " was successful.";
 		} else {
 			ErrorPanel error = new ErrorPanel();
 			error.setString("Grade Out Of Bounds: \nPlease input a grade between " + maxPossible + " and " + minPossible + ".");
 			error.setVisible(true);
-			return "";
 		}
 	}
-	public String deleteGrade(float oldGrade) {
+	public void deleteGrade(float oldGrade) {
 		if (floatList != null) {
 			int floatFound = floatList.lastIndexOf(oldGrade);
 			if (floatFound != -1) {
@@ -160,7 +174,6 @@ public class Calculations {
 				roundedList.remove(floatFound);
 				roundedArray = roundedList.toArray(new Integer[roundedList.size()]);
 				Arrays.sort(roundedArray);
-				return "Deleting " + oldGrade + " was successful.";
 			} else if (oldGrade % 1 == 0) {
 				int roundedFound = roundedList.lastIndexOf((int) oldGrade);
 				if (roundedFound != -1) {
@@ -168,23 +181,60 @@ public class Calculations {
 					roundedList.remove(roundedFound);
 					roundedArray = roundedList.toArray(new Integer[roundedList.size()]);
 					Arrays.sort(roundedArray);
-					return "Deleting " + oldGrade + " was successful.";
 				} else {
 					ErrorPanel error = new ErrorPanel();
 					error.setString("Grade Not Found: \nPlease enter one of the following grades:\n"
 							+ floatList.toString() + ", or " + roundedList.toString());
 					error.setVisible(true);
-					return "";
 				}
 			} else {
 				ErrorPanel error = new ErrorPanel();
 				error.setString("Grade Not Found: \nPlease enter one of the following grades:\n"
 						+ floatList.toString() + ", or " + roundedList.toString());
 				error.setVisible(true);
-				return "";
 			}
 		}
-		return "";
+	}
+	public void replaceGrade(float oldGrade, float newGrade) {
+		if (floatList != null) {
+			int floatFound = floatList.lastIndexOf(oldGrade);
+			if (floatFound != -1) {
+				if (newGrade <= maxPossible && newGrade >= minPossible) {
+					floatList.set(floatFound, newGrade);
+					roundedList.set(floatFound, Math.round(newGrade));
+					roundedArray = roundedList.toArray(new Integer[roundedList.size()]);
+					Arrays.sort(roundedArray);
+				} else {
+					ErrorPanel error = new ErrorPanel();
+					error.setString("Grade Out Of Bounds: \nPlease input a grade between " + maxPossible + " and " + minPossible + ".");
+					error.setVisible(true);
+				}
+			} else if (oldGrade % 1 == 0) {
+				int roundedFound = roundedList.lastIndexOf((int) oldGrade);
+				if (roundedFound != -1) {
+					if (newGrade <= maxPossible && newGrade >= minPossible) {
+						floatList.remove(roundedFound);
+						roundedList.remove(roundedFound);
+						roundedArray = roundedList.toArray(new Integer[roundedList.size()]);
+						Arrays.sort(roundedArray);
+					} else {
+						ErrorPanel error = new ErrorPanel();
+						error.setString("Grade Out Of Bounds: \nPlease input a grade between " + maxPossible + " and " + minPossible + ".");
+						error.setVisible(true);
+					}
+				} else {
+					ErrorPanel error = new ErrorPanel();
+					error.setString("Grade Not Found: \nPlease enter one of the following grades:\n"
+							+ floatList.toString() + ", or " + roundedList.toString());
+					error.setVisible(true);
+				}
+			} else {
+				ErrorPanel error = new ErrorPanel();
+				error.setString("Grade Not Found: \nPlease enter one of the following grades:\n"
+						+ floatList.toString() + ", or " + roundedList.toString());
+				error.setVisible(true);
+			}
+		}
 	}
 	
 // End Statistics only ----------------------------------------------------------------------------
