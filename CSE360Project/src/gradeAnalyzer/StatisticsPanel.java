@@ -6,8 +6,12 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.LinkedList;
 
+/***
+ * 
+ * @author Richard Wicklund
+ *
+ */
 @SuppressWarnings("serial")
 public class StatisticsPanel extends JPanel{
 	private JButton btnSetLowest;
@@ -39,7 +43,10 @@ public class StatisticsPanel extends JPanel{
 	
 	private ErrorPanel error = new ErrorPanel();
 	
-	
+	/**
+	 * 
+	 * @param insertCalc
+	 */
 	public StatisticsPanel(Calculations insertCalc) {
 		stats = insertCalc;
 		GridBagLayout gridBagLayout = new GridBagLayout();
@@ -260,9 +267,9 @@ public class StatisticsPanel extends JPanel{
 		btnRefresh.addActionListener(new ButtonListener());
 		add(btnRefresh, gbc_btnRefresh);
 	}
-	public void addLinkedLists (LinkedList<Float> floatListIn, LinkedList<Integer> roundedListIn) {
-		stats.setLinkedLists(floatListIn, roundedListIn);
-	}
+	/**
+	 * 
+	 */
 	private void refresh() {
 		maximumTextField.setText(stats.getMaxEarned());
 		minimumTextField.setText(stats.getMinEarned());
@@ -271,7 +278,15 @@ public class StatisticsPanel extends JPanel{
 	}
 	private int maxPossible;
 	private int minPossible;
+	/**
+	 * 
+	 * @author Richard Wicklund
+	 *
+	 */
 	private class ButtonListener implements ActionListener {
+		/**
+		 * 
+		 */
 	    @Override
 	    public void actionPerformed(ActionEvent event) {
 	    	if (event.getSource() == btnSetHighest) {

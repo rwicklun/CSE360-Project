@@ -2,12 +2,17 @@ package gradeAnalyzer;
 
 import java.util.*;
 
+/**
+ * 
+ * @author Richard Wicklund
+ * @author Steven Situ
+ *
+ */
 public class Calculations {
 	
 	private LinkedList<Float> floatList;
 	private LinkedList<Integer> roundedList;
 	private Integer roundedArray[];
-	private ErrorPanel error = new ErrorPanel();
 	//default maximum set to 100
 	private int maxPossible = 100;
 	//default minimum set to 0
@@ -26,33 +31,11 @@ public class Calculations {
 		System.out.println("Rounded array " + Arrays.toString(roundedArray)); 
 	}
 	public void setMaxPossible(int max) {
-		if (max >= roundedArray[roundedArray.length - 1]) {
-			maxPossible = max;
-		} else {
-			String errorMessage = "Grades out of Bounds: \nPlease delete these grades to continue: \n";
-			for (int iterator = roundedArray.length - 1; iterator >=0 ; iterator --) {
-				if (max < roundedArray[iterator]) {
-					errorMessage = errorMessage + roundedArray[iterator] + " ";
-				}
-			}
-			error.setString(errorMessage);
-			error.setVisible(true);
-		}
+		maxPossible = max;
 		
 	}
 	public void setMinPossible(int min) {
-		if (min <= roundedArray[0]) {
-			maxPossible = min;
-		} else {
-			String errorMessage = "Grades out of Bounds: \nPlease delete these grades to continue: \n";
-			for (int iterator = roundedArray.length - 1; iterator >=0 ; iterator --) {
-				if (min > roundedArray[iterator]) {
-					errorMessage = errorMessage + roundedArray[iterator] + " ";
-				}
-			}
-			error.setString(errorMessage);
-			error.setVisible(true);
-		}
+		minPossible = min;
 		
 	}
 	public int getDefaultMaxPossible() {
@@ -70,17 +53,29 @@ public class Calculations {
 	
 	public String getMaxEarned() {
 		if (roundedList != null ) {
-			return Integer.toString(roundedArray[roundedArray.length - 1]);
-		}
-		else {
+			int max = minPossible;
+			for (int count = roundedList.size(); count > 0; count--) {
+				int newNumber = roundedList.get(count - 1);
+				if (max <= newNumber && newNumber <= maxPossible) {
+					max = newNumber;
+				}
+			}
+			return "" + max;
+		} else {
 			return "";
 		}
 	}
 	public String getMinEarned() {
 		if (roundedList != null ) {
-			return Integer.toString(roundedArray[0]);
-		}
-		else {
+			int min = maxPossible;
+			for (int count = 0; count < roundedList.size(); count++) {
+				int newNumber = roundedList.get(count);
+				if (min >= newNumber && newNumber >= minPossible) {
+					min = newNumber;
+				}
+			}
+			return "" + min;
+		} else {
 			return "";
 		}
 	}
@@ -94,14 +89,21 @@ public class Calculations {
 		if (roundedList != null ) {
 			int sum = 0;
 			int count = 0;
-			float average;
+			double average;
 			
-			for(int index = 0; index < roundedArray.length; index ++) {
-				sum += roundedArray[index];
-				count ++;
+			for (int iterator = 0; iterator < roundedList.size(); iterator++) {
+				int input = roundedList.get(iterator);
+				if ((input >= minPossible) && (input <= maxPossible)) {
+					count++;
+					sum = sum + input;
+				}
 			}
-			average = sum / (float)count;
-			return Float.toString(average);
+			if (count >= 1) {
+				average = sum / (double) count;
+				return "" + average;
+			} else {
+				return "";
+			}
 		}
 		else {
 			return "";
