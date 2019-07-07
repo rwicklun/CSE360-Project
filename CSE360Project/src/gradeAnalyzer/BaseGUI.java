@@ -97,7 +97,7 @@ public class BaseGUI extends JFrame {
 		
 		
 		//stats tab start
-        statsPanel = new StatisticsPanel();
+        statsPanel = new StatisticsPanel(calculations);
         statsPanel.setBackground(new Color(240, 240, 240));
         basePanel.addTab("Grade Statistics", null, statsPanel, null);
 		//stats tab end

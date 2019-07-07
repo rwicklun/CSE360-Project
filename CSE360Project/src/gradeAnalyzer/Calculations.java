@@ -7,6 +7,7 @@ public class Calculations {
 	private LinkedList<Float> floatList;
 	private LinkedList<Integer> roundedList;
 	private Integer roundedArray[];
+	private ErrorPanel error = new ErrorPanel();
 	//default maximum set to 100
 	private int maxPossible = 100;
 	//default minimum set to 0
@@ -25,10 +26,34 @@ public class Calculations {
 		System.out.println("Rounded array " + Arrays.toString(roundedArray)); 
 	}
 	public void setMaxPossible(int max) {
-		maxPossible = max;
+		if (max >= roundedArray[roundedArray.length - 1]) {
+			maxPossible = max;
+		} else {
+			String errorMessage = "Grades out of Bounds: \nPlease delete these grades to continue: \n";
+			for (int iterator = roundedArray.length - 1; iterator >=0 ; iterator --) {
+				if (max < roundedArray[iterator]) {
+					errorMessage = errorMessage + roundedArray[iterator] + " ";
+				}
+			}
+			error.setString(errorMessage);
+			error.setVisible(true);
+		}
+		
 	}
 	public void setMinPossible(int min) {
-		minPossible = min;
+		if (min <= roundedArray[0]) {
+			maxPossible = min;
+		} else {
+			String errorMessage = "Grades out of Bounds: \nPlease delete these grades to continue: \n";
+			for (int iterator = roundedArray.length - 1; iterator >=0 ; iterator --) {
+				if (min > roundedArray[iterator]) {
+					errorMessage = errorMessage + roundedArray[iterator] + " ";
+				}
+			}
+			error.setString(errorMessage);
+			error.setVisible(true);
+		}
+		
 	}
 	public int getDefaultMaxPossible() {
 		return 100;

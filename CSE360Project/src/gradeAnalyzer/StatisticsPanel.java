@@ -40,7 +40,8 @@ public class StatisticsPanel extends JPanel{
 	private ErrorPanel error = new ErrorPanel();
 	
 	
-	public StatisticsPanel() {
+	public StatisticsPanel(Calculations insertCalc) {
+		stats = insertCalc;
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 61, 106, 50, 0};
 		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0};
