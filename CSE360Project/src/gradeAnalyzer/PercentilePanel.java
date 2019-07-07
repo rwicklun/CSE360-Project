@@ -18,10 +18,11 @@ import java.awt.Font;
 
 @SuppressWarnings("serial")
 public class PercentilePanel extends JPanel {
-	private JTextField txtSetGradeC;
-	private JTextField txtSetGradeD;
+	private JPanel pnlGradeDistribution;
 	private JTextField txtSetGradeA;
 	private JTextField txtSetGradeB;
+	private JTextField txtSetGradeC;
+	private JTextField txtSetGradeD;
 	private JTextField txtSetGradeF;
 	private JTextField txtSetTop_Value;
 	private JTextField txtSetBottom_Value;
@@ -41,12 +42,13 @@ public class PercentilePanel extends JPanel {
 	public PercentilePanel() {
 		
 		// Main panel
-		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[] {450, 0};
-		gridBagLayout.rowHeights = new int[] {20, 20, 30, 20, 20, 20, 20, 20, 30, 40};
-		gridBagLayout.columnWeights = new double[]{1.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
-		setLayout(gridBagLayout);
+		GridBagLayout percentilePanel = new GridBagLayout();
+		//percentilePanelGrid = new GridBagLayout();
+		percentilePanel.columnWidths = new int[] {450, 0};
+		percentilePanel.rowHeights = new int[] {20, 20, 30, 20, 20, 20, 20, 20, 30, 40};
+		percentilePanel.columnWeights = new double[]{1.0, Double.MIN_VALUE};
+		percentilePanel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
+		setLayout(percentilePanel);
 		
 		// Start "Set Grade Score Ranges" functional area. 
 		// Section allows edit text boxes and update button
@@ -263,7 +265,9 @@ public class PercentilePanel extends JPanel {
 		add(lblGradeDistribution, gbc_lblGradeDistribution);
 		
 		// Grade Distribution Results - Panel
-		JPanel pnlGradeDistribution = new JPanel();
+		//JPanel pnlGradeDistribution = new JPanel();
+		// TODO
+		pnlGradeDistribution = new JPanel();
 		GridBagConstraints gbc_pnlGradeDistribution = new GridBagConstraints();
 		gbc_pnlGradeDistribution.anchor = GridBagConstraints.NORTH;
 		gbc_pnlGradeDistribution.insets = new Insets(0, 0, 5, 0);
@@ -578,6 +582,13 @@ public class PercentilePanel extends JPanel {
 	private class updateGradeRangeButton implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent event) {
+			gradeRangeA = Integer.parseInt(txtSetGradeA.getText());
+			gradeRangeB = Integer.parseInt(txtSetGradeB.getText());
+			gradeRangeC = Integer.parseInt(txtSetGradeC.getText());
+			gradeRangeD = Integer.parseInt(txtSetGradeD.getText());
+			gradeRangeF = Integer.parseInt(txtSetGradeF.getText());
+			pnlGradeDistribution.revalidate();
+			pnlGradeDistribution.repaint();
 			
 		}
 	}
