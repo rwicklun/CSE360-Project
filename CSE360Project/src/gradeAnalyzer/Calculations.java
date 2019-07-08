@@ -10,6 +10,7 @@ import java.util.*;
  */
 public class Calculations {
 	
+	private ErrorPanel error = new ErrorPanel();
 	private LinkedList<Float> floatList;
 	private LinkedList<Integer> roundedList;
 	private Integer roundedArray[];
@@ -26,6 +27,15 @@ public class Calculations {
 		roundedList = roundedListIn;
 		roundedArray = roundedList.toArray(new Integer[roundedList.size()]);
 		Arrays.sort(roundedArray);
+	}
+	public void refreshRoundedArray() {
+		if (roundedList != null) {
+			roundedArray = roundedList.toArray(new Integer[roundedList.size()]);
+			Arrays.sort(roundedArray);
+		}
+		else {
+			roundedArray = null;
+		}
 	}
 	public void printRoundedArray() {
 		System.out.println("Rounded array " + Arrays.toString(roundedArray)); 
@@ -89,7 +99,10 @@ public class Calculations {
 	}
 	
 	public int studentCount() {
-		return roundedArray.length;
+		if (roundedArray != null)
+			return roundedArray.length;
+		else
+			return 0;
 	}
 	
 // Start Statistics only --------------------------------------------------------------------------
