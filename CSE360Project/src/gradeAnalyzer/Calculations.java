@@ -257,25 +257,31 @@ public class Calculations {
 		int countF = 0;
 		int countArray[];
 		
-		for(int index = 0; index < roundedArray.length; index ++) {
-			if (roundedArray[index] <= gradeF) {
-				countF ++;
+		if(roundedArray != null) {
+			for(int index = 0; index < roundedArray.length; index ++) {
+				if (roundedArray[index] <= gradeF) {
+					countF ++;
+				}
+				else if (roundedArray[index] <= gradeD) {
+					countD ++;
+				}
+				else if (roundedArray[index] <= gradeC) {
+					countC ++;
+				}
+				else if (roundedArray[index] <= gradeB) {
+					countB ++;
+				}
+				else if (roundedArray[index] <= gradeA) {
+					countA ++;
+				}
 			}
-			else if (roundedArray[index] <= gradeD) {
-				countD ++;
-			}
-			else if (roundedArray[index] <= gradeC) {
-				countC ++;
-			}
-			else if (roundedArray[index] <= gradeB) {
-				countB ++;
-			}
-			else if (roundedArray[index] <= gradeA) {
-				countA ++;
-			}
+			countArray = new int[] {countA, countB, countC, countD, countF};
 		}
-		countArray = new int[] {countA, countB, countC, countD, countF};
-		return countArray;
+		else {
+			countArray = new int[] {0, 0, 0, 0, 0};
+		}
+			
+		return countArray;		
 	}
 	
 // End Percentile only ----------------------------------------------------------------------------

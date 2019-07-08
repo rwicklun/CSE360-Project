@@ -104,7 +104,7 @@ public class BaseGUI extends JFrame {
 		//stats tab end
 		
 		//percentiles tab start
-        percentilePanel= new PercentilePanel();
+        percentilePanel= new PercentilePanel(calculations);
 		basePanel.addTab("Grade Percentiles", percentilePanel);
 		//percentiles tab end
 		
