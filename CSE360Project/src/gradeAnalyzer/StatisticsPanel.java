@@ -120,6 +120,7 @@ public class StatisticsPanel extends JPanel{
 		
 		maximumTextField = new JTextField();
 		maximumTextField.setText(stats.getMaxEarned());
+		maximumTextField.setEditable(false);
 		GridBagConstraints gbc_maximumTextField = new GridBagConstraints();
 		gbc_maximumTextField.insets = new Insets(0, 0, 5, 5);
 		gbc_maximumTextField.fill = GridBagConstraints.HORIZONTAL;
@@ -138,6 +139,7 @@ public class StatisticsPanel extends JPanel{
 		
 		minimumTextField = new JTextField();
 		minimumTextField.setText(stats.getMinEarned());
+		minimumTextField.setEditable(false);
 		GridBagConstraints gbc_minimumTextField = new GridBagConstraints();
 		gbc_minimumTextField.insets = new Insets(0, 0, 5, 0);
 		gbc_minimumTextField.fill = GridBagConstraints.HORIZONTAL;
@@ -156,6 +158,7 @@ public class StatisticsPanel extends JPanel{
 		
 		averageTextField = new JTextField();
 		averageTextField.setText(stats.getAverage());
+		averageTextField.setEditable(false);
 		GridBagConstraints gbc_averageTextField = new GridBagConstraints();
 		gbc_averageTextField.insets = new Insets(0, 0, 5, 5);
 		gbc_averageTextField.fill = GridBagConstraints.HORIZONTAL;
@@ -174,6 +177,7 @@ public class StatisticsPanel extends JPanel{
 		
 		medianTextField = new JTextField();
 		medianTextField.setText(stats.getMedian());
+		medianTextField.setEditable(false);
 		GridBagConstraints gbc_medianTextField = new GridBagConstraints();
 		gbc_medianTextField.insets = new Insets(0, 0, 5, 0);
 		gbc_medianTextField.fill = GridBagConstraints.HORIZONTAL;
