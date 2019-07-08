@@ -154,17 +154,45 @@ public class BaseGUI extends JFrame {
         
 		
 	}
-	private class RecordListener implements ActionListener {
-	    @Override
-	    public void actionPerformed(ActionEvent event) {
-	    	int returnVal = fileChooser.showSaveDialog(BaseGUI.this);
-	    	if (returnVal == JFileChooser.APPROVE_OPTION) {
-                //File file = fileChooser.getSelectedFile();
-	    	} else {
-	    		
+	
+	
+	//This is the RecordListener that makes the create record button works 
+		private class RecordListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+
+			fileChooser.setAcceptAllFileFilterUsed(false);
+	    	fileChooser.setFileFilter(new FileNameExtensionFilter("Text Files Only", "txt", "text"));    	
+	        
+	    	int saveing = fileChooser.showOpenDialog(BaseGUI.this);
+	        
+	    	if(saveing == JFileChooser.APPROVE_OPTION)
+	    	{
+	    		try
+	    		{    			
+	    			FileWriter writer = new FileWriter(fileChooser.getSelectedFile());
+	    			floatList = new LinkedList<Float>();
+	        		roundedList = new LinkedList<Integer>();
+	    			int Create = 0;
+	    			
+	    			while(Create < floatList.size())
+	    			{
+	    				writer.write(floatList.get(Create) + "\n");
+	    				Create++;
+	    			}
+	    			
+	    			writer.close();
+	    		}
+	    		catch(IOException ex)
+	    		{
+	    			ex.printStackTrace();
+	    		}
 	    	}
-	    }
-	}
+		}
+		} 
+		
+	// end of the RecordListener
+	
+	
 	private float inputNumbers;
 	private int roundedNumbers;
 	private String extension;
