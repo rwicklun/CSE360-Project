@@ -638,13 +638,29 @@ public class PercentilePanel extends JPanel {
 	}
 	
 	private class updatePercentileButton implements ActionListener {
+		private boolean fail = false;
 		@Override
 		public void actionPerformed(ActionEvent event) {
-			boolean fail = false;
 			calculations.refreshRoundedArray();
 			stuCount = calculations.studentCount();
 			
+			inputCustomGradeRanges();
+			fail = checkPercentOrder();
+			checkGradesExist();
 			
+			if (fail == false) {
+				
+				stuCountArray = calculations.countStuPerGrade(percentA, percentB, percentC, percentD, percentE);
+				
+				setGradeDistResults();
+				updateGradeDistribText();
+				updateStuCountText();
+				
+				refreshPanels();
+			}
+		}
+		
+		private void inputCustomGradeRanges() {
 			try {
 				percentA = Integer.parseInt(txtSetGradeA.getText());
 				percentB = Integer.parseInt(txtSetGradeB.getText());
@@ -656,39 +672,6 @@ public class PercentilePanel extends JPanel {
                 // Input not a number.
                 error.setString("Input Not A Floating Point Number: \nPlease input only floating point numbers");
                 error.setVisible(true);
-			}
-			
-			fail = checkPercentOrder();
-			
-			if (stuCount <= 0) {
-				fail = true;
-				error.setString("No student grades have been entered.");
-				error.setVisible(true);
-			}
-			
-			if (fail == false) {
-				
-				stuCountArray = calculations.countStuPerGrade(percentA, percentB, percentC, percentD, percentE);
-				
-				gradeDistributA = 100 * stuCountArray[0] / stuCount;
-				gradeDistributB = 100 * stuCountArray[1] / stuCount;
-				gradeDistributC = 100 * stuCountArray[2] / stuCount;
-				gradeDistributD = 100 * stuCountArray[3] / stuCount;
-				gradeDistributE = 100 * stuCountArray[4] / stuCount;
-				
-				changeGradeDistrLabel(lblGradeDistributionA, "A", gradeDistributA);
-				changeGradeDistrLabel(lblGradeDistributionB, "B", gradeDistributB);
-				changeGradeDistrLabel(lblGradeDistributionC, "C", gradeDistributC);
-				changeGradeDistrLabel(lblGradeDistributionD, "D", gradeDistributD);
-				changeGradeDistrLabel(lblGradeDistributionE, "E", gradeDistributE);
-				
-				changeStuCountLabel(lblStuPerGradeA, "A", stuCountArray[0]);
-				changeStuCountLabel(lblStuPerGradeB, "B", stuCountArray[1]);
-				changeStuCountLabel(lblStuPerGradeC, "C", stuCountArray[2]);
-				changeStuCountLabel(lblStuPerGradeD, "D", stuCountArray[3]);
-				changeStuCountLabel(lblStuPerGradeE, "E", stuCountArray[4]);
-				
-				refreshPanels();
 			}
 		}
 		
@@ -744,15 +727,36 @@ public class PercentilePanel extends JPanel {
 			
 		}
 		
-		private void refreshPanels() {
-			pnlSetGradeRange.revalidate();
-			pnlSetGradeRange.repaint();
-			pnlGradeDistribution.revalidate();
-			pnlGradeDistribution.repaint();
-			pnlStudentsPerGrade.revalidate();
-			pnlStudentsPerGrade.repaint();
-			pnlGivePercentile.revalidate();
-			pnlGivePercentile.repaint();
+		private void checkGradesExist() {
+			if (stuCount <= 0) {
+				fail = true;
+				error.setString("No student grades have been entered.");
+				error.setVisible(true);
+			}
+		}
+		
+		private void setGradeDistResults() {
+			gradeDistributA = 100 * stuCountArray[0] / stuCount;
+			gradeDistributB = 100 * stuCountArray[1] / stuCount;
+			gradeDistributC = 100 * stuCountArray[2] / stuCount;
+			gradeDistributD = 100 * stuCountArray[3] / stuCount;
+			gradeDistributE = 100 * stuCountArray[4] / stuCount;
+		}
+		
+		private void updateGradeDistribText() {
+			changeGradeDistrLabel(lblGradeDistributionA, "A", gradeDistributA);
+			changeGradeDistrLabel(lblGradeDistributionB, "B", gradeDistributB);
+			changeGradeDistrLabel(lblGradeDistributionC, "C", gradeDistributC);
+			changeGradeDistrLabel(lblGradeDistributionD, "D", gradeDistributD);
+			changeGradeDistrLabel(lblGradeDistributionE, "E", gradeDistributE);
+		}
+		
+		private void updateStuCountText() {
+			changeStuCountLabel(lblStuPerGradeA, "A", stuCountArray[0]);
+			changeStuCountLabel(lblStuPerGradeB, "B", stuCountArray[1]);
+			changeStuCountLabel(lblStuPerGradeC, "C", stuCountArray[2]);
+			changeStuCountLabel(lblStuPerGradeD, "D", stuCountArray[3]);
+			changeStuCountLabel(lblStuPerGradeE, "E", stuCountArray[4]);
 		}
 		
 		/**
@@ -767,12 +771,20 @@ public class PercentilePanel extends JPanel {
 			label.setText(letter + ": " + percent + "%");
 		}
 		
-		
 		private void changeStuCountLabel(JLabel label, String letter, int count) {
 			label.setText(letter + ": " + count);
 		}
 
-		
+		private void refreshPanels() {
+			pnlSetGradeRange.revalidate();
+			pnlSetGradeRange.repaint();
+			pnlGradeDistribution.revalidate();
+			pnlGradeDistribution.repaint();
+			pnlStudentsPerGrade.revalidate();
+			pnlStudentsPerGrade.repaint();
+			pnlGivePercentile.revalidate();
+			pnlGivePercentile.repaint();
+		}
 		
 	}
 }
