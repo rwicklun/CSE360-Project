@@ -48,11 +48,11 @@ public class PercentilePanel extends JPanel {
 	private JTextField txtSetTop_Value;
 	private JTextField txtSetBottom_Value;
 	
-	private int gradeA;
-	private int gradeB;
-	private int gradeC;
-	private int gradeD;
-	private int gradeE;
+	private int percentA;
+	private int percentB;
+	private int percentC;
+	private int percentD;
+	private int percentE;
 	
 	private float gradeDistributA;
 	private float gradeDistributB;
@@ -643,14 +643,14 @@ public class PercentilePanel extends JPanel {
 			boolean fail = false;
 			calculations.refreshRoundedArray();
 			stuCount = calculations.studentCount();
-			stuCountArray = calculations.countStuPerGrade(gradeA, gradeB, gradeC, gradeD, gradeE);
+			
 			
 			try {
-				gradeA = Integer.parseInt(txtSetGradeA.getText());
-				gradeB = Integer.parseInt(txtSetGradeB.getText());
-				gradeC = Integer.parseInt(txtSetGradeC.getText());
-				gradeD = Integer.parseInt(txtSetGradeD.getText());
-				gradeE = Integer.parseInt(txtSetGradeE.getText());
+				percentA = Integer.parseInt(txtSetGradeA.getText());
+				percentB = Integer.parseInt(txtSetGradeB.getText());
+				percentC = Integer.parseInt(txtSetGradeC.getText());
+				percentD = Integer.parseInt(txtSetGradeD.getText());
+				percentE = Integer.parseInt(txtSetGradeE.getText());
 			}
 			catch (NumberFormatException exception){
                 // Input not a number.
@@ -667,6 +667,8 @@ public class PercentilePanel extends JPanel {
 			}
 			
 			if (fail == false) {
+				
+				stuCountArray = calculations.countStuPerGrade(percentA, percentB, percentC, percentD, percentE);
 				
 				gradeDistributA = 100 * stuCountArray[0] / stuCount;
 				gradeDistributB = 100 * stuCountArray[1] / stuCount;
@@ -693,23 +695,23 @@ public class PercentilePanel extends JPanel {
 		private boolean checkPercentOrder() {
 			boolean fail = false;
 			
-			if (gradeA > 100 || gradeA < gradeB) {
+			if (percentA > 100 || percentA < percentB) {
 				gradeOrderError('A');
 				fail = true;
 			}
-			if (gradeB > gradeA || gradeB < gradeC) {
+			if (percentB > percentA || percentB < percentC) {
 				gradeOrderError('B');
 				fail = true;
 			}
-			if (gradeC > gradeB || gradeC < gradeD) {
+			if (percentC > percentB || percentC < percentD) {
 				gradeOrderError('C');
 				fail = true;
 			}
-			if (gradeD > gradeC || gradeD < gradeE) {
+			if (percentD > percentC || percentD < percentE) {
 				gradeOrderError('D');
 				fail = true;
 			}
-			if (gradeE > gradeD || gradeE < 0) {
+			if (percentE > percentD || percentE < 0) {
 				gradeOrderError('E');
 				fail = true;
 			}

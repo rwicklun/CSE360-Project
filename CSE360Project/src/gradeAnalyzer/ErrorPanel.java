@@ -20,7 +20,7 @@ public class ErrorPanel extends JFrame {
 
         int screenWidth = (int) screenSize.getWidth();
         int screenHeight = (int) screenSize.getHeight();
-        setSize(334,331);
+        setSize(400,300);
         setResizable(false);
         setLocation((screenWidth - this.getSize().width) / 2,(screenHeight - this.getSize().height) / 2); 
 		

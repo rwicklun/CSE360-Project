@@ -19,7 +19,7 @@ public class Calculations {
 	//default minimum set to 0
 	private int minPossible = 0;
 	private int maxEarned;
-	private int maxInUse;
+	private int maxInUse = maxPossible;
 
 	
 	public void setLinkedLists (LinkedList<Float> floatListIn, LinkedList<Integer> roundedListIn) {
@@ -268,7 +268,7 @@ public class Calculations {
 		int countC = 0;
 		int countD = 0;
 		int countE = 0;
-		int countArray[];
+		int countArray[] = new int[5];
 		
 		int scoreA = maxInUse * percentA / 100;
 		int scoreB = maxInUse * percentB / 100;
@@ -276,30 +276,28 @@ public class Calculations {
 		int scoreD = maxInUse * percentD / 100;
 		//int scoreE = maxInUse * percentE / 100;
 		
-		if(roundedArray != null) {
-			for(int index = 0; index < roundedArray.length; index ++) {
-				if (roundedArray[index] <= scoreD) {
-					countE ++;
-				}
-				else if (roundedArray[index] <= scoreC) {
-					countD ++;
-				}
-				else if (roundedArray[index] <= scoreB) {
-					countC ++;
-				}
-				else if (roundedArray[index] <= scoreA) {
-					countB ++;
-				}
-				else if (roundedArray[index] <= maxInUse) {
-					countA ++;
-				}
+		for(int index = 0; index < roundedArray.length; index ++) {
+			if (roundedArray[index] <= scoreD) {
+				countE ++;
 			}
-			countArray = new int[] {countA, countB, countC, countD, countE};
+			else if (roundedArray[index] <= scoreC) {
+				countD ++;
+			}
+			else if (roundedArray[index] <= scoreB) {
+				countC ++;
+			}
+			else if (roundedArray[index] <= scoreA) {
+				countB ++;
+			}
+			else if (roundedArray[index] <= maxInUse) {
+				countA ++;
+			}
+			else {
+				error.setString("Count failed.");
+				error.setVisible(true);
+			}
 		}
-		else {
-			countArray = new int[] {0, 0, 0, 0, 0};
-		}
-			
+		countArray = new int[] {countA, countB, countC, countD, countE};
 		return countArray;		
 	}
 	
