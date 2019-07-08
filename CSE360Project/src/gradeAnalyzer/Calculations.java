@@ -249,7 +249,7 @@ public class Calculations {
 		maxInUse = maxEarned;
 	}
 	
-	public int[] countStuPerGrade(int gradeA, int gradeB, int gradeC, int gradeD, int gradeF) {
+	public int[] countStuPerGrade(int gradeA, int gradeB, int gradeC, int gradeD, int gradeE) {
 		int countA = 0;
 		int countB = 0;
 		int countC = 0;
@@ -259,7 +259,7 @@ public class Calculations {
 		
 		if(roundedArray != null) {
 			for(int index = 0; index < roundedArray.length; index ++) {
-				if (roundedArray[index] <= gradeF) {
+				if (roundedArray[index] <= gradeE) {
 					countF ++;
 				}
 				else if (roundedArray[index] <= gradeD) {
