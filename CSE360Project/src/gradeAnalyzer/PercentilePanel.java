@@ -40,6 +40,11 @@ public class PercentilePanel extends JPanel {
 	private JLabel lblStuPerGradeD;
 	private JLabel lblStuPerGradeE;
 	
+	private JLabel lblDispScoAbove_Score;
+	private JLabel lblDispScoBelow_Score;
+	private JLabel lblDispStuAbove_Value;
+	private JLabel lblDispStuBelow_Value;
+	
 	private JTextField txtSetGradeA;
 	private JTextField txtSetGradeB;
 	private JTextField txtSetGradeC;
@@ -59,6 +64,9 @@ public class PercentilePanel extends JPanel {
 	private float gradeDistributC;
 	private float gradeDistributD;
 	private float gradeDistributE;
+	
+	private int topPercentile;
+	private int botPercentile;
 	
 	private int stuCountArray[] = new int[5];
 	private int stuCount;
@@ -546,7 +554,7 @@ public class PercentilePanel extends JPanel {
 		pnlGivePercentile.add(lblDispScoAbove_Title, gbc_lblDispScoAbove_Title);
 		
 		// Percentile Display - Score above - Above score
-		JLabel lblDispScoAbove_Score = new JLabel("89%");
+		lblDispScoAbove_Score = new JLabel("0%");
 		GridBagConstraints gbc_lblDispScoAbove_Score = new GridBagConstraints();
 		gbc_lblDispScoAbove_Score.anchor = GridBagConstraints.WEST;
 		gbc_lblDispScoAbove_Score.insets = new Insets(0, 0, 5, 5);
@@ -564,7 +572,7 @@ public class PercentilePanel extends JPanel {
 		pnlGivePercentile.add(lblDispScoBelow_Title, gbc_lblDispScoBelow_Title);
 		
 		// Percentile Display - Score below - Below score
-		JLabel lblDispScoBelow_Score = new JLabel("31%");
+		lblDispScoBelow_Score = new JLabel("0%");
 		GridBagConstraints gbc_lblDispScoBelow_Score = new GridBagConstraints();
 		gbc_lblDispScoBelow_Score.anchor = GridBagConstraints.WEST;
 		gbc_lblDispScoBelow_Score.insets = new Insets(0, 0, 5, 0);
@@ -582,7 +590,7 @@ public class PercentilePanel extends JPanel {
 		pnlGivePercentile.add(lblDispStuAbove_Title, gbc_lblDispStuAbove_Title);
 		
 		// Percentile Display - Students above - Number of students above
-		JLabel lblDispStuAbove_Value = new JLabel("18");
+		lblDispStuAbove_Value = new JLabel("0");
 		GridBagConstraints gbc_lblDispStuAbove_Value = new GridBagConstraints();
 		gbc_lblDispStuAbove_Value.anchor = GridBagConstraints.WEST;
 		gbc_lblDispStuAbove_Value.insets = new Insets(0, 0, 0, 5);
@@ -600,7 +608,7 @@ public class PercentilePanel extends JPanel {
 		pnlGivePercentile.add(lblDispStuBelow_Title, gbc_lblDispStuBelow_Title);
 		
 		// Percentile Display - Students below - Number of students below
-		JLabel lblDispStuBelow_Value = new JLabel("21");
+		lblDispStuBelow_Value = new JLabel("0");
 		GridBagConstraints gbc_lblDispStuBelow_Value = new GridBagConstraints();
 		gbc_lblDispStuBelow_Value.anchor = GridBagConstraints.WEST;
 		gbc_lblDispStuBelow_Value.gridx = 4;
@@ -649,12 +657,14 @@ public class PercentilePanel extends JPanel {
 			checkGradesExist();
 			
 			if (fail == false) {
-				
 				stuCountArray = calculations.countStuPerGrade(percentA, percentB, percentC, percentD, percentE);
 				
 				setGradeDistResults();
 				updateGradeDistribText();
 				updateStuCountText();
+				
+				inputTopBottomPercentile();
+				updateScoreAboveText();
 				
 				refreshPanels();
 			}
@@ -670,8 +680,17 @@ public class PercentilePanel extends JPanel {
 			}
 			catch (NumberFormatException exception){
                 // Input not a number.
-                error.setString("Input Not A Floating Point Number: \nPlease input only floating point numbers");
+                error.setString("Set custom grade range input is not an integer. \nPlease input only integers.");
                 error.setVisible(true);
+			}
+		}
+		
+		private void checkGradesExist() {
+			fail = false;
+			if (stuCount <= 0) {
+				fail = true;
+				error.setString("No student grades have been entered.");
+				error.setVisible(true);
 			}
 		}
 		
@@ -724,15 +743,6 @@ public class PercentilePanel extends JPanel {
 				error.setVisible(true);
 				break;
 			}
-			
-		}
-		
-		private void checkGradesExist() {
-			if (stuCount <= 0) {
-				fail = true;
-				error.setString("No student grades have been entered.");
-				error.setVisible(true);
-			}
 		}
 		
 		private void setGradeDistResults() {
@@ -775,6 +785,26 @@ public class PercentilePanel extends JPanel {
 			label.setText(letter + ": " + count);
 		}
 
+		private void inputTopBottomPercentile() {
+			try {
+				topPercentile = Integer.parseInt(txtSetTop_Value.getText());
+				botPercentile = Integer.parseInt(txtSetBottom_Value.getText());
+			}
+			catch (NumberFormatException exception){
+                // Input not a number.
+                error.setString("Percentile input is not an integer. \nPlease input only integers.");
+                error.setVisible(true);
+			}
+		}
+		
+		private void updateScoreAboveText() {
+			int topScore = calculations.scoreAboveTop(topPercentile);
+			lblDispScoAbove_Score.setText(topScore + "%");
+			
+			int stuAbove = calculations.stuAboveTop();
+			lblDispStuAbove_Value.setText("" + stuAbove);
+		}
+		
 		private void refreshPanels() {
 			pnlSetGradeRange.revalidate();
 			pnlSetGradeRange.repaint();
