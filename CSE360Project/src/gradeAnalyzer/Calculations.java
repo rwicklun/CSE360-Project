@@ -262,33 +262,39 @@ public class Calculations {
 		maxInUse = maxEarned;
 	}
 	
-	public int[] countStuPerGrade(int gradeA, int gradeB, int gradeC, int gradeD, int gradeE) {
+	public int[] countStuPerGrade(int percentA, int percentB, int percentC, int percentD, int percentE) {
 		int countA = 0;
 		int countB = 0;
 		int countC = 0;
 		int countD = 0;
-		int countF = 0;
+		int countE = 0;
 		int countArray[];
+		
+		int scoreA = maxInUse * percentA / 100;
+		int scoreB = maxInUse * percentB / 100;
+		int scoreC = maxInUse * percentC / 100;
+		int scoreD = maxInUse * percentD / 100;
+		//int scoreE = maxInUse * percentE / 100;
 		
 		if(roundedArray != null) {
 			for(int index = 0; index < roundedArray.length; index ++) {
-				if (roundedArray[index] <= gradeE) {
-					countF ++;
+				if (roundedArray[index] <= scoreD) {
+					countE ++;
 				}
-				else if (roundedArray[index] <= gradeD) {
+				else if (roundedArray[index] <= scoreC) {
 					countD ++;
 				}
-				else if (roundedArray[index] <= gradeC) {
+				else if (roundedArray[index] <= scoreB) {
 					countC ++;
 				}
-				else if (roundedArray[index] <= gradeB) {
+				else if (roundedArray[index] <= scoreA) {
 					countB ++;
 				}
-				else if (roundedArray[index] <= gradeA) {
+				else if (roundedArray[index] <= maxInUse) {
 					countA ++;
 				}
 			}
-			countArray = new int[] {countA, countB, countC, countD, countF};
+			countArray = new int[] {countA, countB, countC, countD, countE};
 		}
 		else {
 			countArray = new int[] {0, 0, 0, 0, 0};

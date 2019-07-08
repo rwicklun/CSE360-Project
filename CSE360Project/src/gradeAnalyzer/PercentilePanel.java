@@ -34,6 +34,12 @@ public class PercentilePanel extends JPanel {
 	private JLabel lblGradeDistributionD;
 	private JLabel lblGradeDistributionE;
 	
+	private JLabel lblStuPerGradeA;
+	private JLabel lblStuPerGradeB;
+	private JLabel lblStuPerGradeC;
+	private JLabel lblStuPerGradeD;
+	private JLabel lblStuPerGradeE;
+	
 	private JTextField txtSetGradeA;
 	private JTextField txtSetGradeB;
 	private JTextField txtSetGradeC;
@@ -56,11 +62,6 @@ public class PercentilePanel extends JPanel {
 	
 	private int stuCountArray[] = new int[5];
 	private int stuCount;
-	private int stuPerGradeA;
-	private int stuPerGradeB;
-	private int stuPerGradeC;
-	private int stuPerGradeD;
-	private int stuPerGradeE;
 	
 	/**
 	 * GUI for the Percentile Panel
@@ -388,7 +389,7 @@ public class PercentilePanel extends JPanel {
 		pnlStudentsPerGrade.setLayout(gbl_pnlStudentsPerGrade);
 		
 		// Displays Students in A
-		JLabel lblStuPerGradeA = new JLabel("A: 20");
+		lblStuPerGradeA = new JLabel("A: 0");
 		GridBagConstraints gbc_lblStuPerGradeA = new GridBagConstraints();
 		gbc_lblStuPerGradeA.insets = new Insets(0, 0, 0, 5);
 		gbc_lblStuPerGradeA.gridx = 0;
@@ -396,7 +397,7 @@ public class PercentilePanel extends JPanel {
 		pnlStudentsPerGrade.add(lblStuPerGradeA, gbc_lblStuPerGradeA);
 		
 		// Displays Students in B
-		JLabel lblStuPerGradeB = new JLabel("B: 20");
+		lblStuPerGradeB = new JLabel("B: 0");
 		GridBagConstraints gbc_lblStuPerGradeB = new GridBagConstraints();
 		gbc_lblStuPerGradeB.insets = new Insets(0, 0, 0, 5);
 		gbc_lblStuPerGradeB.gridx = 1;
@@ -404,7 +405,7 @@ public class PercentilePanel extends JPanel {
 		pnlStudentsPerGrade.add(lblStuPerGradeB, gbc_lblStuPerGradeB);
 		
 		// Displays Students in C
-		JLabel lblStuPerGradeC = new JLabel("C: 20");
+		lblStuPerGradeC = new JLabel("C: 0");
 		GridBagConstraints gbc_lblStuPerGradeC = new GridBagConstraints();
 		gbc_lblStuPerGradeC.insets = new Insets(0, 0, 0, 5);
 		gbc_lblStuPerGradeC.gridx = 2;
@@ -412,7 +413,7 @@ public class PercentilePanel extends JPanel {
 		pnlStudentsPerGrade.add(lblStuPerGradeC, gbc_lblStuPerGradeC);
 		
 		// Displays Students in D
-		JLabel lblStuPerGradeD = new JLabel("D: 20");
+		lblStuPerGradeD = new JLabel("D: 0");
 		GridBagConstraints gbc_lblStuPerGradeD = new GridBagConstraints();
 		gbc_lblStuPerGradeD.insets = new Insets(0, 0, 0, 5);
 		gbc_lblStuPerGradeD.gridx = 3;
@@ -420,7 +421,7 @@ public class PercentilePanel extends JPanel {
 		pnlStudentsPerGrade.add(lblStuPerGradeD, gbc_lblStuPerGradeD);
 		
 		// Displays Students in F
-		JLabel lblStuPerGradeE = new JLabel("E: 20");
+		lblStuPerGradeE = new JLabel("E: 0");
 		GridBagConstraints gbc_lblStuPerGradeE = new GridBagConstraints();
 		gbc_lblStuPerGradeE.gridx = 4;
 		gbc_lblStuPerGradeE.gridy = 0;
@@ -622,29 +623,6 @@ public class PercentilePanel extends JPanel {
 	}
 
 	
-	/**
-	 * Formats text to be sent to label.setText for Grade Distribution 
-	 * In the form of "A: 20%"
-	 * 
-	 * @param label		JLabel that will have text changed
-	 * @param letter	Grade letter to be set into string
-	 * @param percent	float Percent to be associated with letter
-	 */
-	private void letterPercentLabel(JLabel label, String letter, float percent) {
-		label.setText(letter + ": " + percent + "%");
-	}
-	
-	private void refreshPanels() {
-		pnlSetGradeRange.revalidate();
-		pnlSetGradeRange.repaint();
-		pnlGradeDistribution.revalidate();
-		pnlGradeDistribution.repaint();
-		pnlStudentsPerGrade.revalidate();
-		pnlStudentsPerGrade.repaint();
-		pnlGivePercentile.revalidate();
-		pnlGivePercentile.repaint();
-	}
-	
 	private class maxPossibleListener implements ActionListener {
 		 @Override
 		 public void actionPerformed(ActionEvent event) {
@@ -665,6 +643,7 @@ public class PercentilePanel extends JPanel {
 			boolean fail = false;
 			calculations.refreshRoundedArray();
 			stuCount = calculations.studentCount();
+			stuCountArray = calculations.countStuPerGrade(gradeA, gradeB, gradeC, gradeD, gradeE);
 			
 			try {
 				gradeA = Integer.parseInt(txtSetGradeA.getText());
@@ -687,9 +666,7 @@ public class PercentilePanel extends JPanel {
 				error.setVisible(true);
 			}
 			
-			if (stuCount > 0 || fail == false) {
-				
-				stuCountArray = calculations.countStuPerGrade(gradeA, gradeB, gradeC, gradeD, gradeE);
+			if (fail == false) {
 				
 				gradeDistributA = 100 * stuCountArray[0] / stuCount;
 				gradeDistributB = 100 * stuCountArray[1] / stuCount;
@@ -697,11 +674,17 @@ public class PercentilePanel extends JPanel {
 				gradeDistributD = 100 * stuCountArray[3] / stuCount;
 				gradeDistributE = 100 * stuCountArray[4] / stuCount;
 				
-				letterPercentLabel(lblGradeDistributionA, "A", gradeDistributA);
-				letterPercentLabel(lblGradeDistributionB, "B", gradeDistributB);
-				letterPercentLabel(lblGradeDistributionC, "C", gradeDistributC);
-				letterPercentLabel(lblGradeDistributionD, "D", gradeDistributD);
-				letterPercentLabel(lblGradeDistributionE, "E", gradeDistributE);
+				changeGradeDistrLabel(lblGradeDistributionA, "A", gradeDistributA);
+				changeGradeDistrLabel(lblGradeDistributionB, "B", gradeDistributB);
+				changeGradeDistrLabel(lblGradeDistributionC, "C", gradeDistributC);
+				changeGradeDistrLabel(lblGradeDistributionD, "D", gradeDistributD);
+				changeGradeDistrLabel(lblGradeDistributionE, "E", gradeDistributE);
+				
+				changeStuCountLabel(lblStuPerGradeA, "A", stuCountArray[0]);
+				changeStuCountLabel(lblStuPerGradeB, "B", stuCountArray[1]);
+				changeStuCountLabel(lblStuPerGradeC, "C", stuCountArray[2]);
+				changeStuCountLabel(lblStuPerGradeD, "D", stuCountArray[3]);
+				changeStuCountLabel(lblStuPerGradeE, "E", stuCountArray[4]);
 				
 				refreshPanels();
 			}
@@ -758,18 +741,36 @@ public class PercentilePanel extends JPanel {
 			}
 			
 		}
-	}
 		
-	
-	private class setGradeRangeListener implements ActionListener {
-		private char gradeLetter;
-		public setGradeRangeListener(char gradeLetterIn) {
-			this.gradeLetter = gradeLetterIn;
+		private void refreshPanels() {
+			pnlSetGradeRange.revalidate();
+			pnlSetGradeRange.repaint();
+			pnlGradeDistribution.revalidate();
+			pnlGradeDistribution.repaint();
+			pnlStudentsPerGrade.revalidate();
+			pnlStudentsPerGrade.repaint();
+			pnlGivePercentile.revalidate();
+			pnlGivePercentile.repaint();
 		}
-		@Override
-		public void actionPerformed(ActionEvent event) {
-			
+		
+		/**
+		 * Formats text to be sent to label.setText for Grade Distribution 
+		 * In the form of "A: 20%"
+		 * 
+		 * @param label		JLabel that will have text changed
+		 * @param letter	Grade letter to be set into string
+		 * @param percent	float Percent to be associated with letter
+		 */
+		private void changeGradeDistrLabel(JLabel label, String letter, float percent) {
+			label.setText(letter + ": " + percent + "%");
 		}
+		
+		
+		private void changeStuCountLabel(JLabel label, String letter, int count) {
+			label.setText(letter + ": " + count);
+		}
+
+		
+		
 	}
-	
 }
