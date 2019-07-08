@@ -20,6 +20,10 @@ public class Calculations {
 	private int minPossible = 0;
 	private int maxEarned;
 	private int maxInUse = maxPossible;
+	private int topPercentileScore = 90;
+	private int stuAbovePercentile;
+	private int botPercentileScore = 0;
+	private int stuBelowPercentile;
 
 	
 	public void setLinkedLists (LinkedList<Float> floatListIn, LinkedList<Integer> roundedListIn) {
@@ -255,11 +259,24 @@ public class Calculations {
 // Start Percentile only --------------------------------------------------------------------------
 	
 	public void setMaxInUseToPossible() {
-		maxInUse = maxPossible;
+		if (roundedArray != null) {
+			maxInUse = maxPossible;
+		}
+		else {
+			error.setString("No student grades have been entered.");
+			error.setVisible(true);
+		}
 	}
 	
 	public void setMaxInUseToEarned() {
-		maxInUse = maxEarned;
+		if (roundedArray != null) {
+			maxEarned = roundedArray[roundedArray.length - 1];
+			maxInUse = maxEarned;
+		}
+		else {
+			error.setString("No student grades have been entered.");
+			error.setVisible(true);
+		}
 	}
 	
 	public int[] countStuPerGrade(int percentA, int percentB, int percentC, int percentD, int percentE) {
@@ -274,7 +291,6 @@ public class Calculations {
 		int scoreB = maxInUse * percentB / 100;
 		int scoreC = maxInUse * percentC / 100;
 		int scoreD = maxInUse * percentD / 100;
-		//int scoreE = maxInUse * percentE / 100;
 		
 		for(int index = 0; index < roundedArray.length; index ++) {
 			if (roundedArray[index] <= scoreD) {
@@ -299,6 +315,21 @@ public class Calculations {
 		}
 		countArray = new int[] {countA, countB, countC, countD, countE};
 		return countArray;		
+	}
+	
+	public int scoreAboveTop(int percentileIn) {
+		topPercentileScore = maxInUse * percentileIn / 100;
+		return topPercentileScore;
+	}
+	
+	public int stuAboveTop() {
+		stuAbovePercentile = 0;
+		int index = roundedArray.length - 1;
+		while (roundedArray[index] >= topPercentileScore || index < 0) {
+			stuAbovePercentile ++;
+			index --;
+		}
+		return stuAbovePercentile;
 	}
 	
 // End Percentile only ----------------------------------------------------------------------------

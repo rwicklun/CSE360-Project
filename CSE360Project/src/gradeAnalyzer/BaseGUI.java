@@ -242,7 +242,6 @@ public class BaseGUI extends JFrame {
 	    public void actionPerformed(ActionEvent event) {
 	        //exits the program, closing the GUI.
 	        System.exit(0);
-	        
 	    }
 	}
 	
