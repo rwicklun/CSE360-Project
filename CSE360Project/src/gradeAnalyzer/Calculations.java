@@ -317,35 +317,37 @@ public class Calculations {
 		return countArray;		
 	}
 	
-	public int scoreAboveTop(int percentileIn) {
-		topPercentileScore = maxInUse * percentileIn / 100;
+	public int stuAboveTop(int percentileIn) {
+		int inversePercentile = 100 - percentileIn;
+		stuAbovePercentile = roundedArray.length * inversePercentile / 100;
+		if (stuAbovePercentile == 0)
+			return 1;
+		else
+			return stuAbovePercentile;
+	}
+		
+	public int scoreAboveTop() {
+		int inverseStuCount = roundedArray.length - stuAbovePercentile;
+		for (int index = roundedArray.length - 1; index > inverseStuCount; index --) {
+			topPercentileScore = roundedArray[index];
+		}
 		return topPercentileScore;
 	}
 	
-	public int stuAboveTop() {
-		stuAbovePercentile = 0;
-		int index = roundedArray.length - 1;
-		while (roundedArray[index] >= topPercentileScore && index > 0) {
-			stuAbovePercentile ++;
-			index --;
-		}
-		return stuAbovePercentile;
+	public int stuBelowBot(int percentileIn) {
+		stuBelowPercentile = roundedArray.length * percentileIn / 100;
+		if (stuBelowPercentile == 0)
+			return 1;
+		else
+			return stuBelowPercentile;
 	}
 	
-	public int scoreBelowBot(int percentileIn) {
-		botPercentileScore = maxInUse * percentileIn / 100;
+	public int scoreBelowBot() {
+		for (int index = 0; index < stuBelowPercentile; index ++) {
+			botPercentileScore = roundedArray[index];
+		}
 		return botPercentileScore;
 	}
-	
-	public int stuBelowBot() {
-		stuBelowPercentile = 0;
-		int index = 0;
-		while (roundedArray[index] <= botPercentileScore && index < maxInUse) {
-			stuBelowPercentile ++;
-			index ++;
-		}
-		return stuBelowPercentile;
-	}
-	
+
 // End Percentile only ----------------------------------------------------------------------------
 }

@@ -634,6 +634,7 @@ public class PercentilePanel extends JPanel {
 	private class maxPossibleListener implements ActionListener {
 		 @Override
 		 public void actionPerformed(ActionEvent event) {
+			 calculations.refreshRoundedArray();
 			 calculations.setMaxInUseToPossible();
 		 }
 	}
@@ -641,12 +642,14 @@ public class PercentilePanel extends JPanel {
 	private class maxEarnedListener implements ActionListener {
 		 @Override
 		 public void actionPerformed(ActionEvent event) {
+			 calculations.refreshRoundedArray();
 			 calculations.setMaxInUseToEarned();
 		 }
 	}
 	
 	private class updatePercentileButton implements ActionListener {
 		private boolean fail = false;
+		
 		@Override
 		public void actionPerformed(ActionEvent event) {
 			calculations.refreshRoundedArray();
@@ -799,19 +802,19 @@ public class PercentilePanel extends JPanel {
 		}
 		
 		private void updateScoreAboveText() {
-			int topScore = calculations.scoreAboveTop(topPercentile);
-			lblDispScoAbove_Score.setText(topScore + "%");
-			
-			int stuAbove = calculations.stuAboveTop();
+			int stuAbove = calculations.stuAboveTop(topPercentile);
 			lblDispStuAbove_Value.setText("" + stuAbove);
+			
+			int topScore = calculations.scoreAboveTop();
+			lblDispScoAbove_Score.setText(topScore + "%");
 		}
 		
 		private void updateScoreBelowText() {
-			int botScore = calculations.scoreBelowBot(botPercentile);
-			lblDispScoBelow_Score.setText(botScore + "%");
-			
-			int stuBelow = calculations.stuBelowBot();
+			int stuBelow = calculations.stuBelowBot(botPercentile);
 			lblDispStuBelow_Value.setText("" + stuBelow);
+			
+			int botScore = calculations.scoreBelowBot();
+			lblDispScoBelow_Score.setText(botScore + "%");
 		}
 		
 		private void refreshPanels() {
