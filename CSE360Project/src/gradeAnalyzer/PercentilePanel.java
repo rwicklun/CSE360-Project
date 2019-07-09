@@ -49,7 +49,6 @@ public class PercentilePanel extends JPanel {
 	private JTextField txtSetGradeB;
 	private JTextField txtSetGradeC;
 	private JTextField txtSetGradeD;
-	private JTextField txtSetGradeE;
 	private JTextField txtSetTop_Value;
 	private JTextField txtSetBottom_Value;
 	
@@ -150,9 +149,9 @@ public class PercentilePanel extends JPanel {
 		gbc_pnlSetGradeRange.gridy = 2;
 		add(pnlSetGradeRange, gbc_pnlSetGradeRange);
 		GridBagLayout gbl_pnlSetGradeRange = new GridBagLayout();
-		gbl_pnlSetGradeRange.columnWidths = new int[] {0, 32, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+		gbl_pnlSetGradeRange.columnWidths = new int[] {0, 32, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 		gbl_pnlSetGradeRange.rowHeights = new int[] {40, 0};
-		gbl_pnlSetGradeRange.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_pnlSetGradeRange.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		gbl_pnlSetGradeRange.rowWeights = new double[]{0.0, Double.MIN_VALUE};
 		pnlSetGradeRange.setLayout(gbl_pnlSetGradeRange);
 		
@@ -265,31 +264,13 @@ public class PercentilePanel extends JPanel {
 		pnlSetGradeRange.add(lblSetGradeDPercent, gbc_lblSetGradeDPercent);
 		
 		// Custom set grade range section - E
-		JLabel lblSetGradeE = new JLabel("Set E to:");
+		JLabel lblSetGradeE = new JLabel("Score below D is an E");
 		GridBagConstraints gbc_lblSetGradeE = new GridBagConstraints();
 		gbc_lblSetGradeE.anchor = GridBagConstraints.WEST;
-		gbc_lblSetGradeE.insets = new Insets(0, 5, 0, 5);
+		gbc_lblSetGradeE.insets = new Insets(0, 5, 0, 0);
 		gbc_lblSetGradeE.gridx = 12;
 		gbc_lblSetGradeE.gridy = 0;
 		pnlSetGradeRange.add(lblSetGradeE, gbc_lblSetGradeE);
-		// Custom set grade range section - E text field
-		txtSetGradeE = new JTextField();
-		txtSetGradeE.setHorizontalAlignment(SwingConstants.CENTER);
-		GridBagConstraints gbc_txtSetGradeE = new GridBagConstraints();
-		gbc_txtSetGradeE.insets = new Insets(0, 0, 0, 5);
-		gbc_txtSetGradeE.gridx = 13;
-		gbc_txtSetGradeE.gridy = 0;
-		pnlSetGradeRange.add(txtSetGradeE, gbc_txtSetGradeE);
-		txtSetGradeE.setText("50");
-		txtSetGradeE.setColumns(3);
-		// Custom set grade range section - E %
-		JLabel lblSetGradeEPercent = new JLabel("%");
-		GridBagConstraints gbc_lblSetGradeEPercent = new GridBagConstraints();
-		gbc_lblSetGradeEPercent.anchor = GridBagConstraints.EAST;
-		gbc_lblSetGradeEPercent.insets = new Insets(0, 0, 0, 10);
-		gbc_lblSetGradeEPercent.gridx = 14;
-		gbc_lblSetGradeEPercent.gridy = 0;
-		pnlSetGradeRange.add(lblSetGradeEPercent, gbc_lblSetGradeEPercent);
 		// End Grade Score Ranges functional area
 		
 		
@@ -680,7 +661,7 @@ public class PercentilePanel extends JPanel {
 				percentB = Integer.parseInt(txtSetGradeB.getText());
 				percentC = Integer.parseInt(txtSetGradeC.getText());
 				percentD = Integer.parseInt(txtSetGradeD.getText());
-				percentE = Integer.parseInt(txtSetGradeE.getText());
+				//percentE = Integer.parseInt(txtSetGradeE.getText());
 			}
 			catch (NumberFormatException exception){
                 // Input not a number.
