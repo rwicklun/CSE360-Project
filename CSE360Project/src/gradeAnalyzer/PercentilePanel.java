@@ -633,6 +633,7 @@ public class PercentilePanel extends JPanel {
 		gbl_pnlPercentile.rowWeights = new double[]{0.0, Double.MIN_VALUE};
 		pnlPercentile.setLayout(gbl_pnlPercentile);
 		
+		// Label states "There are"
 		JLabel lblThereAre = new JLabel("There are");
 		GridBagConstraints gbc_lblThereAre = new GridBagConstraints();
 		gbc_lblThereAre.insets = new Insets(0, 0, 0, 5);
@@ -641,9 +642,11 @@ public class PercentilePanel extends JPanel {
 		gbc_lblThereAre.gridy = 0;
 		pnlPercentile.add(lblThereAre, gbc_lblThereAre);
 		
+		// Text box stating students in each percentile
 		txtStuInPercentile = new JTextField();
 		txtStuInPercentile.setHorizontalAlignment(SwingConstants.CENTER);
 		txtStuInPercentile.setText("0");
+		txtStuInPercentile.setEditable(false);
 		GridBagConstraints gbc_textField = new GridBagConstraints();
 		gbc_textField.insets = new Insets(0, 0, 0, 5);
 		gbc_textField.fill = GridBagConstraints.HORIZONTAL;
@@ -652,6 +655,7 @@ public class PercentilePanel extends JPanel {
 		pnlPercentile.add(txtStuInPercentile, gbc_textField);
 		txtStuInPercentile.setColumns(3);
 		
+		// label "students in the"
 		JLabel lblStudentsInThe = new JLabel("students in the");
 		GridBagConstraints gbc_lblStudentsInThe = new GridBagConstraints();
 		gbc_lblStudentsInThe.insets = new Insets(0, 0, 0, 5);
@@ -660,6 +664,7 @@ public class PercentilePanel extends JPanel {
 		gbc_lblStudentsInThe.gridy = 0;
 		pnlPercentile.add(lblStudentsInThe, gbc_lblStudentsInThe);
 		
+		// Text field to input desired precentile
 		txtSetPercentile = new JTextField();
 		txtSetPercentile.setHorizontalAlignment(SwingConstants.CENTER);
 		txtSetPercentile.setText("90");
@@ -671,6 +676,7 @@ public class PercentilePanel extends JPanel {
 		pnlPercentile.add(txtSetPercentile, gbc_textField_1);
 		txtSetPercentile.setColumns(3);
 		
+		// Final label stating "th percentile."
 		JLabel lblThPercentile = new JLabel("th percentile.");
 		GridBagConstraints gbc_lblThPercentile = new GridBagConstraints();
 		gbc_lblThPercentile.anchor = GridBagConstraints.WEST;
@@ -712,7 +718,6 @@ public class PercentilePanel extends JPanel {
 		calculations.refreshRoundedArray();
 		
 		inputCustomGradeRanges();
-		fail = calculations.checkPercentOrder();
 		fail = calculations.checkGradesExist();
 		
 		if (fail == false) {
@@ -762,6 +767,11 @@ public class PercentilePanel extends JPanel {
 	private boolean fail = false;
 	
 	private void inputCustomGradeRanges() {
+		int prevPercentA = percentA;
+		int prevPercentB = percentB;
+		int prevPercentC = percentC;
+		int prevPercentD = percentD;
+		
 		try {
 			percentA = Integer.parseInt(txtSetGradeA.getText());
 			percentB = Integer.parseInt(txtSetGradeB.getText());
@@ -772,7 +782,46 @@ public class PercentilePanel extends JPanel {
             // Input not a number.
             error.setString("Set custom grade range input is not an integer. \nPlease input only integers.");
             error.setVisible(true);
+            
+            percentA = prevPercentA;
+			txtSetGradeA.setText(prevPercentA + "");
+			percentB = prevPercentB;
+			txtSetGradeB.setText(prevPercentB + "");
+			percentC = prevPercentC;
+			txtSetGradeC.setText(prevPercentC + "");
+			percentD = prevPercentD;
+			txtSetGradeD.setText(prevPercentD + "");
 		}
+		
+		if (percentA > 100 || percentA < percentB) {
+			error.setString("Make sure the percent for A is less than 100 and greater than B");
+			error.setVisible(true);
+			percentA = prevPercentA;
+			txtSetGradeA.setText(prevPercentA + "");
+			fail = true;
+		}
+		if (percentB > percentA || percentB < percentC) {
+			error.setString("Make sure the percent for B is less than A and greater than C");
+			error.setVisible(true);
+			percentB = prevPercentB;
+			txtSetGradeB.setText(prevPercentB + "");
+			fail = true;
+		}
+		if (percentC > percentB || percentC < percentD) {
+			error.setString("Make sure the percent for C is less than B and greater than D");
+			error.setVisible(true);
+			percentC = prevPercentC;
+			txtSetGradeC.setText(prevPercentC + "");
+			fail = true;
+		}
+		if (percentD > percentC) {
+			error.setString("Make sure the percent for D is less than C and greater than E");
+			error.setVisible(true);
+			percentD = prevPercentD;
+			txtSetGradeD.setText(prevPercentD + "");
+			fail = true;
+		}
+		
 		calculations.setGradePercent('A', percentA);
 		calculations.setGradePercent('B', percentB);
 		calculations.setGradePercent('C', percentC);
@@ -800,7 +849,7 @@ public class PercentilePanel extends JPanel {
 		changeStuCountLabel(lblStuPerGradeD, "D", stuCountArray[3]);
 		changeStuCountLabel(lblStuPerGradeE, "E", stuCountArray[4]);
 	}
-	
+
 	/**
 	 * Formats text to be sent to label.setText for Grade Distribution 
 	 * In the form of "A: 20%"
@@ -818,6 +867,9 @@ public class PercentilePanel extends JPanel {
 	}
 
 	private void inputTopBottomPercent() {
+		int prevTop = topPercent;
+		int prevBot = botPercent;
+		
 		try {
 			topPercent = Integer.parseInt(txtSetTop_Value.getText());
 			botPercent = Integer.parseInt(txtSetBottom_Value.getText());
@@ -826,14 +878,23 @@ public class PercentilePanel extends JPanel {
             // Input not a number.
             error.setString("Percent input is not an integer. \nPlease input only integers.");
             error.setVisible(true);
+            topPercent = prevTop;
+            txtSetTop_Value.setText(prevTop + "");
+            botPercent = prevBot;
+            txtSetBottom_Value.setText(prevTop + "");
 		}
+		
 		if (topPercent > 100 || topPercent < 0) {
 			error.setString("Percent input must be between 100 and 0.");
             error.setVisible(true);
+            topPercent = prevTop;
+            txtSetTop_Value.setText(prevTop + "");
 		}
 		if (botPercent > 100 || botPercent < 0) {
 			error.setString("Percent input must be between 100 and 0.");
             error.setVisible(true);
+            botPercent = prevBot;
+            txtSetBottom_Value.setText(prevTop + "");
 		}
 			
 		calculations.setTopBotPercent(topPercent, 1);
@@ -857,6 +918,7 @@ public class PercentilePanel extends JPanel {
 	}
 	
 	private void inputPercentile() {
+		int prevPercentile = percentile;
 		try {
 			percentile = Integer.parseInt(txtSetPercentile.getText());
 		}
@@ -864,10 +926,14 @@ public class PercentilePanel extends JPanel {
             // Input not a number.
             error.setString("Percent input is not an integer. \nPlease input only integers.");
             error.setVisible(true);
+            percentile = prevPercentile;
+            txtSetPercentile.setText(prevPercentile + "");
 		}
 		if (percentile > 99 || percentile < 1) {
 			error.setString("Percentile input must be between 99 and 1.");
             error.setVisible(true);
+            percentile = prevPercentile;
+            txtSetPercentile.setText(prevPercentile + "");
 		}
 		calculations.setPercentile(percentile);
 	}

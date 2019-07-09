@@ -395,52 +395,7 @@ public class Calculations {
 		return Math.round(output);
 	}
 	
-	public boolean checkPercentOrder() {
-		boolean fail = false;
-		
-		if (gradePercentA > 100 || gradePercentA < gradePercentB) {
-			gradeOrderError('A');
-			fail = true;
-		}
-		if (gradePercentB > gradePercentA || gradePercentB < gradePercentC) {
-			gradeOrderError('B');
-			fail = true;
-		}
-		if (gradePercentC > gradePercentB || gradePercentC < gradePercentD) {
-			gradeOrderError('C');
-			fail = true;
-		}
-		if (gradePercentD > gradePercentC) {
-			gradeOrderError('D');
-			fail = true;
-		}
-		return fail;
-	}
 	
-	public void gradeOrderError(char gradeIn) {
-		switch(gradeIn) {
-		case 'A': 
-			error.setString("Make sure the percent for A is less than 100 and greater than B");
-			error.setVisible(true);
-			break;
-		case 'B':
-			error.setString("Make sure the percent for B is less than A and greater than C");
-			error.setVisible(true);
-			break;
-		case 'C':
-			error.setString("Make sure the percent for C is less than B and greater than D");
-			error.setVisible(true);
-			break;
-		case 'D':
-			error.setString("Make sure the percent for D is less than C and greater than E");
-			error.setVisible(true);
-			break;
-		case 'E':
-			error.setString("Make sure the percent for E is less than D and greater than 0");
-			error.setVisible(true);
-			break;
-		}
-	}
 	
 	public boolean checkGradesExist() {
 		boolean fail = false;
