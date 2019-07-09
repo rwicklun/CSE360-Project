@@ -128,7 +128,7 @@ public class BaseGUI extends JFrame {
         FileNameExtensionFilter filter = new FileNameExtensionFilter("TEXT FILES", "txt", "text");
         fileChooser.setFileFilter(filter);
         
-        recordButton = new JButton("Create Record");
+        recordButton = new JButton("Create Report");
         recordButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
         recordButton.setForeground(new Color(255, 255, 255));
         recordButton.setBackground(Color.BLUE);
