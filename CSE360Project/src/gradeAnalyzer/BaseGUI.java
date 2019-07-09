@@ -9,6 +9,9 @@ import java.util.*;
 
 @SuppressWarnings("serial")
 public class BaseGUI extends JFrame { 
+	/**
+	 * 
+	 */
 	public BaseGUI() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBackground(Color.BLACK);
@@ -21,9 +24,10 @@ public class BaseGUI extends JFrame {
         this.setLocation((screenWidth - this.getSize().width) / 2,(screenHeight - this.getSize().height) / 2); 
         
 	}
-
-	// Trying to commit on a new computer before testing the code 
-	
+	/**
+	 * 
+	 * 
+	 */
 	public static void main(String[] args) {
 		try {
 			   // Set to cross-platform Windows Classic look and feel.
@@ -49,6 +53,9 @@ public class BaseGUI extends JFrame {
 		
 		
 	}
+	/**
+	 * 
+	 */
 	private void GUIComponents() {
 		getContentPane().setLayout(new BorderLayout());
 		getContentPane().setBackground(new Color( 200, 200, 200));//left side bar color
@@ -161,7 +168,77 @@ public class BaseGUI extends JFrame {
 		private class RecordListener implements ActionListener {
 			@Override
 		    public void actionPerformed(ActionEvent event) {
-				
+				  
+			    int correctFile = fileChooser.showOpenDialog(BaseGUI.this);
+			        
+			    if(correctFile == JFileChooser.APPROVE_OPTION)
+			    {
+			    	try
+			    	{    			
+			    		FileWriter recordWriter = new FileWriter(fileChooser.getSelectedFile());
+			    		recordWriter.write("Record: The Current State of Grade Analyzer." );
+			    		recordWriter.write(System.getProperty( "line.separator" ));
+			    		recordWriter.write(System.getProperty( "line.separator" ));
+			    		recordWriter.write("Maximum Possible Grade: " + calculations.getMaxPossible());
+			    		recordWriter.write(System.getProperty( "line.separator" ));
+			    		recordWriter.write("Minimum Possible Grade: " + calculations.getMinPossible());
+			    		recordWriter.write(System.getProperty( "line.separator" ));
+			    		recordWriter.write(System.getProperty( "line.separator" ));
+			    		recordWriter.write("Maximum Grade recieved: " + calculations.getMaxEarned());
+			    		recordWriter.write(System.getProperty( "line.separator" ));
+			    		recordWriter.write("Minimum Grade recieved: " + calculations.getMinEarned());
+			    		recordWriter.write(System.getProperty( "line.separator" ));
+			    		recordWriter.write("Average Grade recieved: " + calculations.getAverage());
+			    		recordWriter.write(System.getProperty( "line.separator" ));
+			    		recordWriter.write("Median Grade: " + calculations.getMedian());
+			    		recordWriter.write(System.getProperty( "line.separator" ));
+			    		recordWriter.write(System.getProperty( "line.separator" ));
+			    		// start of A range
+			    		recordWriter.write("A Range is: 100" + " to: ");
+			    		recordWriter.write(System.getProperty( "line.separator" ));
+			    		recordWriter.write("Percent of students in A range: ");
+			    		recordWriter.write(System.getProperty( "line.separator" ));
+			    		recordWriter.write("Number of students in A range: ");
+			    		recordWriter.write(System.getProperty( "line.separator" ));
+			    		recordWriter.write(System.getProperty( "line.separator" ));
+			    		//start of B range
+			    		recordWriter.write("B Range is: " + " to: ");
+			    		recordWriter.write(System.getProperty( "line.separator" ));
+			    		recordWriter.write("Percent of students in B range: ");
+			    		recordWriter.write(System.getProperty( "line.separator" ));
+			    		recordWriter.write("Number of students in B range: ");
+			    		recordWriter.write(System.getProperty( "line.separator" ));
+			    		//Start of C range
+			    		recordWriter.write("C Range is: " + " to: ");
+			    		recordWriter.write(System.getProperty( "line.separator" ));
+			    		recordWriter.write("Percent of students in C range: ");
+			    		recordWriter.write(System.getProperty( "line.separator" ));
+			    		recordWriter.write("Number of students in C range: ");
+			    		recordWriter.write(System.getProperty( "line.separator" ));
+			    		//Start of D range
+			    		recordWriter.write("D Range is: " + " to: ");
+			    		recordWriter.write(System.getProperty( "line.separator" ));
+			    		recordWriter.write("Percent of students in D range: ");
+			    		recordWriter.write(System.getProperty( "line.separator" ));
+			    		recordWriter.write("Number of students in D range: ");
+			    		recordWriter.write(System.getProperty( "line.separator" ));
+			    		//Start of E range
+			    		recordWriter.write("E Range is: " + " to: 0");
+			    		recordWriter.write(System.getProperty( "line.separator" ));
+			    		recordWriter.write("Percent of students in E range: ");
+			    		recordWriter.write(System.getProperty( "line.separator" ));
+			    		recordWriter.write("Number of students in E range: ");
+			    		recordWriter.write(System.getProperty( "line.separator" ));
+			    		
+			    		
+			    		recordWriter.close();
+			    	}
+			    	catch(IOException ex)
+			    	{
+			    		ex.printStackTrace();
+			    	}
+			    }
+
 			}
 		} 
 		
