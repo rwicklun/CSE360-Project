@@ -16,6 +16,24 @@ import java.text.NumberFormat;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 
+/**
+ * Percentile Panel
+ *  	Takes input from user and displays relevant percentile information
+ * 
+ * Allows user to select what score would be used as max (possible or earned)
+ * 
+ * Allows input of custom grade ranges
+ *  	Based on grade ranges, for each grade, displays percent of class receiving each grade
+ *  	and displays the amount of students receiving each grade
+ *  
+ * Allows input to calculate if user wants to see top N% of class or bottom N% of class
+ *  	Displays the grade required to be in percent range and students in range
+ *  
+ * Allows input of desired percentile and outputs amount of students within that percentile
+ * 
+ * @author Steven Situ
+ * 
+ */
 @SuppressWarnings("serial")
 public class PercentilePanel extends JPanel {
 	
@@ -76,9 +94,11 @@ public class PercentilePanel extends JPanel {
 	private int percentile;
 	private int stuInPercentile;
 
-	
 	/**
 	 * GUI for the Percentile Panel
+	 *  	Constructor for the visual elements of the percentile tab
+	 *  
+	 * @param calculationsIn 	Calculations object for all calculated values and methods
 	 */
 	public PercentilePanel(Calculations calculationsIn) {
 		
@@ -699,6 +719,10 @@ public class PercentilePanel extends JPanel {
 		
 	}
 
+	/**
+	 * Revalidates and repaints each of the panels that contain changing elements
+	 * Method used in all buttons
+	 */
 	private void refreshPanels() {
 		pnlSetGradeMax.revalidate();
 		pnlSetGradeMax.repaint();
@@ -714,6 +738,10 @@ public class PercentilePanel extends JPanel {
 		pnlPercentile.repaint();
 	}
 	
+	/**
+	 * Updates all text and label elements after calculations
+	 * Used in all buttons to update after user input
+	 */
 	private void updatePanels() {
 		calculations.refreshRoundedArray();
 		
