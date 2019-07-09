@@ -76,6 +76,7 @@ public class PercentilePanel extends JPanel {
 	private JTextField txtStuInPercentile;
 	private JTextField txtSetPercentile;
 	
+	private boolean fail = false;
 	private int stuCountArray[] = new int[5];
 	
 	private int percentA;
@@ -713,7 +714,7 @@ public class PercentilePanel extends JPanel {
 		gbc_btnPercentileUpdate.gridx = 0;
 		gbc_btnPercentileUpdate.gridy = 11;
 		add(btnPercentileUpdate, gbc_btnPercentileUpdate);
-		btnPercentileUpdate.addActionListener(new updatePercentileButton());
+		btnPercentileUpdate.addActionListener(new updateButtonListener());
 		
 		// End of Percentile Tab GUI
 		
@@ -766,6 +767,12 @@ public class PercentilePanel extends JPanel {
 		}
 	}
 	
+	/**
+	 * Button listener for Possible button
+	 * Sets max used for calculations to the max possible score
+	 * 
+	 * @author Steven Situ
+	 */
 	private class maxPossibleListener implements ActionListener {
 		 @Override
 		 public void actionPerformed(ActionEvent event) {
@@ -776,6 +783,12 @@ public class PercentilePanel extends JPanel {
 		 }
 	}
 	
+	/**
+	 * Button listener for Earned button
+	 * Sets max used for calculations to the max score earned
+	 * 
+	 * @author Steven Situ
+	 */
 	private class maxEarnedListener implements ActionListener {
 		 @Override
 		 public void actionPerformed(ActionEvent event) {
@@ -786,14 +799,23 @@ public class PercentilePanel extends JPanel {
 		 }
 	}
 	
-	private class updatePercentileButton implements ActionListener {
+	/**
+	 * Button listener for Update button
+	 * Takes in all entered fields and updates results
+	 * 
+	 * @author Steven Situ
+	 */
+	private class updateButtonListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent event) {
 			updatePanels();
 		}
 	}
-	private boolean fail = false;
 	
+	/**
+	 * Takes in the values entered in custom grade ranges section
+	 * Check the inputs and if valid sends them to calculations object
+	 */
 	private void inputCustomGradeRanges() {
 		int prevPercentA = percentA;
 		int prevPercentB = percentB;
@@ -821,6 +843,7 @@ public class PercentilePanel extends JPanel {
 			txtSetGradeD.setText(prevPercentD + "");
 		}
 		
+		// Checks that letters are in correct range if wrong reverts to previous valid input
 		if (percentA > 100 || percentA < percentB) {
 			error.setString("Make sure the percent for A is less than 100 and greater than B");
 			error.setVisible(true);
@@ -849,13 +872,15 @@ public class PercentilePanel extends JPanel {
 			txtSetGradeD.setText(prevPercentD + "");
 			fail = true;
 		}
-		
 		calculations.setGradePercent('A', percentA);
 		calculations.setGradePercent('B', percentB);
 		calculations.setGradePercent('C', percentC);
 		calculations.setGradePercent('D', percentD);
 	}
 	
+	/**
+	 * Updates labels with new text and results in Grade Distribution section
+	 */
 	private void updateGradeDistribText() {
 		gradeDistributA = calculations.getGradeDistribution('A');
 		gradeDistributB = calculations.getGradeDistribution('B');
@@ -870,6 +895,9 @@ public class PercentilePanel extends JPanel {
 		changeGradeDistrLabel(lblGradeDistributionE, "E", gradeDistributE);
 	}
 	
+	/**
+	 * 
+	 */
 	private void updateStuCountText() {
 		changeStuCountLabel(lblStuPerGradeA, "A", stuCountArray[0]);
 		changeStuCountLabel(lblStuPerGradeB, "B", stuCountArray[1]);
