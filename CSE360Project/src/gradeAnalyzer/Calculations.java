@@ -387,6 +387,10 @@ public class Calculations {
 		return stuCountArray;		
 	}
 	
+	/**
+	 * Calculates the grade distribution based on how many students 
+	 * earned each letter grade and the total amount of students
+	 */
 	public void setGradeDistResults() {
 		gradeDistributA = 100 * stuCountArray[0] / stuCount;
 		gradeDistributB = 100 * stuCountArray[1] / stuCount;
@@ -395,6 +399,12 @@ public class Calculations {
 		gradeDistributE = 100 * stuCountArray[4] / stuCount;
 	}
 	
+	/**
+	 * Returns the grade distributions percent based on the letter grade put in as a parameter
+	 * 
+	 * @param letterIn	Tells what letter grade want results returned for
+	 * @return	float of grade distribution percent based on parameter
+	 */
 	public int getGradeDistribution(char letterIn) {
 		float output = 0;
 		switch (letterIn) {
@@ -417,8 +427,11 @@ public class Calculations {
 		return Math.round(output);
 	}
 	
-	
-	
+	/**
+	 * Checks to see if there are any grades entered and will produce error message if no list
+	 * 
+	 * @return	Boolean of true->grades exist false->no grades entered
+	 */
 	public boolean checkGradesExist() {
 		boolean fail = false;
 		if (stuCount <= 0) {
@@ -429,6 +442,13 @@ public class Calculations {
 		return fail;
 	}
 	
+	/**
+	 * Set variables with the values of topPercent and botPercent
+	 * Set based on parameter input values user entered
+	 * 
+	 * @param percentIn	The value of the percent being stored in calculations
+	 * @param topBotIn	1=store in topPercent, 0=store in botPercent
+	 */
 	public void setTopBotPercent(int percentIn, int topBotIn) {
 		// enter 1 for top and 0 for bottom
 		switch (topBotIn) {
@@ -439,13 +459,22 @@ public class Calculations {
 		}
 	}
 	
-	// Number of students above input percent
+	/**
+	 * Calculates the number of students above input percent
+	 * 
+	 * @return int Amount of students in top __ percent
+	 */
 	public int stuTopPercent() {
 		double stuAbove = roundedArray.length * topPercent / 100.0;
 		stuAbovePercent = (int)Math.ceil(stuAbove);
 		return stuAbovePercent;
 	}
-	// score required to be in top percent given in stuAboveTop
+
+	/**
+	 * 	Finds score required to be in top __ percent given in stuTopPercent
+	 * 
+	 * @return	int the score required to be in top ___ percent
+	 */
 	public int scoreAboveTop() {
 		int inverseStuAbove = roundedArray.length - stuAbovePercent;
 		for (int index = roundedArray.length - 1; index > inverseStuAbove - 1; index --) {
@@ -453,13 +482,23 @@ public class Calculations {
 		}
 		return topPercentileScore;
 	}
-	// number of students below input percent
+	
+	/**
+	 * Calculates the number of students below input percent
+	 * 
+	 * @return int Amount of students in bottom __ percent
+	 */
 	public int stuBotPercent() {
 		double stuBelow = roundedArray.length * botPercent / 100.0;
 		stuBelowPercent = (int)Math.ceil(stuBelow);
 			return stuBelowPercent;
 	}
-	//score required to be in bottom percent given in stuBelowBot
+	
+	/**
+	 * 	Finds score required to be in bottom __ percent given in stuBotPercent
+	 * 
+	 * @return	int the score required to be in top ___ percent
+	 */
 	public int scoreBelowBot() {
 		for (int index = 0; index < stuBelowPercent; index ++) {
 			botPercentileScore = roundedArray[index];
@@ -467,10 +506,20 @@ public class Calculations {
 		return botPercentileScore;
 	}
 
+	/**
+	 * Sets and stores the percentile from user input
+	 * 
+	 * @param percentileIn	int value from user
+	 */
 	public void setPercentile(int percentileIn) {
 		percentile = percentileIn;
 	}
 	
+	/**
+	 * Calculates amount of students in the percentile provided by user
+	 * 
+	 * @return int number of students in selected percentile
+	 */
 	public int giveStuInPercentile() {
 		int invPercentile = 100 - percentile;
 		double stuPercentileDouble = roundedArray.length * invPercentile / 100.0;
