@@ -22,11 +22,15 @@ public class PercentilePanel extends JPanel {
 	private Calculations calculations;
 	private ErrorPanel error = new ErrorPanel();
 	
+	private JPanel pnlSetGradeMax;
 	private JPanel pnlSetGradeRange;
 	private JPanel pnlGradeDistribution;
 	private JPanel pnlStudentsPerGrade;
 	private JPanel pnlSetPercentile;
 	private JPanel pnlGivePercent;
+	private JPanel pnlPercentile;
+	
+	private JLabel lblMaxScoreNumber;
 	
 	private JLabel lblGradeDistributionA;
 	private JLabel lblGradeDistributionB;
@@ -51,12 +55,15 @@ public class PercentilePanel extends JPanel {
 	private JTextField txtSetGradeD;
 	private JTextField txtSetTop_Value;
 	private JTextField txtSetBottom_Value;
+	private JTextField txtStuInPercentile;
+	private JTextField txtSetPercentile;
+	
+	private int stuCountArray[] = new int[5];
 	
 	private int percentA;
 	private int percentB;
 	private int percentC;
 	private int percentD;
-	private int percentE;
 	
 	private float gradeDistributA;
 	private float gradeDistributB;
@@ -66,11 +73,9 @@ public class PercentilePanel extends JPanel {
 	
 	private int topPercent;
 	private int botPercent;
-	
-	private int stuCountArray[] = new int[5];
-	private int stuCount;
-	private JTextField textField;
-	private JTextField textField_1;
+	private int percentile;
+	private int stuInPercentile;
+
 	
 	/**
 	 * GUI for the Percentile Panel
@@ -101,33 +106,33 @@ public class PercentilePanel extends JPanel {
 		lblSetGradeScore.setHorizontalAlignment(SwingConstants.LEFT);
 		
 		// Panel for Set Max section
-		JPanel pnlSetGradeRangeLabel = new JPanel();
-		GridBagConstraints gbc_pnlSetGradeRangeLabel = new GridBagConstraints();
-		gbc_pnlSetGradeRangeLabel.insets = new Insets(0, 0, 5, 0);
-		gbc_pnlSetGradeRangeLabel.fill = GridBagConstraints.VERTICAL;
-		gbc_pnlSetGradeRangeLabel.gridx = 0;
-		gbc_pnlSetGradeRangeLabel.gridy = 1;
-		add(pnlSetGradeRangeLabel, gbc_pnlSetGradeRangeLabel);
-		GridBagLayout gbl_pnlSetGradeRangeLabel = new GridBagLayout();
-		gbl_pnlSetGradeRangeLabel.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0};
-		gbl_pnlSetGradeRangeLabel.rowHeights = new int[]{14, 0};
-		gbl_pnlSetGradeRangeLabel.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		gbl_pnlSetGradeRangeLabel.rowWeights = new double[]{0.0, Double.MIN_VALUE};
-		pnlSetGradeRangeLabel.setLayout(gbl_pnlSetGradeRangeLabel);
+		pnlSetGradeMax = new JPanel();
+		GridBagConstraints gbc_pnlSetGradeMax = new GridBagConstraints();
+		gbc_pnlSetGradeMax.insets = new Insets(0, 0, 5, 0);
+		gbc_pnlSetGradeMax.fill = GridBagConstraints.VERTICAL;
+		gbc_pnlSetGradeMax.gridx = 0;
+		gbc_pnlSetGradeMax.gridy = 1;
+		add(pnlSetGradeMax, gbc_pnlSetGradeMax);
+		GridBagLayout gbl_pnlSetGradeMax = new GridBagLayout();
+		gbl_pnlSetGradeMax.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0};
+		gbl_pnlSetGradeMax.rowHeights = new int[]{14, 0};
+		gbl_pnlSetGradeMax.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_pnlSetGradeMax.rowWeights = new double[]{0.0, Double.MIN_VALUE};
+		pnlSetGradeMax.setLayout(gbl_pnlSetGradeMax);
 		
 		JLabel lblMaxScoreLabel = new JLabel("Max Score:");
 		GridBagConstraints gbc_lblMaxScoreLabel = new GridBagConstraints();
 		gbc_lblMaxScoreLabel.insets = new Insets(0, 0, 0, 5);
 		gbc_lblMaxScoreLabel.gridx = 0;
 		gbc_lblMaxScoreLabel.gridy = 0;
-		pnlSetGradeRangeLabel.add(lblMaxScoreLabel, gbc_lblMaxScoreLabel);
+		pnlSetGradeMax.add(lblMaxScoreLabel, gbc_lblMaxScoreLabel);
 		
-		JLabel lblMaxScoreNumber = new JLabel("0");
+		lblMaxScoreNumber = new JLabel("0");
 		GridBagConstraints gbc_lblMaxScoreNumber = new GridBagConstraints();
 		gbc_lblMaxScoreNumber.insets = new Insets(0, 0, 0, 5);
 		gbc_lblMaxScoreNumber.gridx = 1;
 		gbc_lblMaxScoreNumber.gridy = 0;
-		pnlSetGradeRangeLabel.add(lblMaxScoreNumber, gbc_lblMaxScoreNumber);
+		pnlSetGradeMax.add(lblMaxScoreNumber, gbc_lblMaxScoreNumber);
 		
 		// Label for Set max section
 		JLabel lblSetMaxBased = new JLabel("Set Max based on:");
@@ -136,7 +141,7 @@ public class PercentilePanel extends JPanel {
 		gbc_lblSetMaxBased.insets = new Insets(0, 5, 0, 5);
 		gbc_lblSetMaxBased.gridx = 3;
 		gbc_lblSetMaxBased.gridy = 0;
-		pnlSetGradeRangeLabel.add(lblSetMaxBased, gbc_lblSetMaxBased);
+		pnlSetGradeMax.add(lblSetMaxBased, gbc_lblSetMaxBased);
 		
 		// Max possible button
 		JButton btnPossible = new JButton("Possible");
@@ -144,7 +149,7 @@ public class PercentilePanel extends JPanel {
 		gbc_btnPossible.insets = new Insets(0, 0, 0, 5);
 		gbc_btnPossible.gridx = 4;
 		gbc_btnPossible.gridy = 0;
-		pnlSetGradeRangeLabel.add(btnPossible, gbc_btnPossible);
+		pnlSetGradeMax.add(btnPossible, gbc_btnPossible);
 		btnPossible.addActionListener(new maxPossibleListener());
 		
 		// Max earned button
@@ -152,7 +157,7 @@ public class PercentilePanel extends JPanel {
 		GridBagConstraints gbc_btnEarned = new GridBagConstraints();
 		gbc_btnEarned.gridx = 5;
 		gbc_btnEarned.gridy = 0;
-		pnlSetGradeRangeLabel.add(btnEarned, gbc_btnEarned);
+		pnlSetGradeMax.add(btnEarned, gbc_btnEarned);
 		btnEarned.addActionListener(new maxEarnedListener());
 		
 		
@@ -612,7 +617,9 @@ public class PercentilePanel extends JPanel {
 		gbc_lblDispStuBelow_Value.gridy = 1;
 		pnlGivePercent.add(lblDispStuBelow_Value, gbc_lblDispStuBelow_Value);
 		
-		JPanel pnlPercentile = new JPanel();
+		
+		// Percentile section
+		pnlPercentile = new JPanel();
 		GridBagConstraints gbc_pnlPercentile = new GridBagConstraints();
 		gbc_pnlPercentile.anchor = GridBagConstraints.SOUTH;
 		gbc_pnlPercentile.insets = new Insets(0, 0, 5, 0);
@@ -634,16 +641,16 @@ public class PercentilePanel extends JPanel {
 		gbc_lblThereAre.gridy = 0;
 		pnlPercentile.add(lblThereAre, gbc_lblThereAre);
 		
-		textField = new JTextField();
-		textField.setHorizontalAlignment(SwingConstants.CENTER);
-		textField.setText("0");
+		txtStuInPercentile = new JTextField();
+		txtStuInPercentile.setHorizontalAlignment(SwingConstants.CENTER);
+		txtStuInPercentile.setText("0");
 		GridBagConstraints gbc_textField = new GridBagConstraints();
 		gbc_textField.insets = new Insets(0, 0, 0, 5);
 		gbc_textField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textField.gridx = 1;
 		gbc_textField.gridy = 0;
-		pnlPercentile.add(textField, gbc_textField);
-		textField.setColumns(3);
+		pnlPercentile.add(txtStuInPercentile, gbc_textField);
+		txtStuInPercentile.setColumns(3);
 		
 		JLabel lblStudentsInThe = new JLabel("students in the");
 		GridBagConstraints gbc_lblStudentsInThe = new GridBagConstraints();
@@ -653,16 +660,16 @@ public class PercentilePanel extends JPanel {
 		gbc_lblStudentsInThe.gridy = 0;
 		pnlPercentile.add(lblStudentsInThe, gbc_lblStudentsInThe);
 		
-		textField_1 = new JTextField();
-		textField_1.setHorizontalAlignment(SwingConstants.CENTER);
-		textField_1.setText("0");
+		txtSetPercentile = new JTextField();
+		txtSetPercentile.setHorizontalAlignment(SwingConstants.CENTER);
+		txtSetPercentile.setText("90");
 		GridBagConstraints gbc_textField_1 = new GridBagConstraints();
 		gbc_textField_1.insets = new Insets(0, 0, 0, 5);
 		gbc_textField_1.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textField_1.gridx = 3;
 		gbc_textField_1.gridy = 0;
-		pnlPercentile.add(textField_1, gbc_textField_1);
-		textField_1.setColumns(3);
+		pnlPercentile.add(txtSetPercentile, gbc_textField_1);
+		txtSetPercentile.setColumns(3);
 		
 		JLabel lblThPercentile = new JLabel("th percentile.");
 		GridBagConstraints gbc_lblThPercentile = new GridBagConstraints();
@@ -686,12 +693,53 @@ public class PercentilePanel extends JPanel {
 		
 	}
 
+	private void refreshPanels() {
+		pnlSetGradeMax.revalidate();
+		pnlSetGradeMax.repaint();
+		pnlSetGradeRange.revalidate();
+		pnlSetGradeRange.repaint();
+		pnlGradeDistribution.revalidate();
+		pnlGradeDistribution.repaint();
+		pnlStudentsPerGrade.revalidate();
+		pnlStudentsPerGrade.repaint();
+		pnlGivePercent.revalidate();
+		pnlGivePercent.repaint();
+		pnlPercentile.revalidate();
+		pnlPercentile.repaint();
+	}
+	
+	private void updatePanels() {
+		calculations.refreshRoundedArray();
+		
+		inputCustomGradeRanges();
+		fail = calculations.checkPercentOrder();
+		fail = calculations.checkGradesExist();
+		
+		if (fail == false) {
+			stuCountArray = calculations.countStuPerGrade();
+			
+			calculations.setGradeDistResults();
+			updateGradeDistribText();
+			updateStuCountText();
+			
+			inputTopBottomPercent();
+			updateScoreAboveText();
+			updateScoreBelowText();
+			
+			inputPercentile();
+			updateStuInPercentileText();
+			
+			refreshPanels();
+		}
+	}
 	
 	private class maxPossibleListener implements ActionListener {
 		 @Override
 		 public void actionPerformed(ActionEvent event) {
 			 calculations.refreshRoundedArray();
 			 calculations.setMaxInUseToPossible();
+			 lblMaxScoreNumber.setText(calculations.giveMaxInUse() + "");
+			 updatePanels();
 		 }
 	}
 	
@@ -700,131 +748,132 @@ public class PercentilePanel extends JPanel {
 		 public void actionPerformed(ActionEvent event) {
 			 calculations.refreshRoundedArray();
 			 calculations.setMaxInUseToEarned();
+			 lblMaxScoreNumber.setText(calculations.giveMaxInUse() + "");
+			 updatePanels();
 		 }
 	}
 	
 	private class updatePercentileButton implements ActionListener {
-		private boolean fail = false;
-		
 		@Override
 		public void actionPerformed(ActionEvent event) {
-			calculations.refreshRoundedArray();
-			stuCount = calculations.studentCount();
-			
-			inputCustomGradeRanges();
-			fail = calculations.checkPercentOrder();
-			fail = calculations.checkGradesExist();
-			
-			if (fail == false) {
-				stuCountArray = calculations.countStuPerGrade();
-				
-				calculations.setGradeDistResults();
-				updateGradeDistribText();
-				updateStuCountText();
-				
-				inputTopBottomPercent();
-				updateScoreAboveText();
-				updateScoreBelowText();
-				
-				refreshPanels();
-			}
+			updatePanels();
 		}
+	}
+	private boolean fail = false;
+	
+	private void inputCustomGradeRanges() {
+		try {
+			percentA = Integer.parseInt(txtSetGradeA.getText());
+			percentB = Integer.parseInt(txtSetGradeB.getText());
+			percentC = Integer.parseInt(txtSetGradeC.getText());
+			percentD = Integer.parseInt(txtSetGradeD.getText());
+		}
+		catch (NumberFormatException exception){
+            // Input not a number.
+            error.setString("Set custom grade range input is not an integer. \nPlease input only integers.");
+            error.setVisible(true);
+		}
+		calculations.setGradePercent('A', percentA);
+		calculations.setGradePercent('B', percentB);
+		calculations.setGradePercent('C', percentC);
+		calculations.setGradePercent('D', percentD);
+	}
+	
+	private void updateGradeDistribText() {
+		gradeDistributA = calculations.getGradeDistribution('A');
+		gradeDistributB = calculations.getGradeDistribution('B');
+		gradeDistributC = calculations.getGradeDistribution('C');
+		gradeDistributD = calculations.getGradeDistribution('D');
+		gradeDistributE = calculations.getGradeDistribution('E');
 		
-		private void inputCustomGradeRanges() {
-			try {
-				percentA = Integer.parseInt(txtSetGradeA.getText());
-				percentB = Integer.parseInt(txtSetGradeB.getText());
-				percentC = Integer.parseInt(txtSetGradeC.getText());
-				percentD = Integer.parseInt(txtSetGradeD.getText());
-			}
-			catch (NumberFormatException exception){
-                // Input not a number.
-                error.setString("Set custom grade range input is not an integer. \nPlease input only integers.");
-                error.setVisible(true);
-			}
-			calculations.setGradePercent('A', percentA);
-			calculations.setGradePercent('B', percentB);
-			calculations.setGradePercent('C', percentC);
-			calculations.setGradePercent('D', percentD);
-		}
-		
-		private void updateGradeDistribText() {
-			gradeDistributA = calculations.getGradeDistribution('A');
-			gradeDistributB = calculations.getGradeDistribution('B');
-			gradeDistributC = calculations.getGradeDistribution('C');
-			gradeDistributD = calculations.getGradeDistribution('D');
-			gradeDistributE = calculations.getGradeDistribution('E');
-			
-			changeGradeDistrLabel(lblGradeDistributionA, "A", gradeDistributA);
-			changeGradeDistrLabel(lblGradeDistributionB, "B", gradeDistributB);
-			changeGradeDistrLabel(lblGradeDistributionC, "C", gradeDistributC);
-			changeGradeDistrLabel(lblGradeDistributionD, "D", gradeDistributD);
-			changeGradeDistrLabel(lblGradeDistributionE, "E", gradeDistributE);
-		}
-		
-		private void updateStuCountText() {
-			changeStuCountLabel(lblStuPerGradeA, "A", stuCountArray[0]);
-			changeStuCountLabel(lblStuPerGradeB, "B", stuCountArray[1]);
-			changeStuCountLabel(lblStuPerGradeC, "C", stuCountArray[2]);
-			changeStuCountLabel(lblStuPerGradeD, "D", stuCountArray[3]);
-			changeStuCountLabel(lblStuPerGradeE, "E", stuCountArray[4]);
-		}
-		
-		/**
-		 * Formats text to be sent to label.setText for Grade Distribution 
-		 * In the form of "A: 20%"
-		 * 
-		 * @param label		JLabel that will have text changed
-		 * @param letter	Grade letter to be set into string
-		 * @param percent	float Percent to be associated with letter
-		 */
-		private void changeGradeDistrLabel(JLabel label, String letter, float percent) {
-			label.setText(letter + ": " + percent + "%");
-		}
-		
-		private void changeStuCountLabel(JLabel label, String letter, int count) {
-			label.setText(letter + ": " + count);
-		}
+		changeGradeDistrLabel(lblGradeDistributionA, "A", gradeDistributA);
+		changeGradeDistrLabel(lblGradeDistributionB, "B", gradeDistributB);
+		changeGradeDistrLabel(lblGradeDistributionC, "C", gradeDistributC);
+		changeGradeDistrLabel(lblGradeDistributionD, "D", gradeDistributD);
+		changeGradeDistrLabel(lblGradeDistributionE, "E", gradeDistributE);
+	}
+	
+	private void updateStuCountText() {
+		changeStuCountLabel(lblStuPerGradeA, "A", stuCountArray[0]);
+		changeStuCountLabel(lblStuPerGradeB, "B", stuCountArray[1]);
+		changeStuCountLabel(lblStuPerGradeC, "C", stuCountArray[2]);
+		changeStuCountLabel(lblStuPerGradeD, "D", stuCountArray[3]);
+		changeStuCountLabel(lblStuPerGradeE, "E", stuCountArray[4]);
+	}
+	
+	/**
+	 * Formats text to be sent to label.setText for Grade Distribution 
+	 * In the form of "A: 20%"
+	 * 
+	 * @param label		JLabel that will have text changed
+	 * @param letter	Grade letter to be set into string
+	 * @param percent	float Percent to be associated with letter
+	 */
+	private void changeGradeDistrLabel(JLabel label, String letter, float percent) {
+		label.setText(letter + ": " + percent + "%");
+	}
+	
+	private void changeStuCountLabel(JLabel label, String letter, int count) {
+		label.setText(letter + ": " + count);
+	}
 
-		private void inputTopBottomPercent() {
-			try {
-				topPercent = Integer.parseInt(txtSetTop_Value.getText());
-				botPercent = Integer.parseInt(txtSetBottom_Value.getText());
-			}
-			catch (NumberFormatException exception){
-                // Input not a number.
-                error.setString("Percentile input is not an integer. \nPlease input only integers.");
-                error.setVisible(true);
-			}
-			calculations.setTopBotPercent(topPercent, 1);
-			calculations.setTopBotPercent(botPercent, 0);
+	private void inputTopBottomPercent() {
+		try {
+			topPercent = Integer.parseInt(txtSetTop_Value.getText());
+			botPercent = Integer.parseInt(txtSetBottom_Value.getText());
 		}
-		
-		private void updateScoreAboveText() {
-			int stuAbove = calculations.stuTopPercent();
-			lblDispStuAbove_Value.setText("" + stuAbove);
+		catch (NumberFormatException exception){
+            // Input not a number.
+            error.setString("Percent input is not an integer. \nPlease input only integers.");
+            error.setVisible(true);
+		}
+		if (topPercent > 100 || topPercent < 0) {
+			error.setString("Percent input must be between 100 and 0.");
+            error.setVisible(true);
+		}
+		if (botPercent > 100 || botPercent < 0) {
+			error.setString("Percent input must be between 100 and 0.");
+            error.setVisible(true);
+		}
 			
-			int topScore = calculations.scoreAboveTop();
-			lblDispScoAbove_Score.setText(topScore + "%");
-		}
+		calculations.setTopBotPercent(topPercent, 1);
+		calculations.setTopBotPercent(botPercent, 0);
+	}
+	
+	private void updateScoreAboveText() {
+		int stuAbove = calculations.stuTopPercent();
+		lblDispStuAbove_Value.setText("" + stuAbove);
 		
-		private void updateScoreBelowText() {
-			int stuBelow = calculations.stuBotPercent();
-			lblDispStuBelow_Value.setText("" + stuBelow);
-			
-			int botScore = calculations.scoreBelowBot();
-			lblDispScoBelow_Score.setText(botScore + "%");
-		}
+		int topScore = calculations.scoreAboveTop();
+		lblDispScoAbove_Score.setText(topScore + "%");
+	}
+	
+	private void updateScoreBelowText() {
+		int stuBelow = calculations.stuBotPercent();
+		lblDispStuBelow_Value.setText("" + stuBelow);
 		
-		private void refreshPanels() {
-			pnlSetGradeRange.revalidate();
-			pnlSetGradeRange.repaint();
-			pnlGradeDistribution.revalidate();
-			pnlGradeDistribution.repaint();
-			pnlStudentsPerGrade.revalidate();
-			pnlStudentsPerGrade.repaint();
-			pnlGivePercent.revalidate();
-			pnlGivePercent.repaint();
+		int botScore = calculations.scoreBelowBot();
+		lblDispScoBelow_Score.setText(botScore + "%");
+	}
+	
+	private void inputPercentile() {
+		try {
+			percentile = Integer.parseInt(txtSetPercentile.getText());
 		}
+		catch (NumberFormatException exception){
+            // Input not a number.
+            error.setString("Percent input is not an integer. \nPlease input only integers.");
+            error.setVisible(true);
+		}
+		if (percentile > 99 || percentile < 1) {
+			error.setString("Percentile input must be between 99 and 1.");
+            error.setVisible(true);
+		}
+		calculations.setPercentile(percentile);
+	}
+	
+	private void updateStuInPercentileText() {
+		stuInPercentile = calculations.giveStuInPercentile();
+		txtStuInPercentile.setText(stuInPercentile + "");
 	}
 }

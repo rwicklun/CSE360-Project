@@ -45,7 +45,8 @@ public class Calculations {
 	
 	private int topPercent;
 	private int botPercent;
-
+	private int percentile;
+	private int stuPercentile;
 	
 	public void setLinkedLists (LinkedList<Float> floatListIn, LinkedList<Integer> roundedListIn) {
 		floatList = floatListIn;
@@ -306,6 +307,10 @@ public class Calculations {
 		}
 	}
 	
+	public int giveMaxInUse() {
+		return maxInUse;
+	}
+	
 	public void setGradePercent(char letterIn, int gradeIn) {
 		switch (letterIn) {
 		case 'A':
@@ -459,11 +464,8 @@ public class Calculations {
 	
 	// Number of students above input percent
 	public int stuTopPercent() {
-		float stuAbove = roundedArray.length * topPercent / 100;
+		double stuAbove = roundedArray.length * topPercent / 100.0;
 		stuAbovePercent = (int)Math.ceil(stuAbove);
-		if (stuAbovePercent == 0) {
-			stuAbovePercent = 1;
-		}
 		return stuAbovePercent;
 	}
 	// score required to be in top percent given in stuAboveTop
@@ -476,11 +478,8 @@ public class Calculations {
 	}
 	// number of students below input percent
 	public int stuBotPercent() {
-		float stuBelow = roundedArray.length * botPercent / 100;
+		double stuBelow = roundedArray.length * botPercent / 100.0;
 		stuBelowPercent = (int)Math.ceil(stuBelow);
-		if (stuBelowPercent == 0) {
-			stuBelowPercent = 1;
-		}
 			return stuBelowPercent;
 	}
 	//score required to be in bottom percent given in stuBelowBot
@@ -491,6 +490,16 @@ public class Calculations {
 		return botPercentileScore;
 	}
 
+	public void setPercentile(int percentileIn) {
+		percentile = percentileIn;
+	}
+	
+	public int giveStuInPercentile() {
+		int invPercentile = 100 - percentile;
+		double stuPercentileDouble = roundedArray.length * invPercentile / 100.0;
+		stuPercentile = (int)Math.ceil(stuPercentileDouble);
+		return stuPercentile;
+	}
 	
 // End Percentile only ----------------------------------------------------------------------------
 }
