@@ -323,7 +323,7 @@ public class BaseGUI extends JFrame {
 		    	}
 	    	} else if (event.getSource() == saveButton) {	
 			        
-			    int saveing = fileChooser.showOpenDialog(BaseGUI.this);
+			    int saveing = fileChooser.showSaveDialog(BaseGUI.this);
 			        
 			    if(saveing == JFileChooser.APPROVE_OPTION)
 			    {
