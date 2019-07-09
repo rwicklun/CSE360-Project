@@ -127,7 +127,7 @@ public class PercentilePanel extends JPanel {
 		gbc_lblMaxScoreLabel.gridy = 0;
 		pnlSetGradeMax.add(lblMaxScoreLabel, gbc_lblMaxScoreLabel);
 		
-		lblMaxScoreNumber = new JLabel("0");
+		lblMaxScoreNumber = new JLabel("100");
 		GridBagConstraints gbc_lblMaxScoreNumber = new GridBagConstraints();
 		gbc_lblMaxScoreNumber.insets = new Insets(0, 0, 0, 5);
 		gbc_lblMaxScoreNumber.gridx = 1;
