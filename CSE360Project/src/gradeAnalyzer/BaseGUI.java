@@ -239,7 +239,6 @@ public class BaseGUI extends JFrame {
 			    	{    			
 			    		FileWriter writer = new FileWriter(fileChooser.getSelectedFile());
 			    		floatList = calculations.getFloatList();
-			        	roundedList = new LinkedList<Integer>();
 			    		int Create = 0;
 				    	if (floatList != null) {
 				    		while(Create < floatList.size())
