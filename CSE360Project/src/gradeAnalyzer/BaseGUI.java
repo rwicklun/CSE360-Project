@@ -295,9 +295,8 @@ public class BaseGUI extends JFrame {
 									}
 									//gives the Calculations the LinkedLists
 									calculations.setLinkedLists(floatList, roundedList);
-									System.out.println("Float list: " + floatList); 
-									System.out.println("Rounded list: " + roundedList); 
-									calculations.printRoundedArray();
+									//System.out.println("Float list: " + floatList); 
+									//System.out.println("Rounded list: " + roundedList); 
 
 			                	} catch (InputMismatchException e) {
 			                		// Wrong input type exception
