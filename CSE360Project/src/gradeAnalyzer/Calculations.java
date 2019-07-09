@@ -286,6 +286,9 @@ public class Calculations {
 	
 // Start Percentile only --------------------------------------------------------------------------
 	
+	/**
+	 * Sets max used for percentile calculations to max possible
+	 */
 	public void setMaxInUseToPossible() {
 		if (roundedArray != null) {
 			maxInUse = maxPossible;
@@ -296,6 +299,9 @@ public class Calculations {
 		}
 	}
 	
+	/**
+	 * Sets max used for percentile calculations to max possible
+	 */
 	public void setMaxInUseToEarned() {
 		if (roundedArray != null) {
 			maxEarned = roundedArray[roundedArray.length - 1];
@@ -307,10 +313,21 @@ public class Calculations {
 		}
 	}
 	
+	/**
+	 * Returns the max currently used for calculations
+	 * 
+	 * @return maxInUse
+	 */
 	public int giveMaxInUse() {
 		return maxInUse;
 	}
 	
+	/**
+	 * Takes in letter and grade percent and sets each letter variable to the correct value
+	 * 
+	 * @param letterIn	A,B,C, or D to be used to set variable value
+	 * @param gradeIn	int percent 
+	 */
 	public void setGradePercent(char letterIn, int gradeIn) {
 		switch (letterIn) {
 		case 'A':
@@ -328,6 +345,11 @@ public class Calculations {
 		}
 	}
 	
+	/**
+	 * Counts the amount of students in each grade range and returns as int[]
+	 * 
+	 * @return int[] of the amount of students in each grade [0]=A, [1]=B, [2]=C, [3]=D, [4]=E
+	 */
 	public int[] countStuPerGrade() {
 		int countA = 0;
 		int countB = 0;
