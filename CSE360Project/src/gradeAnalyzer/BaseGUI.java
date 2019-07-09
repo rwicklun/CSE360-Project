@@ -117,6 +117,7 @@ public class BaseGUI extends JFrame {
         bottomPanel.setBackground(new Color( 200, 200, 200));
 
         fileChooser = new JFileChooser();
+		fileChooser.setAcceptAllFileFilterUsed(false);
         FileNameExtensionFilter filter = new FileNameExtensionFilter("TEXT FILES", "txt", "text");
         fileChooser.setFileFilter(filter);
         
@@ -228,9 +229,7 @@ public class BaseGUI extends JFrame {
 		    	} else {
 		    		//this is when the load box is closed or cancelled nothing needs to be done here.
 		    	}
-	    	} else if (event.getSource() == saveButton) {
-				fileChooser.setAcceptAllFileFilterUsed(false);
-			    fileChooser.setFileFilter(new FileNameExtensionFilter("Text Files Only", "txt", "text"));    	
+	    	} else if (event.getSource() == saveButton) {	
 			        
 			    int saveing = fileChooser.showOpenDialog(BaseGUI.this);
 			        
