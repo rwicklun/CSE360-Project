@@ -32,6 +32,9 @@ public class Calculations {
 		roundedArray = roundedList.toArray(new Integer[roundedList.size()]);
 		Arrays.sort(roundedArray);
 	}
+	public LinkedList<Float> getFloatList(){
+		return floatList;
+	}
 	public void refreshRoundedArray() {
 		if (roundedList != null) {
 			roundedArray = roundedList.toArray(new Integer[roundedList.size()]);
