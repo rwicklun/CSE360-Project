@@ -64,8 +64,8 @@ public class PercentilePanel extends JPanel {
 	private float gradeDistributD;
 	private float gradeDistributE;
 	
-	private int topPercentile;
-	private int botPercentile;
+	private int topPercent;
+	private int botPercent;
 	
 	private int stuCountArray[] = new int[5];
 	private int stuCount;
@@ -716,13 +716,13 @@ public class PercentilePanel extends JPanel {
 			fail = calculations.checkGradesExist();
 			
 			if (fail == false) {
-				stuCountArray = calculations.countStuPerGrade(percentA, percentB, percentC, percentD, percentE);
+				stuCountArray = calculations.countStuPerGrade();
 				
 				calculations.setGradeDistResults();
 				updateGradeDistribText();
 				updateStuCountText();
 				
-				inputTopBottomPercentile();
+				inputTopBottomPercent();
 				updateScoreAboveText();
 				updateScoreBelowText();
 				
@@ -749,6 +749,12 @@ public class PercentilePanel extends JPanel {
 		}
 		
 		private void updateGradeDistribText() {
+			gradeDistributA = calculations.getGradeDistribution('A');
+			gradeDistributB = calculations.getGradeDistribution('B');
+			gradeDistributC = calculations.getGradeDistribution('C');
+			gradeDistributD = calculations.getGradeDistribution('D');
+			gradeDistributE = calculations.getGradeDistribution('E');
+			
 			changeGradeDistrLabel(lblGradeDistributionA, "A", gradeDistributA);
 			changeGradeDistrLabel(lblGradeDistributionB, "B", gradeDistributB);
 			changeGradeDistrLabel(lblGradeDistributionC, "C", gradeDistributC);
@@ -780,20 +786,22 @@ public class PercentilePanel extends JPanel {
 			label.setText(letter + ": " + count);
 		}
 
-		private void inputTopBottomPercentile() {
+		private void inputTopBottomPercent() {
 			try {
-				topPercentile = Integer.parseInt(txtSetTop_Value.getText());
-				botPercentile = Integer.parseInt(txtSetBottom_Value.getText());
+				topPercent = Integer.parseInt(txtSetTop_Value.getText());
+				botPercent = Integer.parseInt(txtSetBottom_Value.getText());
 			}
 			catch (NumberFormatException exception){
                 // Input not a number.
                 error.setString("Percentile input is not an integer. \nPlease input only integers.");
                 error.setVisible(true);
 			}
+			calculations.setTopBotPercent(topPercent, 1);
+			calculations.setTopBotPercent(botPercent, 0);
 		}
 		
 		private void updateScoreAboveText() {
-			int stuAbove = calculations.stuAboveTop(topPercentile);
+			int stuAbove = calculations.stuAboveTop(topPercent);
 			lblDispStuAbove_Value.setText("" + stuAbove);
 			
 			int topScore = calculations.scoreAboveTop();
@@ -801,7 +809,7 @@ public class PercentilePanel extends JPanel {
 		}
 		
 		private void updateScoreBelowText() {
-			int stuBelow = calculations.stuBelowBot(botPercentile);
+			int stuBelow = calculations.stuBelowBot(botPercent);
 			lblDispStuBelow_Value.setText("" + stuBelow);
 			
 			int botScore = calculations.scoreBelowBot();

@@ -12,9 +12,11 @@ import java.util.*;
 public class Calculations {
 	
 	private ErrorPanel error = new ErrorPanel();
+	
 	private LinkedList<Float> floatList;
 	private LinkedList<Integer> roundedList;
 	private Integer roundedArray[];
+	
 	//default maximum set to 100
 	private int maxPossible = 100;
 	//default minimum set to 0
@@ -32,13 +34,17 @@ public class Calculations {
 	private float gradeDistributC;
 	private float gradeDistributD;
 	private float gradeDistributE;
+	
 	private int stuCount;
 	private int stuCountArray[] = new int[5];
 	
-	private int gradeAPercent;
-	private int gradeBPercent;
-	private int gradeCPercent;
-	private int gradeDPercent;
+	private int gradePercentA;
+	private int gradePercentB;
+	private int gradePercentC;
+	private int gradePercentD;
+	
+	private int topPercent;
+	private int botPercent;
 
 	
 	public void setLinkedLists (LinkedList<Float> floatListIn, LinkedList<Integer> roundedListIn) {
@@ -303,31 +309,31 @@ public class Calculations {
 	public void setGradePercent(char letterIn, int gradeIn) {
 		switch (letterIn) {
 		case 'A':
-			gradeAPercent = gradeIn;
+			gradePercentA = gradeIn;
 			break;
 		case 'B':
-			gradeBPercent = gradeIn;
+			gradePercentB = gradeIn;
 			break;
 		case 'C':
-			gradeCPercent = gradeIn;
+			gradePercentC = gradeIn;
 			break;
 		case 'D':
-			gradeDPercent = gradeIn;
+			gradePercentD = gradeIn;
 			break;
 		}
 	}
 	
-	public int[] countStuPerGrade(int percentA, int percentB, int percentC, int percentD, int percentE) {
+	public int[] countStuPerGrade() {
 		int countA = 0;
 		int countB = 0;
 		int countC = 0;
 		int countD = 0;
 		int countE = 0;
 
-		int scoreA = maxInUse * percentA / 100;
-		int scoreB = maxInUse * percentB / 100;
-		int scoreC = maxInUse * percentC / 100;
-		int scoreD = maxInUse * percentD / 100;
+		int scoreA = maxInUse * gradePercentA / 100;
+		int scoreB = maxInUse * gradePercentB / 100;
+		int scoreC = maxInUse * gradePercentC / 100;
+		int scoreD = maxInUse * gradePercentD / 100;
 		
 		for(int index = 0; index < roundedArray.length; index ++) {
 			if (roundedArray[index] <= scoreD) {
@@ -377,6 +383,9 @@ public class Calculations {
 		case 'D':
 			output = gradeDistributD;
 			break;
+		case 'E':
+			output = gradeDistributE;
+			break;
 		}
 		return Math.round(output);
 	}
@@ -384,19 +393,19 @@ public class Calculations {
 	public boolean checkPercentOrder() {
 		boolean fail = false;
 		
-		if (gradeAPercent > 100 || gradeAPercent < gradeBPercent) {
+		if (gradePercentA > 100 || gradePercentA < gradePercentB) {
 			gradeOrderError('A');
 			fail = true;
 		}
-		if (gradeBPercent > gradeAPercent || gradeBPercent < gradeCPercent) {
+		if (gradePercentB > gradePercentA || gradePercentB < gradePercentC) {
 			gradeOrderError('B');
 			fail = true;
 		}
-		if (gradeCPercent > gradeBPercent || gradeCPercent < gradeDPercent) {
+		if (gradePercentC > gradePercentB || gradePercentC < gradePercentD) {
 			gradeOrderError('C');
 			fail = true;
 		}
-		if (gradeDPercent > gradeCPercent) {
+		if (gradePercentD > gradePercentC) {
 			gradeOrderError('D');
 			fail = true;
 		}
@@ -438,6 +447,15 @@ public class Calculations {
 		return fail;
 	}
 	
+	public void setTopBotPercent(int percentIn, int topBotIn) {
+		// enter 1 for top and 0 for bottom
+		switch (topBotIn) {
+		case 1:
+			topPercent = percentIn;
+		case 0:
+			botPercent = percentIn;
+		}
+	}
 	
 	// Number of students above input percentile
 	public int stuAboveTop(int percentileIn) {
