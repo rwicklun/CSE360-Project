@@ -87,7 +87,7 @@ public class BaseGUI extends JFrame {
         			+ "\n\nThe Grade Percentiles Tab:"
         			+ "\nThis tab contains the distrubtion of A's, B's, C's etc. the count of students in a user set percentile, "
         			+ "and the count of students in each percentage range."
-        			+ "\n\nThe Create Record Button:"
+        			+ "\n\nThe Create Report Button:"
         			+ "\nThis button will generate a document that lists out all the data given by Grade Analyzer, with nothing loaded it will only "
         			+ "write out the categories."
         			+ "\n\n The Load Button:"
