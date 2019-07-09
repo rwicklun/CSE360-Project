@@ -25,9 +25,9 @@ public class Calculations {
 	
 	private int maxInUse = maxPossible;
 	private int topPercentileScore = 90;
-	private int stuAbovePercentile;
+	private int stuAbovePercent;
 	private int botPercentileScore = 0;
-	private int stuBelowPercentile;
+	private int stuBelowPercent;
 	
 	private float gradeDistributA;
 	private float gradeDistributB;
@@ -457,31 +457,30 @@ public class Calculations {
 		}
 	}
 	
-	// Number of students above input percentile
-	public int stuAboveTop(int percentileIn) {
-		int inversePercentile = 100 - percentileIn;
-		stuAbovePercentile = roundedArray.length * inversePercentile / 100;
-			return stuAbovePercentile;
+	// Number of students above input percent
+	public int stuTopPercent(int percentIn) {
+		float stuAbove = roundedArray.length * percentIn / 100;
+		stuAbovePercent = (int)Math.ceil(stuAbove);
+			return stuAbovePercent;
 	}
-	// score required to be in top percentile given in stuAboveTop
+	// score required to be in top percent given in stuAboveTop
 	public int scoreAboveTop() {
-		int inverseStuCount = roundedArray.length - stuAbovePercentile;
-		for (int index = roundedArray.length - 1; index > inverseStuCount; index --) {
+		int inverseStuAbove = roundedArray.length - stuAbovePercent;
+		for (int index = roundedArray.length - 1; index > inverseStuAbove; index --) {
 			topPercentileScore = roundedArray[index];
 		}
 		return topPercentileScore;
 	}
-	// number of students below input percentile
-	public int stuBelowBot(int percentileIn) {
-		stuBelowPercentile = roundedArray.length * percentileIn / 100;
-		if (stuBelowPercentile == 0)
-			return 1;
-		else
-			return stuBelowPercentile;
+	// number of students below input percent
+	public int stuBotPercent(int percentIn) {
+		float stuBelow = roundedArray.length * percentIn / 100;
+		stuBelowPercent = (int)Math.ceil(stuBelow);
+		System.out.println(stuBelowPercent);
+			return stuBelowPercent;
 	}
-	//score required to be in bottom percentile given in stuBelowBot
+	//score required to be in bottom percent given in stuBelowBot
 	public int scoreBelowBot() {
-		for (int index = 0; index < stuBelowPercentile; index ++) {
+		for (int index = 0; index < stuBelowPercent; index ++) {
 			botPercentileScore = roundedArray[index];
 		}
 		return botPercentileScore;

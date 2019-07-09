@@ -801,7 +801,7 @@ public class PercentilePanel extends JPanel {
 		}
 		
 		private void updateScoreAboveText() {
-			int stuAbove = calculations.stuAboveTop(topPercent);
+			int stuAbove = calculations.stuTopPercent(topPercent);
 			lblDispStuAbove_Value.setText("" + stuAbove);
 			
 			int topScore = calculations.scoreAboveTop();
@@ -809,7 +809,7 @@ public class PercentilePanel extends JPanel {
 		}
 		
 		private void updateScoreBelowText() {
-			int stuBelow = calculations.stuBelowBot(botPercent);
+			int stuBelow = calculations.stuBotPercent(botPercent);
 			lblDispStuBelow_Value.setText("" + stuBelow);
 			
 			int botScore = calculations.scoreBelowBot();
