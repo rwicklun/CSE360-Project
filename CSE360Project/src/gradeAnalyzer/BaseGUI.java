@@ -158,7 +158,10 @@ public class BaseGUI extends JFrame {
 	
 	//This is the RecordListener that makes the create record button works 
 		private class RecordListener implements ActionListener {
-			
+			@Override
+		    public void actionPerformed(ActionEvent event) {
+				
+			}
 		} 
 		
 	// end of the RecordListener
