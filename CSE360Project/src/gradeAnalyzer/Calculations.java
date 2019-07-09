@@ -322,7 +322,7 @@ public class Calculations {
 		countArray = new int[] {countA, countB, countC, countD, countE};
 		return countArray;		
 	}
-	
+	// Number of students above input percentile
 	public int stuAboveTop(int percentileIn) {
 		int inversePercentile = 100 - percentileIn;
 		stuAbovePercentile = roundedArray.length * inversePercentile / 100;
@@ -331,7 +331,7 @@ public class Calculations {
 		else
 			return stuAbovePercentile;
 	}
-		
+	// score required to be in top percentile given in stuAboveTop
 	public int scoreAboveTop() {
 		int inverseStuCount = roundedArray.length - stuAbovePercentile;
 		for (int index = roundedArray.length - 1; index > inverseStuCount; index --) {
@@ -339,7 +339,7 @@ public class Calculations {
 		}
 		return topPercentileScore;
 	}
-	
+	// number of students below input percentile
 	public int stuBelowBot(int percentileIn) {
 		stuBelowPercentile = roundedArray.length * percentileIn / 100;
 		if (stuBelowPercentile == 0)
@@ -347,7 +347,7 @@ public class Calculations {
 		else
 			return stuBelowPercentile;
 	}
-	
+	//score required to be in bottom percentile given in stuBelowBot
 	public int scoreBelowBot() {
 		for (int index = 0; index < stuBelowPercentile; index ++) {
 			botPercentileScore = roundedArray[index];
