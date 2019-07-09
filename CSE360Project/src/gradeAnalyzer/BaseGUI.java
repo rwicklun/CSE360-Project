@@ -327,9 +327,15 @@ public class BaseGUI extends JFrame {
 			        
 			    if(saveing == JFileChooser.APPROVE_OPTION)
 			    {
+			    	File saveFile = fileChooser.getSelectedFile();
+			    	if (getFileExtension(saveFile).compareTo("txt") != 0) {
+			    		String path = saveFile.getAbsolutePath();
+			    		path = path + ".txt";
+			    		saveFile = new File(path);
+			    	}
 			    	try
 			    	{    			
-			    		FileWriter writer = new FileWriter(fileChooser.getSelectedFile());
+			    		FileWriter writer = new FileWriter(saveFile);
 			    		floatList = calculations.getFloatList();
 			    		int Create = 0;
 				    	if (floatList != null) {
