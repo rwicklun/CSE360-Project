@@ -48,15 +48,35 @@ public class Calculations {
 	private int percentile;
 	private int stuPercentile;
 	
+	/**
+	 * Initializes floatList and roundedList with lists created in BaseGUI
+	 * uses roundedList to initialize rounded array
+	 * Sorts roundedArray
+	 * 
+	 * @param floatListIn	LinkedList of float numbers from BaseGUI
+	 * @param roundedListIn	LinkedList of rounded numbers from floatList and BaseGUI
+	 */
 	public void setLinkedLists (LinkedList<Float> floatListIn, LinkedList<Integer> roundedListIn) {
 		floatList = floatListIn;
 		roundedList = roundedListIn;
 		roundedArray = roundedList.toArray(new Integer[roundedList.size()]);
 		Arrays.sort(roundedArray);
 	}
+	
+	/**
+	 * Returns the float LinkedList
+	 * 
+	 * @return float LinkedList
+	 */
 	public LinkedList<Float> getFloatList(){
 		return floatList;
 	}
+	
+	/**
+	 * Refresh roundedArray by making new array from current roundedList
+	 * Sorts new roundedArray
+	 * Sets the count of students into stuCount
+	 */
 	public void refreshRoundedArray() {
 		if (roundedList != null) {
 			roundedArray = roundedList.toArray(new Integer[roundedList.size()]);
@@ -67,30 +87,59 @@ public class Calculations {
 			roundedArray = null;
 		}
 	}
-	public void printRoundedArray() {
-		System.out.println("Rounded array " + Arrays.toString(roundedArray)); 
-	}
+	/**
+	 * Sets new maxPossible with max from statisticsPanel input
+	 * 
+	 * @param int max possible from statisticsPanel input
+	 */
 	public void setMaxPossible(int max) {
 		maxPossible = max;
 		
 	}
+	/**
+	 * Sets new minPossible with min from statisticsPanel input
+	 * 
+	 * @param int min possible from statisticsPanel input
+	 */
 	public void setMinPossible(int min) {
 		minPossible = min;
 		
 	}
+	/**
+	 * Returns default max possible of 100
+	 * @return 100
+	 */
 	public int getDefaultMaxPossible() {
 		return 100;
 	}
+	/**
+	 * Returns current max possible
+	 * @return current max possible
+	 */
 	public int getMaxPossible() {
 		return maxPossible;
 	}
+	/**
+	 * Returns current min possible
+	 * @return current min possible
+	 */
 	public int getMinPossible() {
 		return minPossible;
 	}
+	/**
+	 * Returns default min possible
+	 * @return 0
+	 */
 	public int getDefaultMinPossible() {
 		return 0;
 	}
 	
+	/**
+	 * Scans through roundedList and returns largest value as a string
+	 * 
+	 * @return String of integer largest value in roundedList
+	 * 			returns empty string if array empty
+	 */
 	public String getMaxEarned() {
 		if (roundedList != null ) {
 			if (roundedArray.length != 0) {
@@ -109,6 +158,12 @@ public class Calculations {
 			return "";
 		}
 	}
+	/**
+	 * Scans through roundedList and returns smallest value as a string
+	 * 
+	 * @return String of integer smallest value in roundedList
+	 * 			returns empty string if array empty
+	 */
 	public String getMinEarned() {
 		if (roundedList != null ) {
 			if (roundedArray.length != 0) {
@@ -128,6 +183,11 @@ public class Calculations {
 		}
 	}
 	
+	/**
+	 * Returns the length of roundedArray 
+	 * 
+	 * @return int length of roundedArray or 0 if roundedArray null
+	 */
 	public int studentCount() {
 		if (roundedArray != null)
 			return roundedArray.length;
