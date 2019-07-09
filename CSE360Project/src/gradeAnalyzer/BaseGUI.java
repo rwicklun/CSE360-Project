@@ -87,7 +87,7 @@ public class BaseGUI extends JFrame {
         			+ "\n\nThe Grade Percentiles Tab:"
         			+ "\nThis tab contains the distrubtion of A's, B's, C's etc. the count of students in a user set percentile, "
         			+ "and the count of students in each percentage range."
-        			+ "\n\nThe Create Record Button:"
+        			+ "\n\nThe Create Report Button:"
         			+ "\nThis button will generate a document that lists out all the data given by Grade Analyzer, with nothing loaded it will only "
         			+ "write out the categories."
         			+ "\n\n The Load Button:"
@@ -323,13 +323,19 @@ public class BaseGUI extends JFrame {
 		    	}
 	    	} else if (event.getSource() == saveButton) {	
 			        
-			    int saveing = fileChooser.showOpenDialog(BaseGUI.this);
+			    int saveing = fileChooser.showSaveDialog(BaseGUI.this);
 			        
 			    if(saveing == JFileChooser.APPROVE_OPTION)
 			    {
+			    	File saveFile = fileChooser.getSelectedFile();
+			    	if (getFileExtension(saveFile).compareTo("txt") != 0) {
+			    		String path = saveFile.getAbsolutePath();
+			    		path = path + ".txt";
+			    		saveFile = new File(path);
+			    	}
 			    	try
 			    	{    			
-			    		FileWriter writer = new FileWriter(fileChooser.getSelectedFile());
+			    		FileWriter writer = new FileWriter(saveFile);
 			    		floatList = calculations.getFloatList();
 			    		int Create = 0;
 				    	if (floatList != null) {
