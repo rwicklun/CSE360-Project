@@ -736,13 +736,16 @@ public class PercentilePanel extends JPanel {
 				percentB = Integer.parseInt(txtSetGradeB.getText());
 				percentC = Integer.parseInt(txtSetGradeC.getText());
 				percentD = Integer.parseInt(txtSetGradeD.getText());
-				//percentE = Integer.parseInt(txtSetGradeE.getText());
 			}
 			catch (NumberFormatException exception){
                 // Input not a number.
                 error.setString("Set custom grade range input is not an integer. \nPlease input only integers.");
                 error.setVisible(true);
 			}
+			calculations.setGradePercent('A', percentA);
+			calculations.setGradePercent('B', percentB);
+			calculations.setGradePercent('C', percentC);
+			calculations.setGradePercent('D', percentD);
 		}
 		
 		private void checkGradesExist() {

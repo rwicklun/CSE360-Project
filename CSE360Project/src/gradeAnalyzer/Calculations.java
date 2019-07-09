@@ -293,7 +293,18 @@ public class Calculations {
 	
 	public void setGradePercent(char letterIn, int gradeIn) {
 		switch (letterIn) {
-		case 'A': 
+		case 'A':
+			gradeAPercent = gradeIn;
+			break;
+		case 'B':
+			gradeBPercent = gradeIn;
+			break;
+		case 'C':
+			gradeCPercent = gradeIn;
+			break;
+		case 'D':
+			gradeDPercent = gradeIn;
+			break;
 		}
 	}
 	
