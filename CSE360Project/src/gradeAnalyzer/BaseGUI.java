@@ -117,6 +117,7 @@ public class BaseGUI extends JFrame {
         bottomPanel.setBackground(new Color( 200, 200, 200));
 
         fileChooser = new JFileChooser();
+		fileChooser.setAcceptAllFileFilterUsed(false);
         FileNameExtensionFilter filter = new FileNameExtensionFilter("TEXT FILES", "txt", "text");
         fileChooser.setFileFilter(filter);
         
@@ -158,36 +159,10 @@ public class BaseGUI extends JFrame {
 	
 	//This is the RecordListener that makes the create record button works 
 		private class RecordListener implements ActionListener {
-		public void actionPerformed(ActionEvent e) {
-
-			fileChooser.setAcceptAllFileFilterUsed(false);
-	    	fileChooser.setFileFilter(new FileNameExtensionFilter("Text Files Only", "txt", "text"));    	
-	        
-	    	int saveing = fileChooser.showOpenDialog(BaseGUI.this);
-	        
-	    	if(saveing == JFileChooser.APPROVE_OPTION)
-	    	{
-	    		try
-	    		{    			
-	    			FileWriter writer = new FileWriter(fileChooser.getSelectedFile());
-	    			floatList = new LinkedList<Float>();
-	        		roundedList = new LinkedList<Integer>();
-	    			int Create = 0;
-	    			
-	    			while(Create < floatList.size())
-	    			{
-	    				writer.write(floatList.get(Create) + "\n");
-	    				Create++;
-	    			}
-	    			
-	    			writer.close();
-	    		}
-	    		catch(IOException ex)
-	    		{
-	    			ex.printStackTrace();
-	    		}
-	    	}
-		}
+			@Override
+		    public void actionPerformed(ActionEvent event) {
+				
+			}
 		} 
 		
 	// end of the RecordListener
@@ -199,6 +174,7 @@ public class BaseGUI extends JFrame {
 	private Scanner scan;
 	protected LinkedList<Float> floatList;
 	protected LinkedList<Integer> roundedList;
+	private int inputOutOfBounds = 0;
 	
 	private static String getFileExtension(File file) {
         String fileName = file.getName();
@@ -223,9 +199,22 @@ public class BaseGUI extends JFrame {
 			                		roundedList = new LinkedList<Integer>();
 									while(scan.hasNextFloat()) {
 										inputNumbers = scan.nextFloat();
-										floatList.addLast(inputNumbers);
-										roundedNumbers = Math.round(inputNumbers);
-										roundedList.addLast(roundedNumbers);
+										if (inputNumbers <= calculations.getMaxPossible() && inputNumbers >= calculations.getMinPossible()) {
+											floatList.addLast(inputNumbers);
+											roundedNumbers = Math.round(inputNumbers);
+											roundedList.addLast(roundedNumbers);
+										} else {
+											inputOutOfBounds++;
+										}
+									}
+									if (inputOutOfBounds > 0) {
+										floatList = new LinkedList<Float>();
+										roundedList = new LinkedList<Integer>();
+										// Input Out of Bounds Exception
+						                error.setString("Input Out of Bounds: \n" + "There are " + inputOutOfBounds + " inputs of out bounds.\n"
+						                		+ "Please change the Highest and Lowest Possible scores in the Grade Statistics Tab, or load a different file.");
+						                error.setVisible(true);
+										inputOutOfBounds = 0;
 									}
 									//gives the Calculations the LinkedLists
 									calculations.setLinkedLists(floatList, roundedList);
@@ -234,8 +223,9 @@ public class BaseGUI extends JFrame {
 									calculations.printRoundedArray();
 
 			                	} catch (InputMismatchException e) {
-									// TODO Auto-generated catch block
-									e.printStackTrace();
+			                		// Wrong input type exception
+					                error.setString("Incorrect Format Error: \nPlease load a file containing floating point numbers on each line.");
+					                error.setVisible(true);
 								}
 			                } else {
 				                // Wrong file type exception
@@ -254,14 +244,32 @@ public class BaseGUI extends JFrame {
 		    	} else {
 		    		//this is when the load box is closed or cancelled nothing needs to be done here.
 		    	}
-	    	} else if (event.getSource() == saveButton) {
-		    	int returnVal = fileChooser.showSaveDialog(BaseGUI.this);
-		    	if (returnVal == JFileChooser.APPROVE_OPTION) {
-	                //File file = fileChooser.getSelectedFile();
-		    	} else {
-		    		
-		    	}
-	    		
+	    	} else if (event.getSource() == saveButton) {	
+			        
+			    int saveing = fileChooser.showOpenDialog(BaseGUI.this);
+			        
+			    if(saveing == JFileChooser.APPROVE_OPTION)
+			    {
+			    	try
+			    	{    			
+			    		FileWriter writer = new FileWriter(fileChooser.getSelectedFile());
+			    		floatList = calculations.getFloatList();
+			    		int Create = 0;
+				    	if (floatList != null) {
+				    		while(Create < floatList.size())
+				    		{
+				    			writer.write(floatList.get(Create) + "\n");
+				    			Create++;
+				    		}
+			    		}
+			    			
+			    		writer.close();
+			    	}
+			    	catch(IOException ex)
+			    	{
+			    		ex.printStackTrace();
+			    	}
+			    }
 	    	}
 	    }
 	}
