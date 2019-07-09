@@ -458,24 +458,29 @@ public class Calculations {
 	}
 	
 	// Number of students above input percent
-	public int stuTopPercent(int percentIn) {
-		float stuAbove = roundedArray.length * percentIn / 100;
+	public int stuTopPercent() {
+		float stuAbove = roundedArray.length * topPercent / 100;
 		stuAbovePercent = (int)Math.ceil(stuAbove);
-			return stuAbovePercent;
+		if (stuAbovePercent == 0) {
+			stuAbovePercent = 1;
+		}
+		return stuAbovePercent;
 	}
 	// score required to be in top percent given in stuAboveTop
 	public int scoreAboveTop() {
 		int inverseStuAbove = roundedArray.length - stuAbovePercent;
-		for (int index = roundedArray.length - 1; index > inverseStuAbove; index --) {
+		for (int index = roundedArray.length - 1; index > inverseStuAbove - 1; index --) {
 			topPercentileScore = roundedArray[index];
 		}
 		return topPercentileScore;
 	}
 	// number of students below input percent
-	public int stuBotPercent(int percentIn) {
-		float stuBelow = roundedArray.length * percentIn / 100;
+	public int stuBotPercent() {
+		float stuBelow = roundedArray.length * botPercent / 100;
 		stuBelowPercent = (int)Math.ceil(stuBelow);
-		System.out.println(stuBelowPercent);
+		if (stuBelowPercent == 0) {
+			stuBelowPercent = 1;
+		}
 			return stuBelowPercent;
 	}
 	//score required to be in bottom percent given in stuBelowBot

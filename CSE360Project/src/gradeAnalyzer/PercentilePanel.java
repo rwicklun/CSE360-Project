@@ -578,7 +578,7 @@ public class PercentilePanel extends JPanel {
 		pnlGivePercent.add(lblDispScoBelow_Score, gbc_lblDispScoBelow_Score);
 		
 		// Percentile Display - Students above - "Students above" label
-		JLabel lblDispStuAbove_Title = new JLabel("Students above");
+		JLabel lblDispStuAbove_Title = new JLabel("Students");
 		GridBagConstraints gbc_lblDispStuAbove_Title = new GridBagConstraints();
 		gbc_lblDispStuAbove_Title.anchor = GridBagConstraints.WEST;
 		gbc_lblDispStuAbove_Title.insets = new Insets(0, 0, 0, 5);
@@ -596,7 +596,7 @@ public class PercentilePanel extends JPanel {
 		pnlGivePercent.add(lblDispStuAbove_Value, gbc_lblDispStuAbove_Value);
 		
 		// Percentile Display - Students below - "Students below" label
-		JLabel lblDispStuBelow_Title = new JLabel("Students below");
+		JLabel lblDispStuBelow_Title = new JLabel("Students");
 		GridBagConstraints gbc_lblDispStuBelow_Title = new GridBagConstraints();
 		gbc_lblDispStuBelow_Title.anchor = GridBagConstraints.WEST;
 		gbc_lblDispStuBelow_Title.insets = new Insets(0, 0, 0, 5);
@@ -801,7 +801,7 @@ public class PercentilePanel extends JPanel {
 		}
 		
 		private void updateScoreAboveText() {
-			int stuAbove = calculations.stuTopPercent(topPercent);
+			int stuAbove = calculations.stuTopPercent();
 			lblDispStuAbove_Value.setText("" + stuAbove);
 			
 			int topScore = calculations.scoreAboveTop();
@@ -809,7 +809,7 @@ public class PercentilePanel extends JPanel {
 		}
 		
 		private void updateScoreBelowText() {
-			int stuBelow = calculations.stuBotPercent(botPercent);
+			int stuBelow = calculations.stuBotPercent();
 			lblDispStuBelow_Value.setText("" + stuBelow);
 			
 			int botScore = calculations.scoreBelowBot();
