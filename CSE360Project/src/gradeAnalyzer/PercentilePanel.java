@@ -712,13 +712,13 @@ public class PercentilePanel extends JPanel {
 			stuCount = calculations.studentCount();
 			
 			inputCustomGradeRanges();
-			fail = checkPercentOrder();
-			checkGradesExist();
+			fail = calculations.checkPercentOrder();
+			fail = calculations.checkGradesExist();
 			
 			if (fail == false) {
 				stuCountArray = calculations.countStuPerGrade(percentA, percentB, percentC, percentD, percentE);
 				
-				setGradeDistResults();
+				calculations.setGradeDistResults();
 				updateGradeDistribText();
 				updateStuCountText();
 				
@@ -746,74 +746,6 @@ public class PercentilePanel extends JPanel {
 			calculations.setGradePercent('B', percentB);
 			calculations.setGradePercent('C', percentC);
 			calculations.setGradePercent('D', percentD);
-		}
-		
-		private void checkGradesExist() {
-			fail = false;
-			if (stuCount <= 0) {
-				fail = true;
-				error.setString("No student grades have been entered.");
-				error.setVisible(true);
-			}
-		}
-		
-		private boolean checkPercentOrder() {
-			boolean fail = false;
-			
-			if (percentA > 100 || percentA < percentB) {
-				gradeOrderError('A');
-				fail = true;
-			}
-			if (percentB > percentA || percentB < percentC) {
-				gradeOrderError('B');
-				fail = true;
-			}
-			if (percentC > percentB || percentC < percentD) {
-				gradeOrderError('C');
-				fail = true;
-			}
-			if (percentD > percentC || percentD < percentE) {
-				gradeOrderError('D');
-				fail = true;
-			}
-			if (percentE > percentD || percentE < 0) {
-				gradeOrderError('E');
-				fail = true;
-			}
-			return fail;
-		}
-		
-		private void gradeOrderError(char gradeIn) {
-			switch(gradeIn) {
-			case 'A': 
-				error.setString("Make sure the percent for A is less than 100 and greater than B");
-				error.setVisible(true);
-				break;
-			case 'B':
-				error.setString("Make sure the percent for B is less than A and greater than C");
-				error.setVisible(true);
-				break;
-			case 'C':
-				error.setString("Make sure the percent for C is less than B and greater than D");
-				error.setVisible(true);
-				break;
-			case 'D':
-				error.setString("Make sure the percent for D is less than C and greater than E");
-				error.setVisible(true);
-				break;
-			case 'E':
-				error.setString("Make sure the percent for E is less than D and greater than 0");
-				error.setVisible(true);
-				break;
-			}
-		}
-		
-		private void setGradeDistResults() {
-			gradeDistributA = 100 * stuCountArray[0] / stuCount;
-			gradeDistributB = 100 * stuCountArray[1] / stuCount;
-			gradeDistributC = 100 * stuCountArray[2] / stuCount;
-			gradeDistributD = 100 * stuCountArray[3] / stuCount;
-			gradeDistributE = 100 * stuCountArray[4] / stuCount;
 		}
 		
 		private void updateGradeDistribText() {

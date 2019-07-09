@@ -27,6 +27,14 @@ public class Calculations {
 	private int botPercentileScore = 0;
 	private int stuBelowPercentile;
 	
+	private float gradeDistributA;
+	private float gradeDistributB;
+	private float gradeDistributC;
+	private float gradeDistributD;
+	private float gradeDistributE;
+	private int stuCount;
+	private int stuCountArray[] = new int[5];
+	
 	private int gradeAPercent;
 	private int gradeBPercent;
 	private int gradeCPercent;
@@ -46,6 +54,7 @@ public class Calculations {
 		if (roundedList != null) {
 			roundedArray = roundedList.toArray(new Integer[roundedList.size()]);
 			Arrays.sort(roundedArray);
+			stuCount = roundedArray.length;
 		}
 		else {
 			roundedArray = null;
@@ -314,8 +323,7 @@ public class Calculations {
 		int countC = 0;
 		int countD = 0;
 		int countE = 0;
-		int countArray[] = new int[5];
-		
+
 		int scoreA = maxInUse * percentA / 100;
 		int scoreB = maxInUse * percentB / 100;
 		int scoreC = maxInUse * percentC / 100;
@@ -342,9 +350,95 @@ public class Calculations {
 				error.setVisible(true);
 			}
 		}
-		countArray = new int[] {countA, countB, countC, countD, countE};
-		return countArray;		
+		stuCountArray = new int[] {countA, countB, countC, countD, countE};
+		return stuCountArray;		
 	}
+	
+	public void setGradeDistResults() {
+		gradeDistributA = 100 * stuCountArray[0] / stuCount;
+		gradeDistributB = 100 * stuCountArray[1] / stuCount;
+		gradeDistributC = 100 * stuCountArray[2] / stuCount;
+		gradeDistributD = 100 * stuCountArray[3] / stuCount;
+		gradeDistributE = 100 * stuCountArray[4] / stuCount;
+	}
+	
+	public int getGradeDistribution(char letterIn) {
+		float output = 0;
+		switch (letterIn) {
+		case 'A':
+			output = gradeDistributA;
+			break;
+		case 'B':
+			output = gradeDistributB;
+			break;
+		case 'C':
+			output = gradeDistributC;
+			break;
+		case 'D':
+			output = gradeDistributD;
+			break;
+		}
+		return Math.round(output);
+	}
+	
+	public boolean checkPercentOrder() {
+		boolean fail = false;
+		
+		if (gradeAPercent > 100 || gradeAPercent < gradeBPercent) {
+			gradeOrderError('A');
+			fail = true;
+		}
+		if (gradeBPercent > gradeAPercent || gradeBPercent < gradeCPercent) {
+			gradeOrderError('B');
+			fail = true;
+		}
+		if (gradeCPercent > gradeBPercent || gradeCPercent < gradeDPercent) {
+			gradeOrderError('C');
+			fail = true;
+		}
+		if (gradeDPercent > gradeCPercent) {
+			gradeOrderError('D');
+			fail = true;
+		}
+		return fail;
+	}
+	
+	public void gradeOrderError(char gradeIn) {
+		switch(gradeIn) {
+		case 'A': 
+			error.setString("Make sure the percent for A is less than 100 and greater than B");
+			error.setVisible(true);
+			break;
+		case 'B':
+			error.setString("Make sure the percent for B is less than A and greater than C");
+			error.setVisible(true);
+			break;
+		case 'C':
+			error.setString("Make sure the percent for C is less than B and greater than D");
+			error.setVisible(true);
+			break;
+		case 'D':
+			error.setString("Make sure the percent for D is less than C and greater than E");
+			error.setVisible(true);
+			break;
+		case 'E':
+			error.setString("Make sure the percent for E is less than D and greater than 0");
+			error.setVisible(true);
+			break;
+		}
+	}
+	
+	public boolean checkGradesExist() {
+		boolean fail = false;
+		if (stuCount <= 0) {
+			fail = true;
+			error.setString("No student grades have been entered.");
+			error.setVisible(true);
+		}
+		return fail;
+	}
+	
+	
 	// Number of students above input percentile
 	public int stuAboveTop(int percentileIn) {
 		int inversePercentile = 100 - percentileIn;
