@@ -325,11 +325,26 @@ public class Calculations {
 	public int stuAboveTop() {
 		stuAbovePercentile = 0;
 		int index = roundedArray.length - 1;
-		while (roundedArray[index] >= topPercentileScore || index < 0) {
+		while (roundedArray[index] >= topPercentileScore && index > 0) {
 			stuAbovePercentile ++;
 			index --;
 		}
 		return stuAbovePercentile;
+	}
+	
+	public int scoreBelowBot(int percentileIn) {
+		botPercentileScore = maxInUse * percentileIn / 100;
+		return botPercentileScore;
+	}
+	
+	public int stuBelowBot() {
+		stuBelowPercentile = 0;
+		int index = 0;
+		while (roundedArray[index] <= botPercentileScore && index < maxInUse) {
+			stuBelowPercentile ++;
+			index ++;
+		}
+		return stuBelowPercentile;
 	}
 	
 // End Percentile only ----------------------------------------------------------------------------
