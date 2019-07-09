@@ -20,11 +20,17 @@ public class Calculations {
 	//default minimum set to 0
 	private int minPossible = 0;
 	private int maxEarned;
+	
 	private int maxInUse = maxPossible;
 	private int topPercentileScore = 90;
 	private int stuAbovePercentile;
 	private int botPercentileScore = 0;
 	private int stuBelowPercentile;
+	
+	private int gradeAPercent;
+	private int gradeBPercent;
+	private int gradeCPercent;
+	private int gradeDPercent;
 
 	
 	public void setLinkedLists (LinkedList<Float> floatListIn, LinkedList<Integer> roundedListIn) {
@@ -285,6 +291,12 @@ public class Calculations {
 		}
 	}
 	
+	public void setGradePercent(char letterIn, int gradeIn) {
+		switch (letterIn) {
+		case 'A': 
+		}
+	}
+	
 	public int[] countStuPerGrade(int percentA, int percentB, int percentC, int percentD, int percentE) {
 		int countA = 0;
 		int countB = 0;
@@ -326,9 +338,6 @@ public class Calculations {
 	public int stuAboveTop(int percentileIn) {
 		int inversePercentile = 100 - percentileIn;
 		stuAbovePercentile = roundedArray.length * inversePercentile / 100;
-		if (stuAbovePercentile == 0)
-			return 1;
-		else
 			return stuAbovePercentile;
 	}
 	// score required to be in top percentile given in stuAboveTop
@@ -355,5 +364,6 @@ public class Calculations {
 		return botPercentileScore;
 	}
 
+	
 // End Percentile only ----------------------------------------------------------------------------
 }

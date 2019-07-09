@@ -26,7 +26,7 @@ public class PercentilePanel extends JPanel {
 	private JPanel pnlGradeDistribution;
 	private JPanel pnlStudentsPerGrade;
 	private JPanel pnlSetPercentile;
-	private JPanel pnlGivePercentile;
+	private JPanel pnlGivePercent;
 	
 	private JLabel lblGradeDistributionA;
 	private JLabel lblGradeDistributionB;
@@ -69,6 +69,8 @@ public class PercentilePanel extends JPanel {
 	
 	private int stuCountArray[] = new int[5];
 	private int stuCount;
+	private JTextField textField;
+	private JTextField textField_1;
 	
 	/**
 	 * GUI for the Percentile Panel
@@ -80,9 +82,9 @@ public class PercentilePanel extends JPanel {
 		// Main panel
 		GridBagLayout percentilePanel = new GridBagLayout();
 		percentilePanel.columnWidths = new int[] {450, 0};
-		percentilePanel.rowHeights = new int[] {20, 20, 30, 20, 20, 20, 20, 20, 30, 40, 0};
+		percentilePanel.rowHeights = new int[] {20, 20, 30, 20, 20, 20, 20, 20, 30, 40, 37, 0};
 		percentilePanel.columnWeights = new double[]{1.0, Double.MIN_VALUE};
-		percentilePanel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
+		percentilePanel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
 		setLayout(percentilePanel);
 		
 		
@@ -107,18 +109,32 @@ public class PercentilePanel extends JPanel {
 		gbc_pnlSetGradeRangeLabel.gridy = 1;
 		add(pnlSetGradeRangeLabel, gbc_pnlSetGradeRangeLabel);
 		GridBagLayout gbl_pnlSetGradeRangeLabel = new GridBagLayout();
-		gbl_pnlSetGradeRangeLabel.columnWidths = new int[]{0, 0, 0, 0};
+		gbl_pnlSetGradeRangeLabel.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0};
 		gbl_pnlSetGradeRangeLabel.rowHeights = new int[]{14, 0};
-		gbl_pnlSetGradeRangeLabel.columnWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_pnlSetGradeRangeLabel.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		gbl_pnlSetGradeRangeLabel.rowWeights = new double[]{0.0, Double.MIN_VALUE};
 		pnlSetGradeRangeLabel.setLayout(gbl_pnlSetGradeRangeLabel);
+		
+		JLabel lblMaxScoreLabel = new JLabel("Max Score:");
+		GridBagConstraints gbc_lblMaxScoreLabel = new GridBagConstraints();
+		gbc_lblMaxScoreLabel.insets = new Insets(0, 0, 0, 5);
+		gbc_lblMaxScoreLabel.gridx = 0;
+		gbc_lblMaxScoreLabel.gridy = 0;
+		pnlSetGradeRangeLabel.add(lblMaxScoreLabel, gbc_lblMaxScoreLabel);
+		
+		JLabel lblMaxScoreNumber = new JLabel("0");
+		GridBagConstraints gbc_lblMaxScoreNumber = new GridBagConstraints();
+		gbc_lblMaxScoreNumber.insets = new Insets(0, 0, 0, 5);
+		gbc_lblMaxScoreNumber.gridx = 1;
+		gbc_lblMaxScoreNumber.gridy = 0;
+		pnlSetGradeRangeLabel.add(lblMaxScoreNumber, gbc_lblMaxScoreNumber);
 		
 		// Label for Set max section
 		JLabel lblSetMaxBased = new JLabel("Set Max based on:");
 		GridBagConstraints gbc_lblSetMaxBased = new GridBagConstraints();
 		gbc_lblSetMaxBased.anchor = GridBagConstraints.WEST;
 		gbc_lblSetMaxBased.insets = new Insets(0, 5, 0, 5);
-		gbc_lblSetMaxBased.gridx = 0;
+		gbc_lblSetMaxBased.gridx = 3;
 		gbc_lblSetMaxBased.gridy = 0;
 		pnlSetGradeRangeLabel.add(lblSetMaxBased, gbc_lblSetMaxBased);
 		
@@ -126,7 +142,7 @@ public class PercentilePanel extends JPanel {
 		JButton btnPossible = new JButton("Possible");
 		GridBagConstraints gbc_btnPossible = new GridBagConstraints();
 		gbc_btnPossible.insets = new Insets(0, 0, 0, 5);
-		gbc_btnPossible.gridx = 1;
+		gbc_btnPossible.gridx = 4;
 		gbc_btnPossible.gridy = 0;
 		pnlSetGradeRangeLabel.add(btnPossible, gbc_btnPossible);
 		btnPossible.addActionListener(new maxPossibleListener());
@@ -134,7 +150,7 @@ public class PercentilePanel extends JPanel {
 		// Max earned button
 		JButton btnEarned = new JButton("Earned");
 		GridBagConstraints gbc_btnEarned = new GridBagConstraints();
-		gbc_btnEarned.gridx = 2;
+		gbc_btnEarned.gridx = 5;
 		gbc_btnEarned.gridy = 0;
 		pnlSetGradeRangeLabel.add(btnEarned, gbc_btnEarned);
 		btnEarned.addActionListener(new maxEarnedListener());
@@ -297,7 +313,7 @@ public class PercentilePanel extends JPanel {
 		add(pnlGradeDistribution, gbc_pnlGradeDistribution);
 		GridBagLayout gbl_pnlGradeDistribution = new GridBagLayout();
 		gbl_pnlGradeDistribution.columnWidths = new int[] {75, 75, 75, 75, 75, 0};
-		gbl_pnlGradeDistribution.rowHeights = new int[] {40, 0};
+		gbl_pnlGradeDistribution.rowHeights = new int[] {30, 0};
 		gbl_pnlGradeDistribution.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		gbl_pnlGradeDistribution.rowWeights = new double[]{0.0, Double.MIN_VALUE};
 		pnlGradeDistribution.setLayout(gbl_pnlGradeDistribution);
@@ -372,7 +388,7 @@ public class PercentilePanel extends JPanel {
 		add(pnlStudentsPerGrade, gbc_pnlStudentsPerGrade);
 		GridBagLayout gbl_pnlStudentsPerGrade = new GridBagLayout();
 		gbl_pnlStudentsPerGrade.columnWidths = new int[] {75, 75, 75, 75, 75, 0};
-		gbl_pnlStudentsPerGrade.rowHeights = new int[] {40, 0};
+		gbl_pnlStudentsPerGrade.rowHeights = new int[] {30, 0};
 		gbl_pnlStudentsPerGrade.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		gbl_pnlStudentsPerGrade.rowWeights = new double[]{0.0, Double.MIN_VALUE};
 		pnlStudentsPerGrade.setLayout(gbl_pnlStudentsPerGrade);
@@ -421,36 +437,36 @@ public class PercentilePanel extends JPanel {
 		
 		// Start "Students in Each Percentile"
 		// Label for "Students in Each Percentile"
-		JLabel lblPercentile = new JLabel("Students in Each Percentile");
-		lblPercentile.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblPercentile.setVerticalAlignment(SwingConstants.BOTTOM);
-		GridBagConstraints gbc_lblPercentile = new GridBagConstraints();
-		gbc_lblPercentile.anchor = GridBagConstraints.SOUTH;
-		gbc_lblPercentile.insets = new Insets(0, 5, 5, 0);
-		gbc_lblPercentile.gridx = 0;
-		gbc_lblPercentile.gridy = 7;
-		add(lblPercentile, gbc_lblPercentile);		
+		JLabel lblPercent = new JLabel("Students in Each Percentile");
+		lblPercent.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblPercent.setVerticalAlignment(SwingConstants.BOTTOM);
+		GridBagConstraints gbc_lblPercent = new GridBagConstraints();
+		gbc_lblPercent.anchor = GridBagConstraints.SOUTH;
+		gbc_lblPercent.insets = new Insets(0, 5, 5, 0);
+		gbc_lblPercent.gridx = 0;
+		gbc_lblPercent.gridy = 7;
+		add(lblPercent, gbc_lblPercent);		
 		
 		
 		// Start user input section
 		// Percentile Input Panel
 		pnlSetPercentile = new JPanel();
 		GridBagConstraints gbc_pnlSetPercentile = new GridBagConstraints();
-		gbc_pnlSetPercentile.anchor = GridBagConstraints.NORTH;
+		gbc_pnlSetPercentile.anchor = GridBagConstraints.SOUTH;
 		gbc_pnlSetPercentile.insets = new Insets(0, 0, 5, 0);
 		gbc_pnlSetPercentile.gridx = 0;
 		gbc_pnlSetPercentile.gridy = 8;
 		add(pnlSetPercentile, gbc_pnlSetPercentile);
 		GridBagLayout gbl_pnlSetPercentile = new GridBagLayout();
 		gbl_pnlSetPercentile.columnWidths = new int[] {65, 30, 65, 25, 65, 30, 65, 0};
-		gbl_pnlSetPercentile.rowHeights = new int[] {40, 0};
+		gbl_pnlSetPercentile.rowHeights = new int[] {30, 0};
 		gbl_pnlSetPercentile.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		gbl_pnlSetPercentile.rowWeights = new double[]{0.0, Double.MIN_VALUE};
 		pnlSetPercentile.setLayout(gbl_pnlSetPercentile);
 		
 		
 		// Top Percentile Input - Top label
-		JLabel lblSetTop_Top = new JLabel("To be Top");
+		JLabel lblSetTop_Top = new JLabel("In the Top");
 		GridBagConstraints gbc_lblSetTop_Top = new GridBagConstraints();
 		gbc_lblSetTop_Top.anchor = GridBagConstraints.EAST;
 		gbc_lblSetTop_Top.insets = new Insets(0, 0, 0, 5);
@@ -461,7 +477,7 @@ public class PercentilePanel extends JPanel {
 		// Top Percentile Input - Top text field
 		txtSetTop_Value = new JTextField();
 		txtSetTop_Value.setHorizontalAlignment(SwingConstants.CENTER);
-		txtSetTop_Value.setText("90");
+		txtSetTop_Value.setText("10");
 		GridBagConstraints gbc_txtSetTop_Value = new GridBagConstraints();
 		gbc_txtSetTop_Value.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtSetTop_Value.insets = new Insets(0, 0, 0, 5);
@@ -471,7 +487,7 @@ public class PercentilePanel extends JPanel {
 		txtSetTop_Value.setColumns(3);
 		
 		// Top Percentile Input - Percentile label
-		JLabel lblSetTop_Percentile = new JLabel("percentile");
+		JLabel lblSetTop_Percentile = new JLabel("percent");
 		GridBagConstraints gbc_lblSetTop_Percentile = new GridBagConstraints();
 		gbc_lblSetTop_Percentile.anchor = GridBagConstraints.WEST;
 		gbc_lblSetTop_Percentile.insets = new Insets(0, 0, 0, 5);
@@ -481,7 +497,7 @@ public class PercentilePanel extends JPanel {
 		
 		
 		// Bottom Percentile Input - Bottom label
-		JLabel lblSetBottom_Bottom = new JLabel("To be Bottom");
+		JLabel lblSetBottom_Bottom = new JLabel("In the Bottom");
 		GridBagConstraints gbc_lblSetBottom_Bottom = new GridBagConstraints();
 		gbc_lblSetBottom_Bottom.anchor = GridBagConstraints.EAST;
 		gbc_lblSetBottom_Bottom.insets = new Insets(0, 0, 0, 5);
@@ -501,7 +517,7 @@ public class PercentilePanel extends JPanel {
 		txtSetBottom_Value.setColumns(3);
 		
 		// Bottom Percentile Input - Percentile label
-		JLabel lblSetBottom_Percentile = new JLabel("percentile");
+		JLabel lblSetBottom_Percentile = new JLabel("percent");
 		GridBagConstraints gbc_lblSetBottom_Percentile = new GridBagConstraints();
 		gbc_lblSetBottom_Percentile.anchor = GridBagConstraints.WEST;
 		gbc_lblSetBottom_Percentile.gridx = 6;
@@ -511,19 +527,19 @@ public class PercentilePanel extends JPanel {
 		
 		
 		// Percentile Display - Panel
-		pnlGivePercentile = new JPanel();
-		GridBagConstraints gbc_pnlGivePercentile = new GridBagConstraints();
-		gbc_pnlGivePercentile.insets = new Insets(0, 0, 5, 0);
-		gbc_pnlGivePercentile.anchor = GridBagConstraints.NORTH;
-		gbc_pnlGivePercentile.gridx = 0;
-		gbc_pnlGivePercentile.gridy = 9;
-		add(pnlGivePercentile, gbc_pnlGivePercentile);
-		GridBagLayout gbl_pnlGivePercentile = new GridBagLayout();
-		gbl_pnlGivePercentile.columnWidths = new int[] {90, 50, 55, 90, 50, 0};
-		gbl_pnlGivePercentile.rowHeights = new int[] {20, 20, 0};
-		gbl_pnlGivePercentile.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		gbl_pnlGivePercentile.rowWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
-		pnlGivePercentile.setLayout(gbl_pnlGivePercentile);
+		pnlGivePercent = new JPanel();
+		GridBagConstraints gbc_pnlGivePercent = new GridBagConstraints();
+		gbc_pnlGivePercent.insets = new Insets(0, 0, 5, 0);
+		gbc_pnlGivePercent.anchor = GridBagConstraints.NORTH;
+		gbc_pnlGivePercent.gridx = 0;
+		gbc_pnlGivePercent.gridy = 9;
+		add(pnlGivePercent, gbc_pnlGivePercent);
+		GridBagLayout gbl_pnlGivePercent = new GridBagLayout();
+		gbl_pnlGivePercent.columnWidths = new int[] {90, 50, 55, 90, 50, 0};
+		gbl_pnlGivePercent.rowHeights = new int[] {20, 20, 0};
+		gbl_pnlGivePercent.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_pnlGivePercent.rowWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
+		pnlGivePercent.setLayout(gbl_pnlGivePercent);
 		
 		// Percentile Display - Score above - "Score above" label
 		JLabel lblDispScoAbove_Title = new JLabel("Score above ");
@@ -532,7 +548,7 @@ public class PercentilePanel extends JPanel {
 		gbc_lblDispScoAbove_Title.insets = new Insets(0, 0, 5, 5);
 		gbc_lblDispScoAbove_Title.gridx = 0;
 		gbc_lblDispScoAbove_Title.gridy = 0;
-		pnlGivePercentile.add(lblDispScoAbove_Title, gbc_lblDispScoAbove_Title);
+		pnlGivePercent.add(lblDispScoAbove_Title, gbc_lblDispScoAbove_Title);
 		
 		// Percentile Display - Score above - Above score
 		lblDispScoAbove_Score = new JLabel("0%");
@@ -541,7 +557,7 @@ public class PercentilePanel extends JPanel {
 		gbc_lblDispScoAbove_Score.insets = new Insets(0, 0, 5, 5);
 		gbc_lblDispScoAbove_Score.gridx = 1;
 		gbc_lblDispScoAbove_Score.gridy = 0;
-		pnlGivePercentile.add(lblDispScoAbove_Score, gbc_lblDispScoAbove_Score);
+		pnlGivePercent.add(lblDispScoAbove_Score, gbc_lblDispScoAbove_Score);
 		
 		// Percentile Display - Score below - "Score below" label
 		JLabel lblDispScoBelow_Title = new JLabel("Score below");
@@ -550,7 +566,7 @@ public class PercentilePanel extends JPanel {
 		gbc_lblDispScoBelow_Title.insets = new Insets(0, 0, 5, 5);
 		gbc_lblDispScoBelow_Title.gridx = 3;
 		gbc_lblDispScoBelow_Title.gridy = 0;
-		pnlGivePercentile.add(lblDispScoBelow_Title, gbc_lblDispScoBelow_Title);
+		pnlGivePercent.add(lblDispScoBelow_Title, gbc_lblDispScoBelow_Title);
 		
 		// Percentile Display - Score below - Below score
 		lblDispScoBelow_Score = new JLabel("0%");
@@ -559,7 +575,7 @@ public class PercentilePanel extends JPanel {
 		gbc_lblDispScoBelow_Score.insets = new Insets(0, 0, 5, 0);
 		gbc_lblDispScoBelow_Score.gridx = 4;
 		gbc_lblDispScoBelow_Score.gridy = 0;
-		pnlGivePercentile.add(lblDispScoBelow_Score, gbc_lblDispScoBelow_Score);
+		pnlGivePercent.add(lblDispScoBelow_Score, gbc_lblDispScoBelow_Score);
 		
 		// Percentile Display - Students above - "Students above" label
 		JLabel lblDispStuAbove_Title = new JLabel("Students above");
@@ -568,7 +584,7 @@ public class PercentilePanel extends JPanel {
 		gbc_lblDispStuAbove_Title.insets = new Insets(0, 0, 0, 5);
 		gbc_lblDispStuAbove_Title.gridx = 0;
 		gbc_lblDispStuAbove_Title.gridy = 1;
-		pnlGivePercentile.add(lblDispStuAbove_Title, gbc_lblDispStuAbove_Title);
+		pnlGivePercent.add(lblDispStuAbove_Title, gbc_lblDispStuAbove_Title);
 		
 		// Percentile Display - Students above - Number of students above
 		lblDispStuAbove_Value = new JLabel("0");
@@ -577,7 +593,7 @@ public class PercentilePanel extends JPanel {
 		gbc_lblDispStuAbove_Value.insets = new Insets(0, 0, 0, 5);
 		gbc_lblDispStuAbove_Value.gridx = 1;
 		gbc_lblDispStuAbove_Value.gridy = 1;
-		pnlGivePercentile.add(lblDispStuAbove_Value, gbc_lblDispStuAbove_Value);
+		pnlGivePercent.add(lblDispStuAbove_Value, gbc_lblDispStuAbove_Value);
 		
 		// Percentile Display - Students below - "Students below" label
 		JLabel lblDispStuBelow_Title = new JLabel("Students below");
@@ -586,7 +602,7 @@ public class PercentilePanel extends JPanel {
 		gbc_lblDispStuBelow_Title.insets = new Insets(0, 0, 0, 5);
 		gbc_lblDispStuBelow_Title.gridx = 3;
 		gbc_lblDispStuBelow_Title.gridy = 1;
-		pnlGivePercentile.add(lblDispStuBelow_Title, gbc_lblDispStuBelow_Title);
+		pnlGivePercent.add(lblDispStuBelow_Title, gbc_lblDispStuBelow_Title);
 		
 		// Percentile Display - Students below - Number of students below
 		lblDispStuBelow_Value = new JLabel("0");
@@ -594,7 +610,66 @@ public class PercentilePanel extends JPanel {
 		gbc_lblDispStuBelow_Value.anchor = GridBagConstraints.WEST;
 		gbc_lblDispStuBelow_Value.gridx = 4;
 		gbc_lblDispStuBelow_Value.gridy = 1;
-		pnlGivePercentile.add(lblDispStuBelow_Value, gbc_lblDispStuBelow_Value);
+		pnlGivePercent.add(lblDispStuBelow_Value, gbc_lblDispStuBelow_Value);
+		
+		JPanel pnlPercentile = new JPanel();
+		GridBagConstraints gbc_pnlPercentile = new GridBagConstraints();
+		gbc_pnlPercentile.anchor = GridBagConstraints.SOUTH;
+		gbc_pnlPercentile.insets = new Insets(0, 0, 5, 0);
+		gbc_pnlPercentile.gridx = 0;
+		gbc_pnlPercentile.gridy = 10;
+		add(pnlPercentile, gbc_pnlPercentile);
+		GridBagLayout gbl_pnlPercentile = new GridBagLayout();
+		gbl_pnlPercentile.columnWidths = new int[]{0, 0, 0, 0, 0, 0};
+		gbl_pnlPercentile.rowHeights = new int[] {30, 0};
+		gbl_pnlPercentile.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_pnlPercentile.rowWeights = new double[]{0.0, Double.MIN_VALUE};
+		pnlPercentile.setLayout(gbl_pnlPercentile);
+		
+		JLabel lblThereAre = new JLabel("There are");
+		GridBagConstraints gbc_lblThereAre = new GridBagConstraints();
+		gbc_lblThereAre.insets = new Insets(0, 0, 0, 5);
+		gbc_lblThereAre.anchor = GridBagConstraints.EAST;
+		gbc_lblThereAre.gridx = 0;
+		gbc_lblThereAre.gridy = 0;
+		pnlPercentile.add(lblThereAre, gbc_lblThereAre);
+		
+		textField = new JTextField();
+		textField.setHorizontalAlignment(SwingConstants.CENTER);
+		textField.setText("0");
+		GridBagConstraints gbc_textField = new GridBagConstraints();
+		gbc_textField.insets = new Insets(0, 0, 0, 5);
+		gbc_textField.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textField.gridx = 1;
+		gbc_textField.gridy = 0;
+		pnlPercentile.add(textField, gbc_textField);
+		textField.setColumns(3);
+		
+		JLabel lblStudentsInThe = new JLabel("students in the");
+		GridBagConstraints gbc_lblStudentsInThe = new GridBagConstraints();
+		gbc_lblStudentsInThe.insets = new Insets(0, 0, 0, 5);
+		gbc_lblStudentsInThe.anchor = GridBagConstraints.EAST;
+		gbc_lblStudentsInThe.gridx = 2;
+		gbc_lblStudentsInThe.gridy = 0;
+		pnlPercentile.add(lblStudentsInThe, gbc_lblStudentsInThe);
+		
+		textField_1 = new JTextField();
+		textField_1.setHorizontalAlignment(SwingConstants.CENTER);
+		textField_1.setText("0");
+		GridBagConstraints gbc_textField_1 = new GridBagConstraints();
+		gbc_textField_1.insets = new Insets(0, 0, 0, 5);
+		gbc_textField_1.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textField_1.gridx = 3;
+		gbc_textField_1.gridy = 0;
+		pnlPercentile.add(textField_1, gbc_textField_1);
+		textField_1.setColumns(3);
+		
+		JLabel lblThPercentile = new JLabel("th percentile.");
+		GridBagConstraints gbc_lblThPercentile = new GridBagConstraints();
+		gbc_lblThPercentile.anchor = GridBagConstraints.WEST;
+		gbc_lblThPercentile.gridx = 4;
+		gbc_lblThPercentile.gridy = 0;
+		pnlPercentile.add(lblThPercentile, gbc_lblThPercentile);
 		
 		
 		
@@ -603,7 +678,7 @@ public class PercentilePanel extends JPanel {
 		btnPercentileUpdate.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		GridBagConstraints gbc_btnPercentileUpdate = new GridBagConstraints();
 		gbc_btnPercentileUpdate.gridx = 0;
-		gbc_btnPercentileUpdate.gridy = 10;
+		gbc_btnPercentileUpdate.gridy = 11;
 		add(btnPercentileUpdate, gbc_btnPercentileUpdate);
 		btnPercentileUpdate.addActionListener(new updatePercentileButton());
 		
@@ -805,9 +880,8 @@ public class PercentilePanel extends JPanel {
 			pnlGradeDistribution.repaint();
 			pnlStudentsPerGrade.revalidate();
 			pnlStudentsPerGrade.repaint();
-			pnlGivePercentile.revalidate();
-			pnlGivePercentile.repaint();
+			pnlGivePercent.revalidate();
+			pnlGivePercent.repaint();
 		}
-		
 	}
 }
