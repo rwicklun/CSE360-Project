@@ -174,6 +174,7 @@ public class BaseGUI extends JFrame {
 	private Scanner scan;
 	protected LinkedList<Float> floatList;
 	protected LinkedList<Integer> roundedList;
+	private int inputOutOfBounds = 0;
 	
 	private static String getFileExtension(File file) {
         String fileName = file.getName();
@@ -198,9 +199,22 @@ public class BaseGUI extends JFrame {
 			                		roundedList = new LinkedList<Integer>();
 									while(scan.hasNextFloat()) {
 										inputNumbers = scan.nextFloat();
-										floatList.addLast(inputNumbers);
-										roundedNumbers = Math.round(inputNumbers);
-										roundedList.addLast(roundedNumbers);
+										if (inputNumbers <= calculations.getMaxPossible() && inputNumbers >= calculations.getMinPossible()) {
+											floatList.addLast(inputNumbers);
+											roundedNumbers = Math.round(inputNumbers);
+											roundedList.addLast(roundedNumbers);
+										} else {
+											inputOutOfBounds++;
+										}
+									}
+									if (inputOutOfBounds > 0) {
+										floatList = new LinkedList<Float>();
+										roundedList = new LinkedList<Integer>();
+										// Input Out of Bounds Exception
+						                error.setString("Input Out of Bounds: \n" + "There are " + inputOutOfBounds + " inputs of out bounds.\n"
+						                		+ "Please change the Highest and Lowest Possible scores in the Grade Statistics Tab, or load a different file.");
+						                error.setVisible(true);
+										inputOutOfBounds = 0;
 									}
 									//gives the Calculations the LinkedLists
 									calculations.setLinkedLists(floatList, roundedList);
