@@ -896,7 +896,7 @@ public class PercentilePanel extends JPanel {
 	}
 	
 	/**
-	 * 
+	 * Updates labels with new text and results in Students in each grade range section
 	 */
 	private void updateStuCountText() {
 		changeStuCountLabel(lblStuPerGradeA, "A", stuCountArray[0]);
@@ -907,21 +907,33 @@ public class PercentilePanel extends JPanel {
 	}
 
 	/**
-	 * Formats text to be sent to label.setText for Grade Distribution 
+	 * Formats text to be sent to label for Grade Distribution section
 	 * In the form of "A: 20%"
 	 * 
 	 * @param label		JLabel that will have text changed
 	 * @param letter	Grade letter to be set into string
-	 * @param percent	float Percent to be associated with letter
+	 * @param percent	float Percent represents distribution for that letter
 	 */
 	private void changeGradeDistrLabel(JLabel label, String letter, float percent) {
 		label.setText(letter + ": " + percent + "%");
 	}
 	
+	/**
+	 * Formats text to be sent to label for Students in Each Grade Range section
+	 * In the form of "A: 20"
+	 * 
+	 * @param label		JLabel that will have text to be changed
+	 * @param letter	Grade letter to be set into string
+	 * @param count		int number of students for that grade
+	 */
 	private void changeStuCountLabel(JLabel label, String letter, int count) {
 		label.setText(letter + ": " + count);
 	}
 
+	/**
+	 * Takes in input values from the Top and Bottom percents
+	 * Checks for valid inputs and sends data into calculations
+	 */
 	private void inputTopBottomPercent() {
 		int prevTop = topPercent;
 		int prevBot = botPercent;
@@ -957,6 +969,9 @@ public class PercentilePanel extends JPanel {
 		calculations.setTopBotPercent(botPercent, 0);
 	}
 	
+	/**
+	 * Updates results for top percent section
+	 */
 	private void updateScoreAboveText() {
 		int stuAbove = calculations.stuTopPercent();
 		lblDispStuAbove_Value.setText("" + stuAbove);
@@ -965,6 +980,9 @@ public class PercentilePanel extends JPanel {
 		lblDispScoAbove_Score.setText(topScore + "%");
 	}
 	
+	/**
+	 * Updates the results for bottom percent section
+	 */
 	private void updateScoreBelowText() {
 		int stuBelow = calculations.stuBotPercent();
 		lblDispStuBelow_Value.setText("" + stuBelow);
@@ -973,6 +991,10 @@ public class PercentilePanel extends JPanel {
 		lblDispScoBelow_Score.setText(botScore + "%");
 	}
 	
+	/**
+	 * Input for percentile section at the bottom
+	 * Checks for valid input and sends value into calculations
+	 */
 	private void inputPercentile() {
 		int prevPercentile = percentile;
 		try {
@@ -994,6 +1016,9 @@ public class PercentilePanel extends JPanel {
 		calculations.setPercentile(percentile);
 	}
 	
+	/**
+	 * Updates results of amount of students in input percentile
+	 */
 	private void updateStuInPercentileText() {
 		stuInPercentile = calculations.giveStuInPercentile();
 		txtStuInPercentile.setText(stuInPercentile + "");
