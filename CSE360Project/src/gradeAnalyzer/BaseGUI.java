@@ -209,8 +209,9 @@ public class BaseGUI extends JFrame {
 									calculations.printRoundedArray();
 
 			                	} catch (InputMismatchException e) {
-									// TODO Auto-generated catch block
-									e.printStackTrace();
+			                		// Wrong input type exception
+					                error.setString("Incorrect Format Error: \nPlease load a file containing floating point numbers on each line.");
+					                error.setVisible(true);
 								}
 			                } else {
 				                // Wrong file type exception

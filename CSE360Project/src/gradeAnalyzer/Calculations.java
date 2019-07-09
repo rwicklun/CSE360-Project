@@ -1,5 +1,6 @@
 package gradeAnalyzer;
 
+import java.text.DecimalFormat;
 import java.util.*;
 
 /**
@@ -128,7 +129,8 @@ public class Calculations {
 			}
 			if (count >= 1) {
 				average = sum / (double) count;
-				return "" + average;
+				DecimalFormat decimalForm = new DecimalFormat("0.00");
+				return "" + decimalForm.format(average);
 			} else {
 				return "";
 			}
@@ -162,7 +164,8 @@ public class Calculations {
 				} else {
 					median = (float)roundedArray[middleLocation];
 				}
-				return "" + median;
+				DecimalFormat decimalForm = new DecimalFormat("0.00");
+				return "" + decimalForm.format(median);
 			} else {
 				return "";
 			}
