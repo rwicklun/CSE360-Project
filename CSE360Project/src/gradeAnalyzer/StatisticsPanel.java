@@ -294,13 +294,15 @@ public class StatisticsPanel extends JPanel{
 	private float addInput;
 	private float deleteInput;
 	/**
-	 * 
+	 * The Class ButtonListener, implements the add a grade delete a grade, replace a grade
+	 * refresh the panel and reset to default Buttons.
 	 * @author Richard Wicklund
 	 *
 	 */
 	private class ButtonListener implements ActionListener {
 		/**
-		 * 
+		 * The method action performed utilizes the functions of the buttons on the panel, 
+		 * when its respective Button is pushed.
 		 */
 	    @Override
 	    public void actionPerformed(ActionEvent event) {
