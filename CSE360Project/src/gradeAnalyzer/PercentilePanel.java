@@ -712,6 +712,9 @@ public class PercentilePanel extends JPanel {
 		add(btnPercentileUpdate, gbc_btnPercentileUpdate);
 		btnPercentileUpdate.addActionListener(new updateButtonListener());
 		
+		
+		
+		// Color change
 		// End of Percentile Tab GUI
 		
 	}

@@ -74,7 +74,7 @@ public class BaseGUI extends JFrame {
 	 */
 	private void GUIComponents() {
 		getContentPane().setLayout(new BorderLayout());
-		getContentPane().setBackground(new Color( 200, 200, 200));//left side bar color
+		getContentPane().setBackground(new Color(44, 105, 32));//left side bar color
         setTitle("Grade Analyzer");
 		//base tabs and such
 		basePanel = new JTabbedPane();
@@ -122,12 +122,13 @@ public class BaseGUI extends JFrame {
 		
 		//stats tab start
         statsPanel = new StatisticsPanel(calculations);
-        statsPanel.setBackground(new Color(99, 234, 255));
+        statsPanel.setBackground(new Color(219, 126, 59));
         basePanel.addTab("Grade Statistics", null, statsPanel, null);
 		//stats tab end
 		
 		//percentiles tab start
         percentilePanel= new PercentilePanel(calculations);
+        percentilePanel.setBackground(new Color(212, 157, 55));
         //percentilePanel.setBackground(Color.lightGray);
 		basePanel.addTab("Grade Percentiles", percentilePanel);
 		//percentiles tab end
@@ -138,7 +139,7 @@ public class BaseGUI extends JFrame {
         
         //bottom buttons and such
         bottomPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT, 16, 5));
-        bottomPanel.setBackground(new Color( 200, 200, 200));
+        bottomPanel.setBackground(new Color(44, 105, 32));
 
         fileChooser = new JFileChooser();
 		fileChooser.setAcceptAllFileFilterUsed(false);
