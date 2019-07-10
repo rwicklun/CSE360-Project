@@ -363,7 +363,7 @@ public class Calculations {
 	 * Sets max used for percentile calculations to max possible
 	 */
 	public void setMaxInUseToEarned() {
-		if (roundedArray != null) {
+		if (roundedArray.length > 0) {
 			maxEarned = roundedArray[roundedArray.length - 1];
 			maxInUse = maxEarned;
 		}
@@ -477,7 +477,7 @@ public class Calculations {
 	 * @return returns students count
 	 */
 	public int getStuPerGrade(char letterIn) {
-		int output;
+		int output = 0;
 		switch (letterIn) {
 		case 'A':
 			output = stuCountArray[0];
@@ -493,11 +493,6 @@ public class Calculations {
 			break;
 		case 'E':
 			output = stuCountArray[4];
-			break;
-		default: 
-			output = 0;
-			error.setString("Error with getGradePercent()");
-			error.setVisible(true);
 			break;
 		}
 		return output;
