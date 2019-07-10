@@ -45,8 +45,8 @@ public class Calculations {
 	
 	private int topPercent;
 	private int botPercent;
-	private int percentile;
-	private int stuPercentile;
+	private int percentile = 90;
+	private int stuPercentile = 0;
 	
 	/**
 	 * Initializes floatList and roundedList with lists created in BaseGUI
@@ -643,11 +643,17 @@ public class Calculations {
 	 * @return int number of students in selected percentile
 	 */
 	public int giveStuInPercentile() {
-		int invPercentile = 100 - percentile;
-		double stuPercentileDouble = roundedArray.length * invPercentile / 100.0;
-		stuPercentile = (int)Math.ceil(stuPercentileDouble);
-		return stuPercentile;
+		if (floatList != null) {
+			int invPercentile = 100 - percentile;
+			double stuPercentileDouble = roundedArray.length * invPercentile / 100.0;
+			stuPercentile = (int)Math.ceil(stuPercentileDouble);
+			return stuPercentile;
+		} else {
+			return stuPercentile;
+		}
 	}
-	
+	public int getPercentile() {
+		return percentile;
+	}
 // End Percentile only ----------------------------------------------------------------------------
 }

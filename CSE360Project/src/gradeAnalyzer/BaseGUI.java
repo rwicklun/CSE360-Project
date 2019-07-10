@@ -260,7 +260,7 @@ public class BaseGUI extends JFrame {
 			    		recordWriter.write(System.getProperty( "line.separator" ));
 			    		recordWriter.write(System.getProperty( "line.separator" ));
 			    		
-			    		
+			    		recordWriter.write("There are " + calculations.giveStuInPercentile() + "Students in the " + calculations.getPercentile() + "th percentile.");
 			    		recordWriter.close();
 			    	}
 			    	catch(IOException ex)
