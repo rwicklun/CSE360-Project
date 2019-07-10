@@ -182,12 +182,11 @@ public class PercentilePanel extends JPanel {
 		pnlSetGradeRange = new JPanel();
 		GridBagConstraints gbc_pnlSetGradeRange = new GridBagConstraints();
 		gbc_pnlSetGradeRange.anchor = GridBagConstraints.NORTH;
-		gbc_pnlSetGradeRange.insets = new Insets(0, 0, 5, 0);
 		gbc_pnlSetGradeRange.gridx = 0;
 		gbc_pnlSetGradeRange.gridy = 2;
 		add(pnlSetGradeRange, gbc_pnlSetGradeRange);
 		GridBagLayout gbl_pnlSetGradeRange = new GridBagLayout();
-		gbl_pnlSetGradeRange.columnWidths = new int[] {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+		gbl_pnlSetGradeRange.columnWidths = new int[] {0, 30, 0, 0, 30, 0, 0, 30, 0, 0, 30, 0, 0, 0, 0};
 		gbl_pnlSetGradeRange.rowHeights = new int[] {40, 0};
 		gbl_pnlSetGradeRange.columnWeights = new double[]{0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
 		gbl_pnlSetGradeRange.rowWeights = new double[]{0.0, Double.MIN_VALUE};
