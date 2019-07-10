@@ -36,7 +36,7 @@ public class Calculations {
 	private float gradeDistributE;
 	
 	private int stuCount;
-	private int stuCountArray[] = new int[5];
+	private int stuCountArray[] = new int[] {0, 0, 0, 0, 0};
 	
 	private int gradePercentA = 90;
 	private int gradePercentB = 80;
@@ -575,7 +575,21 @@ public class Calculations {
 		}
 	}
 	
-	
+	/**
+	 * Returns the top or bot percent entered by user
+	 * @param letterIn	T or B for if you want top or bottom
+	 * @return	int percent of top or bottom
+	 */
+	private int getTopBotPercent(char letterIn) {
+		int output = 0;
+		switch (letterIn) {
+		case 'T':
+			output = topPercent;
+		case 'B':
+			output = botPercent;
+		}
+		return output;
+	}
 	
 	/**
 	 * Calculates the number of students above input percent
