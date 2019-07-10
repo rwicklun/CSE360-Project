@@ -570,7 +570,7 @@ public class Calculations {
 	 * @param letterIn	T or B for if you want top or bottom
 	 * @return	int percent of top or bottom
 	 */
-	private int getTopBotPercent(char letterIn) {
+	public int getTopBotPercent(char letterIn) {
 		int output = 0;
 		switch (letterIn) {
 		case 'T':
