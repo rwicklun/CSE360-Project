@@ -156,12 +156,10 @@ public class BaseGUI extends JFrame {
         closeButton.addActionListener(new CloseListener());
         bottomPanel.add(closeButton);
         getContentPane().add(bottomPanel, BorderLayout.SOUTH);
-        //end of bottom buttons and such
-        
-        
-        
-		
+        //end of bottom buttons and such	
 	}
+	
+	
 	
 	
 	//This is the RecordListener that makes the create record button works 
