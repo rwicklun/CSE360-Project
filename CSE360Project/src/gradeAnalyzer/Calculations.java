@@ -24,10 +24,10 @@ public class Calculations {
 	private int maxEarned;
 	
 	private int maxInUse = maxPossible;
-	private int topPercentileScore = 90;
-	private int stuAbovePercent;
+	private int topPercentileScore = 0;
+	private int stuAbovePercent = 0;
 	private int botPercentileScore = 0;
-	private int stuBelowPercent;
+	private int stuBelowPercent = 0;
 	
 	private float gradeDistributA;
 	private float gradeDistributB;
@@ -587,9 +587,13 @@ public class Calculations {
 	 * @return int Amount of students in top __ percent
 	 */
 	public int stuTopPercent() {
-		double stuAbove = roundedArray.length * topPercent / 100.0;
-		stuAbovePercent = (int)Math.ceil(stuAbove);
-		return stuAbovePercent;
+		if (floatList != null) {
+			double stuAbove = roundedArray.length * topPercent / 100.0;
+			stuAbovePercent = (int)Math.ceil(stuAbove);
+			return stuAbovePercent;
+		}
+		else 
+			return stuAbovePercent;
 	}
 
 	/**
@@ -598,11 +602,15 @@ public class Calculations {
 	 * @return	int the score required to be in top ___ percent
 	 */
 	public int scoreAboveTop() {
-		int inverseStuAbove = roundedArray.length - stuAbovePercent;
-		for (int index = roundedArray.length - 1; index > inverseStuAbove - 1; index --) {
-			topPercentileScore = roundedArray[index];
+		if (floatList != null) {
+			int inverseStuAbove = roundedArray.length - stuAbovePercent;
+			for (int index = roundedArray.length - 1; index > inverseStuAbove - 1; index --) {
+				topPercentileScore = roundedArray[index];
+			}
+			return topPercentileScore;
 		}
-		return topPercentileScore;
+		else
+			return topPercentileScore;
 	}
 	
 	/**
@@ -611,8 +619,12 @@ public class Calculations {
 	 * @return int Amount of students in bottom __ percent
 	 */
 	public int stuBotPercent() {
-		double stuBelow = roundedArray.length * botPercent / 100.0;
-		stuBelowPercent = (int)Math.ceil(stuBelow);
+		if (floatList != null) {
+			double stuBelow = roundedArray.length * botPercent / 100.0;
+			stuBelowPercent = (int)Math.ceil(stuBelow);
+				return stuBelowPercent;
+		}
+		else
 			return stuBelowPercent;
 	}
 	
@@ -622,10 +634,15 @@ public class Calculations {
 	 * @return	int the score required to be in top ___ percent
 	 */
 	public int scoreBelowBot() {
-		for (int index = 0; index < stuBelowPercent; index ++) {
-			botPercentileScore = roundedArray[index];
+		if (floatList != null) {
+			for (int index = 0; index < stuBelowPercent; index ++) {
+				botPercentileScore = roundedArray[index];
+			}
+			return botPercentileScore;
 		}
-		return botPercentileScore;
+		else {
+			return botPercentileScore;
+		}
 	}
 
 	/**
