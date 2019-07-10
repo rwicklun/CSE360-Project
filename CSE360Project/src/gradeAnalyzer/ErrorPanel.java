@@ -9,6 +9,11 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.Toolkit;
 
+/**
+ * The ErrorPanel Class implements a panel that sets and displays error messages.
+ * @author Richard Wicklund
+ *
+ */
 @SuppressWarnings("serial")
 public class ErrorPanel extends JFrame {
 	static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -57,6 +62,10 @@ public class ErrorPanel extends JFrame {
 		
 		
 	}
+	/**
+	 * The setString method, sets the error message that will display on the Error Panel.
+	 * @param error - This is the error message that the panel will display
+	 */
 	public void setString(String error) {
 		errorMessage = error;
 		textArea.setText(errorMessage);

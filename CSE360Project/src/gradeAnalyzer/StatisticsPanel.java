@@ -38,14 +38,15 @@ public class StatisticsPanel extends JPanel{
 	private JButton btnReset;
 	private JButton btnRefresh;
 	
-	//private StatisticsHandler stats = new StatisticsHandler();
 	private Calculations stats = new Calculations();
 	
 	private ErrorPanel error = new ErrorPanel();
 	
 	/**
-	 * 
-	 * @param insertCalc
+	 * This is the constructor of the statistics panel, it takes a Calculations variable
+	 * and uses it to display statistical data about the grades in the system.
+	 * @param insertCalc - This is an instance of the Calculations class, allows the display to interact
+	 * with the values loaded into the system.
 	 */
 	public StatisticsPanel(Calculations insertCalc) {
 		stats = insertCalc;
@@ -275,7 +276,8 @@ public class StatisticsPanel extends JPanel{
 		add(btnRefresh, gbc_btnRefresh);
 	}
 	/**
-	 * 
+	 * The refresh method simply updates the panel to display the most recent information,
+	 *  and reset inputs.
 	 */
 	private void refresh() {
 		maximumTextField.setText(stats.getMaxEarned());
