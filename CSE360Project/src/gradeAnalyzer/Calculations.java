@@ -43,8 +43,8 @@ public class Calculations {
 	private int gradePercentC = 70;
 	private int gradePercentD = 60;
 	
-	private int topPercent;
-	private int botPercent;
+	private int topPercent = 10;
+	private int botPercent = 10;
 	private int percentile = 90;
 	private int stuPercentile = 0;
 	
