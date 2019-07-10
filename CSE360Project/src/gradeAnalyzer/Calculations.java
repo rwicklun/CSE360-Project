@@ -405,6 +405,30 @@ public class Calculations {
 		}
 	}
 	
+	public int getGradePercent(char letterIn) {
+		int output;
+		switch (letterIn) {
+		case 'A':
+			output = gradePercentA;
+			break;
+		case 'B':
+			output = gradePercentB;
+			break;
+		case 'C':
+			output = gradePercentC;
+			break;
+		case 'D':
+			output = gradePercentD;
+			break;
+		default: 
+			output = 0;
+			error.setString("Error with getGradePercent()");
+			error.setVisible(true);
+			break;
+		}
+		return output;
+	}
+	
 	/**
 	 * Counts the amount of students in each grade range and returns as int[]
 	 * 
