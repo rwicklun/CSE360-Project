@@ -220,7 +220,7 @@ public class BaseGUI extends JFrame {
 			    		recordWriter.write(System.getProperty( "line.separator" ));
 			    		recordWriter.write(System.getProperty( "line.separator" ));
 			    		// start of A range
-			    		recordWriter.write("A Range is: 100" + " to: ");
+			    		recordWriter.write("A Range is: 100" + " to: " + calculations.getGradePercent('A'));
 			    		recordWriter.write(System.getProperty( "line.separator" ));
 			    		recordWriter.write("Percent of students in A range: ");
 			    		recordWriter.write(System.getProperty( "line.separator" ));
@@ -228,32 +228,36 @@ public class BaseGUI extends JFrame {
 			    		recordWriter.write(System.getProperty( "line.separator" ));
 			    		recordWriter.write(System.getProperty( "line.separator" ));
 			    		//start of B range
-			    		recordWriter.write("B Range is: " + " to: ");
+			    		recordWriter.write("B Range is: " + calculations.getGradePercent('A') + " to: " + calculations.getGradePercent('B'));
 			    		recordWriter.write(System.getProperty( "line.separator" ));
 			    		recordWriter.write("Percent of students in B range: ");
 			    		recordWriter.write(System.getProperty( "line.separator" ));
 			    		recordWriter.write("Number of students in B range: ");
 			    		recordWriter.write(System.getProperty( "line.separator" ));
+			    		recordWriter.write(System.getProperty( "line.separator" ));
 			    		//Start of C range
-			    		recordWriter.write("C Range is: " + " to: ");
+			    		recordWriter.write("C Range is: "+ calculations.getGradePercent('B') + " to: " + calculations.getGradePercent('C'));
 			    		recordWriter.write(System.getProperty( "line.separator" ));
 			    		recordWriter.write("Percent of students in C range: ");
 			    		recordWriter.write(System.getProperty( "line.separator" ));
 			    		recordWriter.write("Number of students in C range: ");
 			    		recordWriter.write(System.getProperty( "line.separator" ));
+			    		recordWriter.write(System.getProperty( "line.separator" ));
 			    		//Start of D range
-			    		recordWriter.write("D Range is: " + " to: ");
+			    		recordWriter.write("D Range is: "+ calculations.getGradePercent('C') + " to: " + calculations.getGradePercent('D'));
 			    		recordWriter.write(System.getProperty( "line.separator" ));
 			    		recordWriter.write("Percent of students in D range: ");
 			    		recordWriter.write(System.getProperty( "line.separator" ));
 			    		recordWriter.write("Number of students in D range: ");
 			    		recordWriter.write(System.getProperty( "line.separator" ));
+			    		recordWriter.write(System.getProperty( "line.separator" ));
 			    		//Start of E range
-			    		recordWriter.write("E Range is: " + " to: 0");
+			    		recordWriter.write("E Range is: " + calculations.getGradePercent('D') + " to: 0");
 			    		recordWriter.write(System.getProperty( "line.separator" ));
 			    		recordWriter.write("Percent of students in E range: ");
 			    		recordWriter.write(System.getProperty( "line.separator" ));
 			    		recordWriter.write("Number of students in E range: ");
+			    		recordWriter.write(System.getProperty( "line.separator" ));
 			    		recordWriter.write(System.getProperty( "line.separator" ));
 			    		
 			    		
