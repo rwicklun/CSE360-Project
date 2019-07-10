@@ -269,7 +269,7 @@ public class BaseGUI extends JFrame {
                         
                         recordWriter.write( "In the Bottom " + calculations.getTopBotPercent('B') + " percent" );
                         recordWriter.write(System.getProperty( "line.separator" ));
-                        recordWriter.write("One must score better than " + calculations.scoreBelowBot());
+                        recordWriter.write("One must score less than " + calculations.scoreBelowBot());
                         recordWriter.write(System.getProperty( "line.separator" ));
                         recordWriter.write("There are " + calculations.stuBotPercent() + " students in the bottom "
                                  + calculations.getTopBotPercent('B') + " percent");
