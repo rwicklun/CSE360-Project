@@ -38,10 +38,10 @@ public class Calculations {
 	private int stuCount;
 	private int stuCountArray[] = new int[5];
 	
-	private int gradePercentA;
-	private int gradePercentB;
-	private int gradePercentC;
-	private int gradePercentD;
+	private int gradePercentA = 90;
+	private int gradePercentB = 80;
+	private int gradePercentC = 70;
+	private int gradePercentD = 60;
 	
 	private int topPercent;
 	private int botPercent;
@@ -378,7 +378,7 @@ public class Calculations {
 	 * 
 	 * @return maxInUse
 	 */
-	public int giveMaxInUse() {
+	public int getMaxInUse() {
 		return maxInUse;
 	}
 	
@@ -472,6 +472,38 @@ public class Calculations {
 	}
 	
 	/**
+	 * Outputs the students per grade when entering a grade
+	 * @param letterIn Input char of grade
+	 * @return returns students count
+	 */
+	public int getStuPerGrade(char letterIn) {
+		int output;
+		switch (letterIn) {
+		case 'A':
+			output = stuCountArray[0];
+			break;
+		case 'B':
+			output = stuCountArray[1];
+			break;
+		case 'C':
+			output = stuCountArray[2];
+			break;
+		case 'D':
+			output = stuCountArray[3];
+			break;
+		case 'E':
+			output = stuCountArray[4];
+			break;
+		default: 
+			output = 0;
+			error.setString("Error with getGradePercent()");
+			error.setVisible(true);
+			break;
+		}
+		return output;
+	}
+	
+	/**
 	 * Calculates the grade distribution based on how many students 
 	 * earned each letter grade and the total amount of students
 	 */
@@ -542,6 +574,8 @@ public class Calculations {
 			botPercent = percentIn;
 		}
 	}
+	
+	
 	
 	/**
 	 * Calculates the number of students above input percent

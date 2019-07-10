@@ -777,7 +777,7 @@ public class PercentilePanel extends JPanel {
 		 public void actionPerformed(ActionEvent event) {
 			 calculations.refreshRoundedArray();
 			 calculations.setMaxInUseToPossible();
-			 lblMaxScoreNumber.setText(calculations.giveMaxInUse() + "");
+			 lblMaxScoreNumber.setText(calculations.getMaxInUse() + "");
 			 updatePanels();
 		 }
 	}
@@ -793,7 +793,7 @@ public class PercentilePanel extends JPanel {
 		 public void actionPerformed(ActionEvent event) {
 			 calculations.refreshRoundedArray();
 			 calculations.setMaxInUseToEarned();
-			 lblMaxScoreNumber.setText(calculations.giveMaxInUse() + "");
+			 lblMaxScoreNumber.setText(calculations.getMaxInUse() + "");
 			 updatePanels();
 		 }
 	}
