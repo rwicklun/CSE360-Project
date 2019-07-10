@@ -7,10 +7,25 @@ import java.awt.event.*;
 import java.io.*;
 import java.util.*;
 
+/**
+ * <h1> Grade Analyzer </h1>
+ * This is the Grade Analyzer program, it takes a text file of grades, 
+ * and finds the average, minimum, median, and other statistical functions.
+ * It allows the user to save the current state of the program, the current grades 
+ * in the program, adjust the visible ranges of the grades, and add, delete or replace grades.
+ * <p>
+ * This is the main panel for the grade analyzer program. 
+ * This is where the base of the GUI is built and where the program is run from.
+ * @author Richard Wicklund
+ * @author Steven Situ
+ * @author Abdullah Almuhanna
+ *
+ */
 @SuppressWarnings("serial")
 public class BaseGUI extends JFrame { 
 	/**
-	 * 
+	 * This is the constructor of the grade analyzer program, it sets the user interface location,
+	 * size and color, as well as its exit behavior.
 	 */
 	public BaseGUI() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -25,7 +40,7 @@ public class BaseGUI extends JFrame {
         
 	}
 	/**
-	 * 
+	 * This is the executable portion of the program, it runs the code.
 	 * 
 	 */
 	public static void main(String[] args) {
@@ -54,7 +69,8 @@ public class BaseGUI extends JFrame {
 		
 	}
 	/**
-	 * 
+	 * The GUIComponents method creates the GUI components and sets them into their proper locations.
+	 * It also creates the Load Save and Create Report buttons
 	 */
 	private void GUIComponents() {
 		getContentPane().setLayout(new BorderLayout());
@@ -163,7 +179,17 @@ public class BaseGUI extends JFrame {
 	
 	
 	//This is the RecordListener that makes the create record button works 
+	/**
+	 * The RecordListener Class implements the function of the Create Report
+	 * button when it is clicked.
+	 *
+	 */
 		private class RecordListener implements ActionListener {
+			/**
+			 * The actionPerformed method saves the current state of the Grade Analyzer to a
+			 * text file, this does not include the input, or current grades in the program.
+			 * @param event - this is the event that happens when the Create Report button is pushed.
+			 */
 			@Override
 		    public void actionPerformed(ActionEvent event) {
 				  
@@ -250,14 +276,30 @@ public class BaseGUI extends JFrame {
 	protected LinkedList<Float> floatList;
 	protected LinkedList<Integer> roundedList;
 	private int inputOutOfBounds = 0;
-	
+	/**
+	 * The getFileExtension program takes in a File input and returns its extension type.
+	 * <p>
+	 * @param file - This File is the file the program finds the extension of.
+	 * @return - Returns a string that contains a null string or the extension of the file.
+	 */
 	private static String getFileExtension(File file) {
         String fileName = file.getName();
         if(fileName.lastIndexOf(".") != -1 && fileName.lastIndexOf(".") != 0)
         return fileName.substring(fileName.lastIndexOf(".") + 1);
         else return "";
     }
+	/**
+	 * The LoadSaveListener class implements both the Load button and the Save Button. 
+	 * @author Richard Wicklund
+	 *
+	 */
 	private class LoadSaveListener implements ActionListener {
+		/**
+	     * The actionPerformed method saves the current grades in the system when the save 
+	     * button is pushed, and loads a text file of grades into the system.
+	     * @param event - This is the event that is triggered when the Save or Load button is pushed, 
+	     * and dictates which action happens.
+	     */
 	    @Override
 	    public void actionPerformed(ActionEvent event) {
 	    	if (event.getSource() == loadButton) {
@@ -353,7 +395,15 @@ public class BaseGUI extends JFrame {
 	    	}
 	    }
 	}
+	/**
+	 * The CloseListener class implements the close button.
+	 * @author Richard Wicklund
+	 */
 	private class CloseListener implements ActionListener {
+	    /**
+	     * The Action performed method closes the program when the close button is pushed.
+	     * @param event - This is the event that is triggered when the Close button is pushed.
+	     */
 	    @Override
 	    public void actionPerformed(ActionEvent event) {
 	        //exits the program, closing the GUI.
