@@ -260,21 +260,21 @@ public class BaseGUI extends JFrame {
 			    		recordWriter.write(System.getProperty( "line.separator" ));
 			    		recordWriter.write(System.getProperty( "line.separator" ));
 			    		
-			    		recordWriter.write("In the Top " + calculations.getTopBotPercent('T') + "percent" );
+			    		recordWriter.write("In the Top " + calculations.getTopBotPercent('T') + " percent" );
                         recordWriter.write(System.getProperty( "line.separator" ));
                         recordWriter.write( "One must score better than " + calculations.scoreAboveTop());
                         recordWriter.write(System.getProperty( "line.separator" ));
                         recordWriter.write("There are " + calculations.stuTopPercent() + " students in the top "
-                                 + calculations.getTopBotPercent('T') + "percent");
+                                 + calculations.getTopBotPercent('T') + " percent");
                         recordWriter.write(System.getProperty( "line.separator" ));
                         recordWriter.write(System.getProperty( "line.separator" ));
                         
-                        recordWriter.write( "In the Bottom " + calculations.getTopBotPercent('B') + "percent" );
+                        recordWriter.write( "In the Bottom " + calculations.getTopBotPercent('B') + " percent" );
                         recordWriter.write(System.getProperty( "line.separator" ));
                         recordWriter.write("One must score better than " + calculations.scoreBelowBot());
                         recordWriter.write(System.getProperty( "line.separator" ));
                         recordWriter.write("There are " + calculations.stuBotPercent() + " students in the bottom "
-                                 + calculations.getTopBotPercent('B') + "percent");
+                                 + calculations.getTopBotPercent('B') + " percent");
                         recordWriter.write(System.getProperty( "line.separator" ));
                         recordWriter.write(System.getProperty( "line.separator" ));
                         /**/
