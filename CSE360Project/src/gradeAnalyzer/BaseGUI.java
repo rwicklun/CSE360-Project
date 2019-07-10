@@ -260,12 +260,12 @@ public class BaseGUI extends JFrame {
 			    		recordWriter.write(System.getProperty( "line.separator" ));
 			    		recordWriter.write(System.getProperty( "line.separator" ));
 			    		
-			    		recordWriter.write("In the Top " + calculations.getTopBotPercent('T') + "percent" );/*
+			    		recordWriter.write("In the Top " + calculations.getTopBotPercent('T') + "percent" );
                         recordWriter.write(System.getProperty( "line.separator" ));
-                        recordWriter.write( "One must score better than " + calculations.scoreAboveTop()));
+                        recordWriter.write( "One must score better than " + calculations.scoreAboveTop());
                         recordWriter.write(System.getProperty( "line.separator" ));
                         recordWriter.write("There are " + calculations.stuTopPercent() + " students in the top "
-                                 + calculations.getTopBotPercent('T') + "percent"));
+                                 + calculations.getTopBotPercent('T') + "percent");
                         recordWriter.write(System.getProperty( "line.separator" ));
                         recordWriter.write(System.getProperty( "line.separator" ));
                         
@@ -277,7 +277,7 @@ public class BaseGUI extends JFrame {
                                  + calculations.getTopBotPercent('B') + "percent");
                         recordWriter.write(System.getProperty( "line.separator" ));
                         recordWriter.write(System.getProperty( "line.separator" ));
-                        */
+                        /**/
 			    		recordWriter.write("There are " + calculations.giveStuInPercentile() + " students in the " + calculations.getPercentile() + "th percentile.");
                         recordWriter.write(System.getProperty( "line.separator" ));
 			    		recordWriter.close();
