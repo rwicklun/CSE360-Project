@@ -406,7 +406,7 @@ public class Calculations {
 	}
 	
 	public int getGradePercent(char letterIn) {
-		int output;
+		int output = 0;
 		switch (letterIn) {
 		case 'A':
 			output = gradePercentA;
@@ -419,11 +419,6 @@ public class Calculations {
 			break;
 		case 'D':
 			output = gradePercentD;
-			break;
-		default: 
-			output = 0;
-			error.setString("Error with getGradePercent()");
-			error.setVisible(true);
 			break;
 		}
 		return output;
