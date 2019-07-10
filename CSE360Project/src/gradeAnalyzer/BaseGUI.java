@@ -122,12 +122,13 @@ public class BaseGUI extends JFrame {
 		
 		//stats tab start
         statsPanel = new StatisticsPanel(calculations);
-        statsPanel.setBackground(new Color(240, 240, 240));
+        statsPanel.setBackground(new Color(99, 234, 255));
         basePanel.addTab("Grade Statistics", null, statsPanel, null);
 		//stats tab end
 		
 		//percentiles tab start
         percentilePanel= new PercentilePanel(calculations);
+        //percentilePanel.setBackground(Color.lightGray);
 		basePanel.addTab("Grade Percentiles", percentilePanel);
 		//percentiles tab end
 		
