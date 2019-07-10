@@ -187,9 +187,9 @@ public class PercentilePanel extends JPanel {
 		gbc_pnlSetGradeRange.gridy = 2;
 		add(pnlSetGradeRange, gbc_pnlSetGradeRange);
 		GridBagLayout gbl_pnlSetGradeRange = new GridBagLayout();
-		gbl_pnlSetGradeRange.columnWidths = new int[] {0, 40, 0, 0, 40, 0, 0, 40, 0, 0, 40, 0, 0, 0};
+		gbl_pnlSetGradeRange.columnWidths = new int[] {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 		gbl_pnlSetGradeRange.rowHeights = new int[] {40, 0};
-		gbl_pnlSetGradeRange.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_pnlSetGradeRange.columnWeights = new double[]{0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
 		gbl_pnlSetGradeRange.rowWeights = new double[]{0.0, Double.MIN_VALUE};
 		pnlSetGradeRange.setLayout(gbl_pnlSetGradeRange);
 		
@@ -204,6 +204,7 @@ public class PercentilePanel extends JPanel {
 		// Custom set grade range section - A text field
 		txtSetGradeA = new JTextField();
 		GridBagConstraints gbc_txtSetGradeA = new GridBagConstraints();
+		gbc_txtSetGradeA.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtSetGradeA.insets = new Insets(0, 0, 0, 5);
 		gbc_txtSetGradeA.gridx = 1;
 		gbc_txtSetGradeA.gridy = 0;
@@ -232,6 +233,7 @@ public class PercentilePanel extends JPanel {
 		txtSetGradeB = new JTextField();
 		txtSetGradeB.setHorizontalAlignment(SwingConstants.CENTER);
 		GridBagConstraints gbc_txtSetGradeB = new GridBagConstraints();
+		gbc_txtSetGradeB.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtSetGradeB.insets = new Insets(0, 0, 0, 5);
 		gbc_txtSetGradeB.gridx = 4;
 		gbc_txtSetGradeB.gridy = 0;
@@ -259,6 +261,7 @@ public class PercentilePanel extends JPanel {
 		txtSetGradeC = new JTextField();
 		txtSetGradeC.setHorizontalAlignment(SwingConstants.CENTER);
 		GridBagConstraints gbc_txtSetGradeC = new GridBagConstraints();
+		gbc_txtSetGradeC.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtSetGradeC.insets = new Insets(0, 0, 0, 5);
 		gbc_txtSetGradeC.gridx = 7;
 		gbc_txtSetGradeC.gridy = 0;
@@ -286,6 +289,7 @@ public class PercentilePanel extends JPanel {
 		txtSetGradeD = new JTextField();
 		txtSetGradeD.setHorizontalAlignment(SwingConstants.CENTER);
 		GridBagConstraints gbc_txtSetGradeD = new GridBagConstraints();
+		gbc_txtSetGradeD.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtSetGradeD.insets = new Insets(0, 0, 0, 5);
 		gbc_txtSetGradeD.gridx = 10;
 		gbc_txtSetGradeD.gridy = 0;
